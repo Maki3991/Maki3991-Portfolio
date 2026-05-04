@@ -7,7 +7,6 @@ import { links } from "@/data/site";
   <section class="page-hero">
     <p class="eyebrow">Contact</p>
     <h1>联系我</h1>
-    <p>如果你对内容运营、英语教育产品、AI 辅助创作或学习系统感兴趣，欢迎联系我。</p>
   </section>
 
   <section class="section contact-layout">
@@ -15,23 +14,63 @@ import { links } from "@/data/site";
       <img class="contact-avatar" src="/assets/profile/maki-avatar.jpg" alt="Maki 羽轩头像" />
       <img src="/assets/contact/wechat.jpg" alt="微信二维码" />
       <span>微信二维码</span>
-      <p>扫码添加微信，或通过邮箱联系我。</p>
     </div>
     <div class="link-list">
       {
         links.map((link) => (
-          <a
+          <article
             class:list={["contact-link", link.status === "placeholder" && "pending"]}
-            href={link.href}
-            target={link.href.startsWith("http") ? "_blank" : undefined}
-            rel={link.href.startsWith("http") ? "noreferrer" : undefined}
           >
-            <span>{link.label}</span>
-            <small>{link.note}</small>
-            {link.image && <img src={link.image} alt={`${link.label}二维码`} loading="lazy" />}
-          </a>
+            <a
+              class="contact-link-main"
+              href={link.href}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+              rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+            >
+              <span>{link.label}</span>
+              <small>{link.note}</small>
+            </a>
+            {
+              link.image && (
+                <button class="qr-zoom-trigger" type="button" data-qr={link.image} data-label={link.label}>
+                  <img src={link.image} alt={`${link.label}二维码`} loading="lazy" />
+                </button>
+              )
+            }
+          </article>
         ))
       }
     </div>
   </section>
+
+  <dialog class="qr-dialog" aria-label="二维码预览">
+    <button class="qr-dialog-close" type="button" aria-label="关闭">关闭</button>
+    <img src="" alt="" />
+  </dialog>
+
+  <script>
+    const dialog = document.querySelector(".qr-dialog");
+    const dialogImage = dialog?.querySelector("img");
+    const closeButton = dialog?.querySelector(".qr-dialog-close");
+
+    document.querySelectorAll(".qr-zoom-trigger").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (!(dialog instanceof HTMLDialogElement) || !dialogImage) return;
+        const image = button.getAttribute("data-qr");
+        const label = button.getAttribute("data-label") || "二维码";
+        if (!image) return;
+        dialogImage.setAttribute("src", image);
+        dialogImage.setAttribute("alt", `${label}二维码`);
+        dialog.showModal();
+      });
+    });
+
+    closeButton?.addEventListener("click", () => {
+      if (dialog instanceof HTMLDialogElement) dialog.close();
+    });
+
+    dialog?.addEventListener("click", (event) => {
+      if (event.target === dialog && dialog instanceof HTMLDialogElement) dialog.close();
+    });
+  </script>
 </BaseLayout>

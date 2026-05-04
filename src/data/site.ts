@@ -97,7 +97,7 @@ export const projects: Project[] = [
   },
   {
     slug: "lpt-delivery",
-    title: "LPT 英语产品运营与交付",
+    title: "LPT 英语产品运营",
     eyebrow: "教育产品与社群服务",
     summary:
       "参与英语学习社群和引流款产品交付，重点是直播表达、用户理解和服务链路参与。",
@@ -114,7 +114,7 @@ export const projects: Project[] = [
   },
   {
     slug: "portfolio-system",
-    title: "个人作品集网站 / AI 辅助内容系统",
+    title: "AI 辅助个人作品集",
     eyebrow: "长期可信度主页",
     summary:
       "用 AI 辅助搭建长期个人作品集，用于展示作品、项目、数据截图、复盘文章和联系方式。",
@@ -298,7 +298,7 @@ export const works: Work[] = [
     title: "Things They Left Behind",
     category: "音乐作品",
     platform: "网易云音乐",
-    date: "待补充",
+    date: "2026-03-05",
     cover: "/assets/music/things-they-left-behind.jpeg",
     coverMode: "contain",
     metrics: ["个人 EP", "网易云音乐人 Maki3991"],

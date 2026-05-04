@@ -54,9 +54,8 @@ main {
 }
 
 .site-header {
-  background: rgba(247, 245, 240, 0.92);
-  border-bottom: 1px solid rgba(222, 217, 207, 0.8);
-  backdrop-filter: blur(14px);
+  background: rgba(247, 245, 240, 0.72);
+  backdrop-filter: blur(24px) saturate(1.3);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -101,7 +100,7 @@ main {
 
 .nav a:hover,
 .nav a.active {
-  border-color: var(--line);
+  border-color: transparent;
   color: var(--text);
   background: rgba(255, 255, 255, 0.72);
 }
@@ -113,7 +112,7 @@ main {
 
 .page-hero {
   display: grid;
-  gap: 18px;
+  gap: 10px;
   max-width: 980px;
 }
 
@@ -144,13 +143,22 @@ h1 {
   letter-spacing: 0;
 }
 
+.hero h1 {
+  font-family:
+    "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
+  font-weight: 800;
+}
+
 .page-hero h1 {
-  font-size: clamp(3.4rem, 8vw, 7.2rem);
-  line-height: 1.02;
+  font-family:
+    "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 6.4vw, 5.8rem);
+  font-weight: 800;
+  line-height: 1.08;
 }
 
 .page-hero .eyebrow {
-  font-size: 0.95rem;
+  font-size: 1.08rem;
 }
 
 .page-hero p:not(.eyebrow) {
@@ -159,13 +167,19 @@ h1 {
 }
 
 h2 {
+  font-family:
+    "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
   font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
   line-height: 1.15;
   letter-spacing: 0;
 }
 
 h3 {
+  font-family:
+    "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
   font-size: 1.15rem;
+  font-weight: 800;
   line-height: 1.35;
 }
 
@@ -185,7 +199,7 @@ h3 {
 .empty-state p,
 .site-footer p,
 .qr-placeholder p,
-.contact-link small {
+.contact-link-main small {
   color: var(--muted);
 }
 
@@ -263,6 +277,10 @@ h3 {
   padding: 48px 0;
 }
 
+.page-hero + .section {
+  padding-top: 0;
+}
+
 .section-intro {
   display: grid;
   gap: 10px;
@@ -313,11 +331,26 @@ h3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.section-action {
+  display: flex;
+  justify-content: center;
+  padding-top: 22px;
+}
+
 .project-card,
 .work-card {
   display: grid;
   gap: 18px;
   padding: 22px;
+}
+
+.project-card h3 {
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Microsoft YaHei", sans-serif;
+  font-size: clamp(1.28rem, 2vw, 1.6rem);
+  font-weight: 850;
+  line-height: 1.25;
 }
 
 .work-card h3 {
@@ -357,6 +390,11 @@ h3 {
   gap: 10px;
   list-style: none;
   padding: 0;
+}
+
+.project-card .pill-list {
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .pill-list li,
@@ -421,6 +459,8 @@ h3 {
 
 .category-toggle summary span {
   color: var(--text);
+  font-family:
+    "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
   font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 850;
   line-height: 1.15;
@@ -478,8 +518,13 @@ h3 {
 
 .project-detail {
   display: grid;
-  gap: 28px;
+  gap: 22px;
   padding: 28px;
+}
+
+.project-detail > div:first-child {
+  display: grid;
+  gap: 8px;
 }
 
 .detail-grid {
@@ -528,8 +573,10 @@ h3 {
 
 .qr-placeholder .contact-avatar {
   aspect-ratio: 1;
+  justify-self: center;
+  max-width: 78%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 36%;
 }
 
 .qr-placeholder span {
@@ -549,12 +596,21 @@ h3 {
 .contact-link {
   align-items: center;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) 58px;
-  gap: 16px;
-  padding: 18px;
+  grid-template-columns: minmax(0, 1fr) 96px;
+  gap: 10px;
+  padding: 0;
 }
 
-.contact-link span {
+.contact-link-main {
+  align-items: center;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  min-height: 92px;
+  padding: 18px 0 18px 18px;
+}
+
+.contact-link-main span {
   font-weight: 800;
 }
 
@@ -562,13 +618,53 @@ h3 {
   color: var(--muted);
 }
 
-.contact-link img {
+.qr-zoom-trigger {
+  background: transparent;
+  border: 0;
+  cursor: zoom-in;
+  justify-self: center;
+  padding: 14px;
+}
+
+.qr-zoom-trigger img {
   aspect-ratio: 1;
   border: 1px solid var(--line);
   border-radius: 6px;
+  display: block;
   height: 58px;
   object-fit: cover;
   width: 58px;
+}
+
+.qr-dialog {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  max-width: min(520px, calc(100vw - 40px));
+  padding: 22px;
+}
+
+.qr-dialog::backdrop {
+  background: rgba(31, 37, 35, 0.34);
+  backdrop-filter: blur(12px);
+}
+
+.qr-dialog img {
+  border-radius: 6px;
+  display: block;
+  max-height: min(70vh, 520px);
+  width: 100%;
+}
+
+.qr-dialog-close {
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+  display: block;
+  font: inherit;
+  margin: 0 0 12px auto;
 }
 
 .site-footer {
@@ -642,7 +738,17 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .contact-link img {
+  .contact-link-main {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .qr-zoom-trigger {
+    justify-self: start;
+    padding: 0 18px 18px;
+  }
+
+  .qr-zoom-trigger img {
     height: 96px;
     width: 96px;
   }

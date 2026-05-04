@@ -7,7 +7,6 @@ import { projects } from "@/data/site";
   <section class="page-hero">
     <p class="eyebrow">Projects</p>
     <h1>项目经历</h1>
-    <p>每个项目都按背景、职责、结果、复盘和下一步来写，避免空泛包装。</p>
   </section>
 
   <div class="project-detail-list">
@@ -15,7 +14,6 @@ import { projects } from "@/data/site";
       projects.map((project) => (
         <section class="project-detail" id={project.slug}>
           <div>
-            <p class="eyebrow">{project.eyebrow}</p>
             <h2>{project.title}</h2>
             <p>{project.summary}</p>
           </div>
