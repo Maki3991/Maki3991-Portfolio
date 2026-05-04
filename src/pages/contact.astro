@@ -12,16 +12,22 @@ import { links } from "@/data/site";
 
   <section class="section contact-layout">
     <div class="qr-placeholder">
+      <img src="/assets/contact/wechat.jpg" alt="微信二维码" />
       <span>微信二维码</span>
-      <strong>待上传</strong>
-      <p>后续把二维码图片放到这里。</p>
+      <p>扫码添加微信，或通过邮箱联系我。</p>
     </div>
     <div class="link-list">
       {
         links.map((link) => (
-          <a class:list={["contact-link", link.status === "placeholder" && "pending"]} href={link.href}>
+          <a
+            class:list={["contact-link", link.status === "placeholder" && "pending"]}
+            href={link.href}
+            target={link.href.startsWith("http") ? "_blank" : undefined}
+            rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+          >
             <span>{link.label}</span>
             <small>{link.note}</small>
+            {link.image && <img src={link.image} alt={`${link.label}二维码`} loading="lazy" />}
           </a>
         ))
       }

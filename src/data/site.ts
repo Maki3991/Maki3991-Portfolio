@@ -5,6 +5,7 @@ export type ProfileLink = {
   href: string;
   status: LinkStatus;
   note?: string;
+  image?: string;
 };
 
 export type Stat = {
@@ -30,11 +31,18 @@ export type Work = {
   category: string;
   platform: string;
   date: string;
+  cover?: string;
   metrics: string[];
   url: string;
   status: LinkStatus;
   summary: string;
   reflection: string;
+};
+
+export type Proof = {
+  title: string;
+  image: string;
+  note: string;
 };
 
 export const profile = {
@@ -43,7 +51,7 @@ export const profile = {
   intro:
     "我关注英语学习、内容表达、自媒体运营、教育产品和 AI 辅助创作，正在把自己的内容、项目和学习系统整理成一个长期可验证的作品集。",
   location: "中国",
-  email: "待补充邮箱",
+  email: "maki1344933709@gmail.com",
   seeking: "内容运营、新媒体运营、英语教育产品与 AI 辅助创作相关机会",
 };
 
@@ -136,33 +144,143 @@ export const works: Work[] = [
     title: "四级六级听力吐槽与学习路径内容",
     category: "英语自媒体",
     platform: "抖音",
-    date: "待补充",
-    metrics: ["最高播放 491 万+", "高分享", "高评论"],
-    url: "#",
-    status: "placeholder",
+    date: "2025-07-28",
+    cover: "/assets/covers/V028.jpg",
+    metrics: ["播放 491.2 万", "点赞 22.4 万", "评论 1.1 万", "收藏 1.8 万", "分享 4.4 万"],
+    url: "https://v.douyin.com/xe4D6L5DczE/",
+    status: "ready",
     summary: "用强情绪入口切入四六级听力问题，再提供更具体的替代路径。",
     reflection:
       "这类内容说明，学习方法内容可以先承认真实痛感，再给出可执行的改变方向。",
   },
   {
-    title: "英语学习方法类小红书代表内容",
+    title: "一个大二文科生思考：张雪峰“文科大有前途”",
+    category: "英语自媒体",
+    platform: "抖音",
+    date: "2025-10-25",
+    cover: "/assets/covers/V056.jpg",
+    metrics: ["播放 34.7 万", "点赞 7006", "评论 213", "收藏 1840", "分享 939"],
+    url: "https://v.douyin.com/kpsb-W_8EUQ/",
+    status: "ready",
+    summary: "从文科生视角回应专业选择、就业焦虑和个人路径判断。",
+    reflection: "这条内容说明，个人经历和公共议题结合时，更容易触发讨论和转发。",
+  },
+  {
+    title: "做阅读题的思维，转化成沉浸式输入思维",
+    category: "英语自媒体",
+    platform: "抖音",
+    date: "2025-08-29",
+    cover: "/assets/covers/V042.jpg",
+    metrics: ["播放 33.5 万", "点赞 1.9 万", "评论 132", "收藏 9479", "分享 1277"],
+    url: "https://v.douyin.com/djlG0c8RThY/",
+    status: "ready",
+    summary: "把应试阅读经验转化为可理解输入的学习路径。",
+    reflection: "英语学习内容需要把抽象方法翻译成学习者已经熟悉的场景。",
+  },
+  {
+    title: "高中英语怎么突围？教你一招不常规的方法",
+    category: "英语自媒体",
+    platform: "抖音",
+    date: "2025-06-10",
+    cover: "/assets/covers/V013.jpg",
+    metrics: ["播放 26.7 万", "点赞 5973", "评论 325", "收藏 4768", "分享 1615"],
+    url: "https://v.douyin.com/HQsAyTy58Gw/",
+    status: "ready",
+    summary: "面向高中英语学习者，提供区别于纯刷题路线的输入方法。",
+    reflection: "越是常见的问题，越需要给出足够具体、但不装神秘的方法。",
+  },
+  {
+    title: "高二读了 9 本原著，然后就再也没有上过英语课了",
+    category: "英语自媒体",
+    platform: "抖音",
+    date: "2025-07-11",
+    cover: "/assets/covers/V018.jpg",
+    metrics: ["播放 16.5 万", "点赞 1.1 万", "评论 136", "收藏 6502", "分享 1380"],
+    url: "https://v.douyin.com/b6HcvF6lsbc/",
+    status: "ready",
+    summary: "用个人经历解释英语习得路线和大量输入的长期效果。",
+    reflection: "个人故事不是为了炫耀结果，而是用来证明一条学习路径真实发生过。",
+  },
+  {
+    title: "多多记录自己，真的可以改命！",
+    category: "英语自媒体",
+    platform: "抖音",
+    date: "2025-09-22",
+    cover: "/assets/covers/V051.jpg",
+    metrics: ["播放 14.1 万", "点赞 6085", "评论 49", "收藏 4150", "分享 538"],
+    url: "https://v.douyin.com/l6G583EKnQQ/",
+    status: "ready",
+    summary: "把记录自己从鸡汤表达拆成更具体的实践方法。",
+    reflection: "非英语主题也能服务于长期个人表达，关键是把感受讲成可执行路径。",
+  },
+  {
+    title: "一个有点暴力但有效的，用英语试卷大量输入的方法！",
+    category: "英语自媒体",
+    platform: "抖音",
+    date: "2025-09-18",
+    cover: "/assets/covers/V047.jpg",
+    metrics: ["播放 17.7 万", "点赞 5402", "评论 142", "收藏 5820", "分享 1327"],
+    url: "https://v.douyin.com/kLy6Ta1-sGw/",
+    status: "ready",
+    summary: "把试卷材料转化为大量输入素材，连接应试和习得两种路线。",
+    reflection: "好的学习建议需要尊重用户当前环境，而不是强行要求他们换一套系统。",
+  },
+  {
+    title: "40 天 四六级 如何阅读满分 一把过？",
     category: "英语自媒体",
     platform: "小红书",
-    date: "待补充",
-    metrics: ["播放 / 观看待补充", "收藏待补充", "分享待补充"],
-    url: "#",
-    status: "placeholder",
-    summary: "面向英语学习者整理更清楚的学习路径和误区拆解。",
-    reflection: "小红书更适合沉淀方法、清单和可收藏内容，后续需要补齐代表链接。",
+    date: "2026-05-01",
+    cover: "/assets/covers/V091.jpg",
+    metrics: ["观看 5.8 万", "点赞 5177", "评论 17", "收藏 4885", "分享 294"],
+    url: "https://www.xiaohongshu.com/explore/69f4ad9100000000360317e7?xsec_token=ABgwnY42Ixrhh8w_UpYs696sRagXGxlLaxOPJ1ASaHLlU=&xsec_source=pc_user",
+    status: "ready",
+    summary: "围绕四六级阅读提分，整理短周期备考中的方法和优先级。",
+    reflection: "小红书用户更重视可收藏、可照着做的内容结构。",
+  },
+  {
+    title: "词汇量越低的人，越喜欢精读",
+    category: "英语自媒体",
+    platform: "小红书",
+    date: "2026-04-23",
+    cover: "/assets/covers/V089.jpg",
+    metrics: ["观看 8247", "点赞 613", "评论 54", "收藏 489", "分享 29"],
+    url: "https://www.xiaohongshu.com/explore/69e97cdc000000001a02f871?xsec_token=AB1OTDAoD5pvP2A1TXkYRvFpn9BJ3VIMGl1tuQJXZ_H4I=&xsec_source=pc_user",
+    status: "ready",
+    summary: "用反直觉表达切入词汇量和精读之间的关系。",
+    reflection: "观点型标题能带来讨论，但正文必须给出清楚的解释和边界。",
+  },
+  {
+    title: "如何破圈应试英语教育？",
+    category: "英语自媒体",
+    platform: "小红书",
+    date: "2026-03-14",
+    cover: "/assets/covers/V077.jpg",
+    metrics: ["观看 7125", "点赞 342", "评论 11", "收藏 550", "分享 24"],
+    url: "https://www.xiaohongshu.com/explore/69b4d1d8000000002200d86f?xsec_token=AB0V_7f7cz4qbp5yzYUDgL70EGoVByLuB30k3-6bP47No=&xsec_source=pc_user",
+    status: "ready",
+    summary: "讨论应试英语教育之外，学习者如何建立更长期的输入系统。",
+    reflection: "平台内容可以从具体成绩问题，延伸到更深层的学习路线判断。",
+  },
+  {
+    title: "二刷六级，阅读满分有感",
+    category: "英语自媒体",
+    platform: "小红书",
+    date: "2026-03-01",
+    cover: "/assets/covers/V072.jpg",
+    metrics: ["观看 5.1 万", "点赞 3316", "评论 20", "收藏 3233", "分享 131"],
+    url: "https://www.xiaohongshu.com/explore/69a3a4670000000026033242?xsec_token=ABlVs1PmUsQdWrEvziI31Fsz25hPMvu8-DUoi1GsHi68Q=&xsec_source=pc_user",
+    status: "ready",
+    summary: "用考试结果作为入口，复盘阅读能力和长期输入之间的关系。",
+    reflection: "成绩背书适合放在开头，但真正建立信任的是后面的过程解释。",
   },
   {
     title: "抖音爆款开头复盘",
     category: "内容运营与爆款复盘",
     platform: "复盘文档",
-    date: "待补充",
-    metrics: ["关联账号数据 829 万+ 播放 / 观看"],
-    url: "#",
-    status: "placeholder",
+    date: "持续更新",
+    metrics: ["关联账号数据 829 万+ 播放 / 观看", "单条最高播放 491 万+"],
+    url: "/assets/proofs/douyin-data.png",
+    status: "ready",
     summary: "分析爆款内容如何从共同情绪、错误路线和结果背书进入。",
     reflection: "复盘的重点不是证明运气好，而是找到下一次可重复验证的结构。",
   },
@@ -189,25 +307,51 @@ export const works: Work[] = [
     reflection: "先搭出长期结构，再逐步补充证据，是比一次性追求完美更实际的路径。",
   },
   {
-    title: "写作、研究与音乐作品",
+    title: "Things They Left Behind",
+    category: "音乐作品",
+    platform: "网易云音乐",
+    date: "待补充",
+    cover: "/assets/music/things-they-left-behind.jpeg",
+    metrics: ["个人 EP", "网易云音乐人 Maki3991"],
+    url: "http://music.163.com/album/363693628/?userid=2005170426",
+    status: "ready",
+    summary: "个人音乐 EP，用于展示英语内容和运营之外的长期创作面。",
+    reflection: "音乐作品让作品集更接近真实的人，而不是只有求职材料。",
+  },
+  {
+    title: "写作与研究作品",
     category: "写作与研究",
     platform: "待补充",
     date: "未来更新",
-    metrics: ["文章待补充", "音乐链接待补充"],
+    metrics: ["文章待补充", "课程笔记待补充"],
     url: "#",
     status: "placeholder",
-    summary: "未来加入课程笔记、政治学写作、读书笔记和音乐创作说明。",
+    summary: "未来加入课程笔记、政治学写作、读书笔记和研究型文章。",
     reflection: "这一部分用于展示长期学习和表达，不急着填满，但要保留结构。",
   },
 ];
 
 export const links: ProfileLink[] = [
-  { label: "邮箱", href: "mailto:placeholder@example.com", status: "placeholder", note: "待补充真实邮箱" },
-  { label: "微信二维码", href: "#", status: "placeholder", note: "待上传二维码图片" },
-  { label: "抖音主页", href: "#", status: "placeholder", note: "待补充主页链接" },
-  { label: "小红书主页", href: "#", status: "placeholder", note: "待补充主页链接" },
+  { label: "邮箱", href: "mailto:maki1344933709@gmail.com", status: "ready", note: "maki1344933709@gmail.com" },
+  { label: "微信二维码", href: "/assets/contact/wechat.jpg", status: "ready", note: "扫码添加微信", image: "/assets/contact/wechat.jpg" },
+  { label: "抖音主页", href: "https://v.douyin.com/CBc6conCqFk/", status: "ready", note: "Maki 羽轩英语自媒体", image: "/assets/contact/douyin-qr.png" },
+  { label: "小红书主页", href: "https://www.xiaohongshu.com/user/profile/602a6c230000000001009527?xsec_token=YBqg7Wg_x5DJMdRsF6foCq44DuYhcBr6c2RuZbRk6j2B0=&xsec_source=app_share&&apptime=1777881646&shareRedId=ODY0QTlINjw2NzUyOTgwNjY0OTc9OjhA&share_id=642ddfde5194449584aa0e87ea5d5217&xhsshare=CopyLink", status: "ready", note: "英语学习内容账号", image: "/assets/contact/xiaohongshu-qr.jpg" },
+  { label: "视频号", href: "/assets/contact/shipinhao-qr.jpg", status: "ready", note: "扫码查看视频号", image: "/assets/contact/shipinhao-qr.jpg" },
+  { label: "网易云音乐", href: "http://music.163.com/artist?id=33795229&userid=2005170426", status: "ready", note: "音乐人 Maki3991", image: "/assets/contact/netease-qr.jpg" },
+  { label: "GitHub", href: "https://github.com/Maki3991", status: "ready", note: "Maki3991" },
+  { label: "自媒体简历 PDF", href: "/assets/files/self-media-v2.pdf", status: "ready", note: "可下载查看" },
   { label: "B 站主页", href: "#", status: "placeholder", note: "待补充主页链接" },
-  { label: "视频号", href: "#", status: "placeholder", note: "待补充入口" },
-  { label: "GitHub", href: "#", status: "placeholder", note: "未来补充" },
-  { label: "简历 PDF", href: "#", status: "placeholder", note: "待上传 PDF" },
+];
+
+export const proofs: Proof[] = [
+  {
+    title: "抖音账号数据截图",
+    image: "/assets/proofs/douyin-data.png",
+    note: "用于证明抖音代表作品和账号整体表现。",
+  },
+  {
+    title: "小红书账号数据截图",
+    image: "/assets/proofs/xiaohongshu-data.png",
+    note: "用于证明小红书代表作品和账号整体表现。",
+  },
 ];

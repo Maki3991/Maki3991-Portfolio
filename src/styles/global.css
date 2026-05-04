@@ -293,6 +293,15 @@ h3 {
   padding: 22px;
 }
 
+.work-cover {
+  aspect-ratio: 16 / 10;
+  border-radius: 6px;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
 .project-card.compact {
   min-height: 370px;
 }
@@ -333,6 +342,36 @@ h3 {
 
 .empty-state {
   padding: 24px;
+}
+
+.proof-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.proof-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.proof-card img {
+  background: white;
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.proof-card div {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+}
+
+.proof-card p {
+  color: var(--muted);
 }
 
 .project-detail-list {
@@ -379,11 +418,16 @@ h3 {
 }
 
 .qr-placeholder {
-  aspect-ratio: 1;
   display: grid;
-  place-content: center;
+  gap: 12px;
   text-align: center;
   padding: 24px;
+}
+
+.qr-placeholder img {
+  border-radius: 6px;
+  display: block;
+  width: 100%;
 }
 
 .qr-placeholder span {
@@ -402,8 +446,8 @@ h3 {
 
 .contact-link {
   align-items: center;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) 58px;
   gap: 16px;
   padding: 18px;
 }
@@ -414,6 +458,15 @@ h3 {
 
 .contact-link.pending {
   color: var(--muted);
+}
+
+.contact-link img {
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  height: 58px;
+  object-fit: cover;
+  width: 58px;
 }
 
 .site-footer {
@@ -429,6 +482,7 @@ h3 {
   .contact-layout,
   .detail-grid,
   .about-grid,
+  .proof-grid,
   .card-grid.two,
   .card-grid.three {
     grid-template-columns: 1fr;
@@ -458,9 +512,17 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .site-footer,
-  .contact-link {
+  .site-footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .contact-link {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-link img {
+    height: 96px;
+    width: 96px;
   }
 }

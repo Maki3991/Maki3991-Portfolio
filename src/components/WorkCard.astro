@@ -7,9 +7,11 @@ type Props = {
 
 const { work } = Astro.props;
 const isReady = work.status === "ready";
+const isExternal = work.url.startsWith("http");
 ---
 
 <article class="work-card">
+  {work.cover && <img class="work-cover" src={work.cover} alt={`${work.title} 封面`} loading="lazy" />}
   <div>
     <p class="eyebrow">{work.category}</p>
     <h3>{work.title}</h3>
@@ -20,7 +22,13 @@ const isReady = work.status === "ready";
     {work.metrics.map((metric) => <li>{metric}</li>)}
   </ul>
   <p class="reflection">{work.reflection}</p>
-  <a class:list={["button", !isReady && "disabled"]} href={work.url} aria-disabled={!isReady}>
+  <a
+    class:list={["button", !isReady && "disabled"]}
+    href={work.url}
+    aria-disabled={!isReady}
+    target={isExternal ? "_blank" : undefined}
+    rel={isExternal ? "noreferrer" : undefined}
+  >
     {isReady ? "查看作品" : "链接待补充"}
   </a>
 </article>

@@ -2,7 +2,7 @@
 import SectionIntro from "@/components/SectionIntro.astro";
 import WorkCard from "@/components/WorkCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { workCategories, works } from "@/data/site";
+import { proofs, workCategories, works } from "@/data/site";
 ---
 
 <BaseLayout title="作品" description="Maki 羽轩的代表作品、内容复盘、英语产品交付与未来作品档案。">
@@ -32,4 +32,25 @@ import { workCategories, works } from "@/data/site";
       );
     })
   }
+
+  <section class="section category-section">
+    <SectionIntro
+      eyebrow="Proof"
+      title="数据与证明材料"
+      body="这里不堆满所有后台截图，只放最能支撑账号表现的证明材料。"
+    />
+    <div class="proof-grid">
+      {
+        proofs.map((proof) => (
+          <article class="proof-card">
+            <img src={proof.image} alt={proof.title} loading="lazy" />
+            <div>
+              <h3>{proof.title}</h3>
+              <p>{proof.note}</p>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </section>
 </BaseLayout>
