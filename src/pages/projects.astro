@@ -1,0 +1,50 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { projects } from "@/data/site";
+---
+
+<BaseLayout title="项目" description="Maki 羽轩的项目经历：英语自媒体、英语产品交付与个人作品集系统。">
+  <section class="page-hero">
+    <p class="eyebrow">Projects</p>
+    <h1>项目经历</h1>
+    <p>每个项目都按背景、职责、结果、复盘和下一步来写，避免空泛包装。</p>
+  </section>
+
+  <div class="project-detail-list">
+    {
+      projects.map((project) => (
+        <section class="project-detail" id={project.slug}>
+          <div>
+            <p class="eyebrow">{project.eyebrow}</p>
+            <h2>{project.title}</h2>
+            <p>{project.summary}</p>
+          </div>
+
+          <div class="detail-grid">
+            <article>
+              <h3>我负责什么</h3>
+              <p>{project.role}</p>
+              <ul>
+                {project.responsibilities.map((item) => <li>{item}</li>)}
+              </ul>
+            </article>
+            <article>
+              <h3>关键成果</h3>
+              <ul>
+                {project.results.map((item) => <li>{item}</li>)}
+              </ul>
+            </article>
+            <article>
+              <h3>复盘</h3>
+              <p>{project.reflection}</p>
+            </article>
+            <article>
+              <h3>下一步</h3>
+              <p>{project.next}</p>
+            </article>
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>

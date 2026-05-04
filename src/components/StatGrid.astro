@@ -1,0 +1,21 @@
+---
+import type { Stat } from "@/data/site";
+
+type Props = {
+  stats: Stat[];
+};
+
+const { stats } = Astro.props;
+---
+
+<div class="stat-grid">
+  {
+    stats.map((stat) => (
+      <article class="stat-card">
+        <strong>{stat.value}</strong>
+        <span>{stat.label}</span>
+        <p>{stat.note}</p>
+      </article>
+    ))
+  }
+</div>

@@ -1,0 +1,35 @@
+---
+import SectionIntro from "@/components/SectionIntro.astro";
+import WorkCard from "@/components/WorkCard.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { workCategories, works } from "@/data/site";
+---
+
+<BaseLayout title="作品" description="Maki 羽轩的代表作品、内容复盘、英语产品交付与未来作品档案。">
+  <section class="page-hero">
+    <p class="eyebrow">Works</p>
+    <h1>作品集</h1>
+    <p>这里按领域整理作品，而不是只按平台分类。第一版先放可维护结构，真实链接和截图会继续补齐。</p>
+  </section>
+
+  {
+    workCategories.map((category) => {
+      const categoryWorks = works.filter((work) => work.category === category);
+      return (
+        <section class="section category-section" id={category}>
+          <SectionIntro title={category} />
+          {categoryWorks.length > 0 ? (
+            <div class="card-grid two">
+              {categoryWorks.map((work) => <WorkCard work={work} />)}
+            </div>
+          ) : (
+            <div class="empty-state">
+              <strong>待补充</strong>
+              <p>这个领域会在后续加入真实作品、链接、截图和复盘。</p>
+            </div>
+          )}
+        </section>
+      );
+    })
+  }
+</BaseLayout>

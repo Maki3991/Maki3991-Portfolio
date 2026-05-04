@@ -1,0 +1,21 @@
+---
+import { navItems, profile } from "@/data/site";
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <a class="brand" href="/" aria-label="Maki 羽轩首页">
+    <span>{profile.name}</span>
+    <small>Portfolio</small>
+  </a>
+  <nav class="nav" aria-label="主导航">
+    {
+      navItems.map((item) => (
+        <a class={currentPath === item.href ? "active" : ""} href={item.href}>
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>

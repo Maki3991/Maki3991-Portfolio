@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { links } from "@/data/site";
+---
+
+<BaseLayout title="联系" description="联系 Maki 羽轩，查看账号主页、简历和作品集入口。">
+  <section class="page-hero">
+    <p class="eyebrow">Contact</p>
+    <h1>联系我</h1>
+    <p>如果你对内容运营、英语教育产品、AI 辅助创作或学习系统感兴趣，欢迎联系我。</p>
+  </section>
+
+  <section class="section contact-layout">
+    <div class="qr-placeholder">
+      <span>微信二维码</span>
+      <strong>待上传</strong>
+      <p>后续把二维码图片放到这里。</p>
+    </div>
+    <div class="link-list">
+      {
+        links.map((link) => (
+          <a class:list={["contact-link", link.status === "placeholder" && "pending"]} href={link.href}>
+            <span>{link.label}</span>
+            <small>{link.note}</small>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import "@/styles/global.css";
+
+type Props = {
+  title: string;
+  description?: string;
+};
+
+const { title, description = "Maki 羽轩的个人作品集与可信度主页。" } = Astro.props;
+const pageTitle = title === "Maki 羽轩" ? title : `${title} | Maki 羽轩`;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <SiteHeader />
+    <main>
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

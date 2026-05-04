@@ -1,0 +1,26 @@
+---
+import type { Work } from "@/data/site";
+
+type Props = {
+  work: Work;
+};
+
+const { work } = Astro.props;
+const isReady = work.status === "ready";
+---
+
+<article class="work-card">
+  <div>
+    <p class="eyebrow">{work.category}</p>
+    <h3>{work.title}</h3>
+    <p class="meta">{work.platform} · {work.date}</p>
+    <p>{work.summary}</p>
+  </div>
+  <ul class="metric-list" aria-label="作品数据">
+    {work.metrics.map((metric) => <li>{metric}</li>)}
+  </ul>
+  <p class="reflection">{work.reflection}</p>
+  <a class:list={["button", !isReady && "disabled"]} href={work.url} aria-disabled={!isReady}>
+    {isReady ? "查看作品" : "链接待补充"}
+  </a>
+</article>
