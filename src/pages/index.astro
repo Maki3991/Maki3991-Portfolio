@@ -10,7 +10,6 @@ import { profile, projects, stats, works } from "@/data/site";
 <BaseLayout title="Maki 羽轩" description="Maki 羽轩的个人作品集：英语内容、自媒体运营、英语产品交付与 AI 辅助创作。">
   <section class="hero">
     <div class="hero-copy">
-      <p class="eyebrow">长期作品集 / 可信度主页</p>
       <h1>{profile.name}</h1>
       <p class="headline">{profile.headline}</p>
       <p>{profile.intro}</p>
@@ -20,31 +19,27 @@ import { profile, projects, stats, works } from "@/data/site";
         <a class="button ghost" href="/contact/">联系我</a>
       </div>
     </div>
-    <aside class="evidence-panel" aria-label="作品集摘要">
-      <span>Evidence</span>
-      <strong>真实作品、真实数据、真实复盘</strong>
-      <p>第一版先建立结构，后续逐步补齐链接、截图和复盘文档。</p>
+    <aside class="portrait-panel" aria-label="Maki 羽轩头像">
+      <img src="/assets/profile/maki-avatar.jpg" alt="Maki 羽轩头像" />
     </aside>
   </section>
 
   <section class="section">
     <SectionIntro
-      eyebrow="核心数据"
       title="这些数字不是榜单，是内容操盘的证据。"
-      body="先把已有结果清楚放出来，再继续补充可验证的作品链接和截图。"
     />
     <StatGrid stats={stats} />
   </section>
 
   <section class="section">
-    <SectionIntro eyebrow="代表项目" title="我正在长期投入的三件事" />
+    <SectionIntro title="我正在长期投入的三件事" />
     <div class="card-grid three">
       {projects.map((project) => <ProjectCard project={project} compact />)}
     </div>
   </section>
 
   <section class="section">
-    <SectionIntro eyebrow="代表作品" title="先呈现结构，再持续补证据" />
+    <SectionIntro title="先呈现结构，再持续补证据" />
     <div class="card-grid two">
       {works.slice(0, 6).map((work) => <WorkCard work={work} />)}
     </div>

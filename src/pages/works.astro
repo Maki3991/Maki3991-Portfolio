@@ -13,22 +13,27 @@ import { proofs, workCategories, works } from "@/data/site";
   </section>
 
   {
-    workCategories.map((category) => {
+    workCategories.map((category, index) => {
       const categoryWorks = works.filter((work) => work.category === category);
       return (
-        <section class="section category-section" id={category}>
-          <SectionIntro title={category} />
-          {categoryWorks.length > 0 ? (
-            <div class="card-grid two">
-              {categoryWorks.map((work) => <WorkCard work={work} />)}
-            </div>
-          ) : (
-            <div class="empty-state">
-              <strong>待补充</strong>
-              <p>这个领域会在后续加入真实作品、链接、截图和复盘。</p>
-            </div>
-          )}
-        </section>
+        <details class="category-toggle" id={category} open={index === 0}>
+          <summary>
+            <span>{category}</span>
+            <small>{categoryWorks.length} 个作品</small>
+          </summary>
+          <div class="category-toggle-body">
+            {categoryWorks.length > 0 ? (
+              <div class="card-grid two">
+                {categoryWorks.map((work) => <WorkCard work={work} />)}
+              </div>
+            ) : (
+              <div class="empty-state">
+                <strong>待补充</strong>
+                <p>这个领域会在后续加入真实作品、链接、截图和复盘。</p>
+              </div>
+            )}
+          </div>
+        </details>
       );
     })
   }

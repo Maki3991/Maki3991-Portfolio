@@ -47,7 +47,6 @@ ul {
   padding-left: 1.1rem;
 }
 
-.site-header,
 .site-footer,
 main {
   width: min(1120px, calc(100% - 32px));
@@ -55,11 +54,21 @@ main {
 }
 
 .site-header {
+  background: rgba(247, 245, 240, 0.92);
+  border-bottom: 1px solid rgba(222, 217, 207, 0.8);
+  backdrop-filter: blur(14px);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 24px 0;
+  left: 0;
+  margin-inline: auto;
+  padding: 18px max(16px, calc((100vw - 1120px) / 2));
+  position: sticky;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 20;
 }
 
 .brand {
@@ -99,7 +108,13 @@ main {
 
 .hero,
 .page-hero {
-  padding: 72px 0 48px;
+  padding: 48px 0 48px;
+}
+
+.page-hero {
+  display: grid;
+  gap: 18px;
+  max-width: 980px;
 }
 
 .hero {
@@ -107,6 +122,7 @@ main {
   grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.7fr);
   gap: 48px;
   align-items: end;
+  padding-top: 40px;
 }
 
 .hero-copy {
@@ -126,6 +142,20 @@ h1 {
   font-size: clamp(3rem, 9vw, 6.5rem);
   line-height: 0.95;
   letter-spacing: 0;
+}
+
+.page-hero h1 {
+  font-size: clamp(3.4rem, 8vw, 7.2rem);
+  line-height: 1.02;
+}
+
+.page-hero .eyebrow {
+  font-size: 0.95rem;
+}
+
+.page-hero p:not(.eyebrow) {
+  font-size: clamp(1.05rem, 2vw, 1.28rem);
+  line-height: 1.8;
 }
 
 h2 {
@@ -198,7 +228,7 @@ h3 {
   font-weight: 800;
 }
 
-.evidence-panel,
+.portrait-panel,
 .stat-card,
 .project-card,
 .work-card,
@@ -212,24 +242,21 @@ h3 {
   border-radius: 8px;
 }
 
-.evidence-panel {
+.portrait-panel {
+  align-self: start;
   box-shadow: var(--shadow);
-  display: grid;
-  gap: 14px;
-  min-height: 280px;
-  padding: 28px;
+  margin-top: 24px;
+  overflow: hidden;
+  padding: 0;
 }
 
-.evidence-panel span {
-  color: var(--warm);
-  font-size: 0.8rem;
-  font-weight: 800;
-}
-
-.evidence-panel strong {
-  align-self: center;
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.05;
+.portrait-panel img {
+  aspect-ratio: 1;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  object-position: center 36%;
+  width: 100%;
 }
 
 .section {
@@ -289,8 +316,13 @@ h3 {
 .project-card,
 .work-card {
   display: grid;
-  gap: 16px;
+  gap: 18px;
   padding: 22px;
+}
+
+.work-card h3 {
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  line-height: 1.25;
 }
 
 .work-cover {
@@ -300,6 +332,12 @@ h3 {
   height: auto;
   object-fit: cover;
   width: 100%;
+}
+
+.work-cover.contain {
+  aspect-ratio: 1;
+  background: #f0ece4;
+  object-fit: contain;
 }
 
 .project-card.compact {
@@ -316,7 +354,7 @@ h3 {
 .metric-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
   list-style: none;
   padding: 0;
 }
@@ -338,6 +376,64 @@ h3 {
 
 .category-section {
   border-top: 1px solid var(--line);
+}
+
+.category-toggle {
+  border-top: 1px solid var(--line);
+  padding: 0;
+}
+
+.category-toggle summary {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  list-style: none;
+  padding: 26px 0;
+  position: relative;
+}
+
+.category-toggle summary::-webkit-details-marker {
+  display: none;
+}
+
+.category-toggle summary::after {
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--accent-strong);
+  content: "+";
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 1.4rem;
+  font-weight: 500;
+  height: 40px;
+  justify-content: center;
+  line-height: 1;
+  width: 40px;
+}
+
+.category-toggle[open] summary::after {
+  content: "-";
+}
+
+.category-toggle summary span {
+  color: var(--text);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 850;
+  line-height: 1.15;
+}
+
+.category-toggle summary small {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-left: auto;
+}
+
+.category-toggle-body {
+  padding-bottom: 42px;
 }
 
 .empty-state {
@@ -430,6 +526,12 @@ h3 {
   width: 100%;
 }
 
+.qr-placeholder .contact-avatar {
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center top;
+}
+
 .qr-placeholder span {
   color: var(--warm);
   font-weight: 800;
@@ -491,6 +593,10 @@ h3 {
   .stat-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .portrait-panel {
+    margin-top: 0;
+  }
 }
 
 @media (max-width: 640px) {
@@ -515,6 +621,21 @@ h3 {
   .site-footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .category-toggle summary {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .category-toggle summary small {
+    margin-left: 0;
+  }
+
+  .category-toggle summary::after {
+    position: absolute;
+    right: 16px;
   }
 
   .contact-link {

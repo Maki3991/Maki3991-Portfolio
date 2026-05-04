@@ -32,6 +32,7 @@ export type Work = {
   platform: string;
   date: string;
   cover?: string;
+  coverMode?: "cover" | "contain";
   metrics: string[];
   url: string;
   status: LinkStatus;
@@ -134,8 +135,6 @@ export const workCategories = [
   "英语自媒体",
   "内容运营与爆款复盘",
   "英语直播与产品交付",
-  "写作与研究",
-  "AI 工具 / Coding 小项目",
   "音乐作品",
 ];
 
@@ -296,38 +295,17 @@ export const works: Work[] = [
     reflection: "直播交付要求把知识讲清楚，也要求理解用户当下真正卡在哪里。",
   },
   {
-    title: "个人作品集网站初版",
-    category: "AI 工具 / Coding 小项目",
-    platform: "Web",
-    date: "2026",
-    metrics: ["静态网站", "数据驱动", "长期维护"],
-    url: "/",
-    status: "ready",
-    summary: "用 AI 辅助搭建个人可信度主页，集中展示项目、作品和联系方式。",
-    reflection: "先搭出长期结构，再逐步补充证据，是比一次性追求完美更实际的路径。",
-  },
-  {
     title: "Things They Left Behind",
     category: "音乐作品",
     platform: "网易云音乐",
     date: "待补充",
     cover: "/assets/music/things-they-left-behind.jpeg",
+    coverMode: "contain",
     metrics: ["个人 EP", "网易云音乐人 Maki3991"],
     url: "http://music.163.com/album/363693628/?userid=2005170426",
     status: "ready",
     summary: "个人音乐 EP，用于展示英语内容和运营之外的长期创作面。",
     reflection: "音乐作品让作品集更接近真实的人，而不是只有求职材料。",
-  },
-  {
-    title: "写作与研究作品",
-    category: "写作与研究",
-    platform: "待补充",
-    date: "未来更新",
-    metrics: ["文章待补充", "课程笔记待补充"],
-    url: "#",
-    status: "placeholder",
-    summary: "未来加入课程笔记、政治学写作、读书笔记和研究型文章。",
-    reflection: "这一部分用于展示长期学习和表达，不急着填满，但要保留结构。",
   },
 ];
 
@@ -340,7 +318,6 @@ export const links: ProfileLink[] = [
   { label: "网易云音乐", href: "http://music.163.com/artist?id=33795229&userid=2005170426", status: "ready", note: "音乐人 Maki3991", image: "/assets/contact/netease-qr.jpg" },
   { label: "GitHub", href: "https://github.com/Maki3991", status: "ready", note: "Maki3991" },
   { label: "自媒体简历 PDF", href: "/assets/files/self-media-v2.pdf", status: "ready", note: "可下载查看" },
-  { label: "B 站主页", href: "#", status: "placeholder", note: "待补充主页链接" },
 ];
 
 export const proofs: Proof[] = [

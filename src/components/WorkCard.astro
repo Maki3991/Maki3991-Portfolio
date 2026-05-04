@@ -11,12 +11,10 @@ const isExternal = work.url.startsWith("http");
 ---
 
 <article class="work-card">
-  {work.cover && <img class="work-cover" src={work.cover} alt={`${work.title} 封面`} loading="lazy" />}
+  {work.cover && <img class:list={["work-cover", work.coverMode === "contain" && "contain"]} src={work.cover} alt={`${work.title} 封面`} loading="lazy" />}
   <div>
-    <p class="eyebrow">{work.category}</p>
     <h3>{work.title}</h3>
     <p class="meta">{work.platform} · {work.date}</p>
-    <p>{work.summary}</p>
   </div>
   <ul class="metric-list" aria-label="作品数据">
     {work.metrics.map((metric) => <li>{metric}</li>)}
