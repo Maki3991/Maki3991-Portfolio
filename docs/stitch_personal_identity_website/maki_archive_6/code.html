@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .evidence-card-hover:hover {
+            border-color: #1B4332;
+            background-color: #F1EEE5;
+        }
+        .image-container {
+            position: relative;
+            overflow: hidden;
+        }
+        .image-container img {
+            transition: transform 0.5s ease;
+        }
+        .image-container:hover img {
+            transform: scale(1.03);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f1eee5",
+                    "on-surface-variant": "#414844",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#31312b",
+                    "outline": "#717973",
+                    "primary-container": "#1b4332",
+                    "inverse-on-surface": "#f4f0e8",
+                    "surface-container-highest": "#e5e2da",
+                    "on-background": "#1c1c17",
+                    "on-secondary-fixed": "#1b1c19",
+                    "surface-bright": "#fcf9f1",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#a8a6a6",
+                    "tertiary-fixed": "#e4e2e1",
+                    "charcoal-text": "#2D2D2D",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#c8c6c2",
+                    "tertiary": "#262626",
+                    "forest-accent": "#1B4332",
+                    "primary-fixed-dim": "#a5d0b9",
+                    "tertiary-container": "#3c3c3c",
+                    "on-secondary-fixed-variant": "#474744",
+                    "outline-variant": "#c1c8c2",
+                    "secondary-fixed": "#e4e2dd",
+                    "tertiary-fixed-dim": "#c8c6c6",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#86af99",
+                    "on-surface": "#1c1c17",
+                    "background": "#fcf9f1",
+                    "inverse-primary": "#a5d0b9",
+                    "primary-fixed": "#c1ecd4",
+                    "surface-container-high": "#ebe8e0",
+                    "surface-cream": "#F9F7F2",
+                    "on-primary-fixed-variant": "#274e3d",
+                    "secondary-container": "#e1dfdb",
+                    "border-muted": "rgba(45, 45, 45, 0.1)",
+                    "on-secondary-container": "#63635f",
+                    "surface-dim": "#dddad2",
+                    "surface-container-low": "#f7f3eb",
+                    "surface-variant": "#e5e2da",
+                    "secondary": "#5e5e5b",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "surface": "#fcf9f1",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#3f6653",
+                    "on-primary-fixed": "#002114",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#012d1d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "gutter": "24px",
+                    "container-max": "1120px",
+                    "margin-mobile": "20px",
+                    "section-gap": "120px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Source Serif 4"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "display-lg": ["Source Serif 4"],
+                    "headline-sm": ["Source Serif 4"],
+                    "headline-md": ["Source Serif 4"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "stat-number": ["Source Serif 4"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "stat-number": ["40px", {"lineHeight": "1.0", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-border-muted z-50">
+<div class="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-gutter h-16">
+<a class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed font-semibold" href="#">Maki 羽轩</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">首页</a>
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed border-b-2 border-forest-accent pb-1 font-bold" href="#">项目</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">作品</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">关于</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">联系</a>
+</div>
+<button class="bg-forest-accent text-surface-cream px-6 py-2 rounded-lg font-body-md hover:opacity-90 transition-opacity">
+                Hire Me
+            </button>
+</div>
+</nav>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+<!-- Hero Section -->
+<section class="py-16 md:py-section-gap border-b border-border-muted">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-8">
+<span class="font-label-caps text-label-caps text-forest-accent mb-4 inline-block">CASE STUDY: SOCIAL MEDIA ARCHIVE</span>
+<h1 class="font-display-lg text-display-lg md:text-display-lg text-primary mb-6">Maki 羽轩英语自媒体：<br/>重塑英语学习的内容分发</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                        在信息爆炸的时代，如何让硬核的英语知识通过情感共鸣和精准算法触达用户？本项目记录了我作为主理人，从0到1构建个人IP，通过数据驱动内容创作的完整路径。
+                    </p>
+</div>
+<div class="md:col-span-4 flex flex-col justify-end gap-6 mt-8 md:mt-0">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant opacity-60">MY ROLE</span>
+<p class="font-body-md text-body-md font-bold text-primary">Content Strategist &amp; Creator</p>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant opacity-60">TIMELINE</span>
+<p class="font-body-md text-body-md font-bold text-primary">2023 - Present</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Section (Evidence-Based) -->
+<section class="py-16 md:py-section-gap">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter border-l border-border-muted pl-gutter">
+<div class="flex flex-col">
+<span class="font-stat-number text-stat-number text-forest-accent">829万+</span>
+<span class="font-label-caps text-label-caps text-secondary mt-2">累计播放量</span>
+</div>
+<div class="flex flex-col">
+<span class="font-stat-number text-stat-number text-forest-accent">53万+</span>
+<span class="font-label-caps text-label-caps text-secondary mt-2">总互动数</span>
+</div>
+<div class="flex flex-col">
+<span class="font-stat-number text-stat-number text-forest-accent">15万+</span>
+<span class="font-label-caps text-label-caps text-secondary mt-2">核心粉丝增长</span>
+</div>
+<div class="flex flex-col">
+<span class="font-stat-number text-stat-number text-forest-accent">98%</span>
+<span class="font-label-caps text-label-caps text-secondary mt-2">内容完播率超越同类</span>
+</div>
+</div>
+</section>
+<!-- Workflow & Content Strategy -->
+<section class="py-16 md:py-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-5 sticky top-24 h-fit">
+<h2 class="font-headline-md text-headline-md text-primary mb-6">策略与工作流：<br/>从痛点到爆款</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                        英语学习内容往往面临“收藏从未看，看了也记不住”的尴尬。我通过双层模型——“认知唤醒”+“效率工具”——来打破这一壁垒。
+                    </p>
+<div class="space-y-6">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-forest-accent">analytics</span>
+<div>
+<p class="font-body-md font-bold text-primary">数据反馈循环</p>
+<p class="font-body-md text-on-surface-variant">每日分析完播曲线，精准定位用户流失秒数，迭代脚本结构。</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-forest-accent">psychology</span>
+<div>
+<p class="font-body-md font-bold text-primary">情绪价值钩子</p>
+<p class="font-body-md text-on-surface-variant">将枯燥的知识点包装在真实的使用场景和备考焦虑解决方案中。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-7 space-y-12">
+<div class="image-container rounded-lg border border-border-muted bg-white p-2">
+<img alt="Data Dashboard" class="w-full h-auto rounded-lg" data-alt="A clean, minimalist high-resolution screenshot of a data analytics dashboard showing complex graphs and performance metrics. The color palette is composed of soft cream backgrounds, deep forest green lines, and charcoal text. The lighting is balanced and professional, evoking a sense of calm precision and evidence-based decision making in a modern studio environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCroAks62W8WLHV2QWVYJfp9IFy5EO_XNs1eKz7C5S2qKfBnKzvE885rUydedRU869pZ2SGAlf5qpgJ5Ic_VLGO-201BoHiijB6NHAGHlLxWTkY1JN5U9jDHOQtEyVdemF2f1SJ1BbpW6rm6lzYmicLiHfG8ehahC5MRMhCPNqySCncvvwMEk4lKpvD7OVpLFIlEgwvXT4d6yxFEXSrr0-OlSUDumY6oueppfoqM9Lkt_XffviQ2QwsCseYgYucpcXnZf7vOPACNo99"/>
+<div class="p-4">
+<span class="font-label-caps text-label-caps text-on-secondary-container">EVIDENCE: WORKFLOW ANALYSIS</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container p-6 rounded-lg border border-border-muted">
+<h4 class="font-headline-sm text-headline-sm text-forest-accent mb-2">3h</h4>
+<p class="font-body-md text-on-surface-variant">平均脚本打磨时间</p>
+</div>
+<div class="bg-surface-container p-6 rounded-lg border border-border-muted">
+<h4 class="font-headline-sm text-headline-sm text-forest-accent mb-2">10+</h4>
+<p class="font-body-md text-on-surface-variant">跨平台分发渠道</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Work Samples / Video Covers (Bento Grid Style) -->
+<section class="py-16 md:py-section-gap">
+<div class="mb-12">
+<h2 class="font-headline-md text-headline-md text-primary">作品展示</h2>
+<p class="font-body-md text-on-surface-variant">选取了具有代表性的爆款视频，涵盖了从纯知识产出到系统化备考的各个阶段。</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="group border border-border-muted rounded-lg overflow-hidden evidence-card-hover transition-all duration-300">
+<div class="image-container aspect-video">
+<img alt="40天四六级" class="w-full h-full object-cover" data-alt="A high-quality cinematic video thumbnail for a study guide. The image shows a minimalist wooden desk with an open notebook, a vintage pen, and a laptop. The lighting is warm and focused, highlighting the textures of the paper and wood. The color theme is a sophisticated mix of ivory, dark wood, and deep green accents, reflecting an editorial, professional academic style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmxMjyL6Bu3GZ0cao1jDNdxceMgV_v0-x2uQpfON9fNjHR8U3hymabvdnFD61uybm7CMmoqauV6CcJibLLDDseOr-RNkT2FTreln3At1j444I0yruh7gs0eNDH_k6dpcAwTF4mUfhItdDJ3vdI4WsrD_GIgDHOtcOUPTyeFMlXLOdBJR0K0Fx-T2VSytyN2mIAWhgpcYm7OW1StibN-mfoM2KrPJWdLUGk67bLS95eymiCOOESfN89pnEjHkXZnmOlXlRG9DEnjx9U"/>
+</div>
+<div class="p-6">
+<span class="font-label-caps text-label-caps text-forest-accent">SYSTEMATIC LEARNING</span>
+<h3 class="font-headline-sm text-headline-sm mt-2 mb-2 text-primary">40天四六级：从绝望到通关</h3>
+<p class="font-body-md text-on-surface-variant">单视频播放120万+，带动课程转化率提升300%。</p>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group border border-border-muted rounded-lg overflow-hidden evidence-card-hover transition-all duration-300">
+<div class="image-container aspect-video">
+<img alt="口语特训" class="w-full h-full object-cover" data-alt="A macro photograph of an open dictionary with soft selective focus on the word 'Growth'. The lighting is bright and airy with high-key whites and subtle shadows. The aesthetic is extremely clean and minimal, using a light cream and charcoal color palette that feels professional and scholarly. The composition is artistic and editorial." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWO8t9747GAhlW7ADoe9f_ZuhUcBb_9ia21faLXU-rjCnCRk1oG32aKU0oeVwUeN8KTsyrBe5lA-L4HAbthpS3gLS2QfTtEcf7aWlc9FR1LsOp0oJvfzN7MQuCsmePfCr0wXIv4Xzq2hzILIIxgd_zkkC1nk0UoET7EnTsWLclHNYljJEJrujHlKCxc2403hslfTuT6MWtpznRnJbi3-L4W3aIJRA7AFvqplLK9wTP60JpLOOrE8XHeoKk9cpBA18YQPcvcHsRfUP2"/>
+</div>
+<div class="p-6">
+<span class="font-label-caps text-label-caps text-forest-accent">ORAL SKILLS</span>
+<h3 class="font-headline-sm text-headline-sm mt-2 mb-2 text-primary">发音避雷：告别中式口语</h3>
+<p class="font-body-md text-on-surface-variant">收藏率极高，用户反馈“这是我见过最通透的口语讲解”。</p>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group border border-border-muted rounded-lg overflow-hidden evidence-card-hover transition-all duration-300">
+<div class="image-container aspect-video">
+<img alt="高效工具" class="w-full h-full object-cover" data-alt="A minimalist workspace featuring a tablet showing an intricate calendar and to-do list. The setting is a bright, sunlit room with clean white walls and a touch of green from a potted plant. The overall style is modern minimalist with a focus on productivity and clear information design. The color palette follows the brand's cream and forest green theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2ZU3zXOeHlHezju8O9ewjD6k2RXxYTWEGYdWlK40Ou250ajk0jvX9hgd84Xzkm6DmjYy1vYARqNr-twHsUuyL1r2pmdBXzaZF9xAn0B0T9dxN0XgLtQCIyM84CguiqnWWUyF0crKy2iXW1XG7v5nf3Rm_Lnw3H_sZ8Sm9Ktp7TxY-4b_jL1t6m7ENNgSzxfpsInjghCVT3j6HC_D2t_S2sBoFsQieeQUV3hGffImtBxRhzTderA1lLw5XkMtpxuHGh3wZPOfDzDpO"/>
+</div>
+<div class="p-6">
+<span class="font-label-caps text-label-caps text-forest-accent">EFFICIENCY TOOLS</span>
+<h3 class="font-headline-sm text-headline-sm mt-2 mb-2 text-primary">AI时代的英语学习工作流</h3>
+<p class="font-body-md text-on-surface-variant">探索技术与语言学习的边界，获得多位教育大V转发。</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Proof Materials (Data Screenshots) -->
+<section class="py-16 md:py-section-gap bg-surface-cream -mx-margin-mobile px-margin-mobile md:-mx-gutter md:px-gutter">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">数据背书与证明</h2>
+<p class="font-body-md text-on-surface-variant mt-2">不讲虚构，只讲结果。这里是真实的后台增长数据与用户评价截屏。</p>
+</div>
+<div class="hidden md:block">
+<span class="font-label-caps text-label-caps text-on-surface-variant">VERIFIED BY TIKTOK &amp; RED ANALYTICS</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-white p-4 rounded-lg shadow-sm border border-border-muted">
+<div class="aspect-[4/3] bg-surface-container rounded mb-4 overflow-hidden">
+<img alt="Growth Curve" class="w-full h-full object-cover" data-alt="A detailed, realistic screen capture of professional data visualization software showing a steep upward trajectory graph. The background is a clean paper texture, and the graph lines are rendered in sharp forest green and charcoal. The lighting is clean and professional, resembling an editorial layout in a finance or technology magazine. Minimalist and authoritative atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbQZnFXCbywQxGPFWlcqQOjIu19lojBI3zgFIQ_JNMEHnWuc0urMb3-B0ln8zMT81Mi4M7GqEfoDxKsWSjzPz1pWoK1YRw0XjXnnqQxKEZtiLC3edWQTSGmzfbn8-gM_lVtl-DVXPoRE8_ls1SdE79yT1WqjLxhHDCbwsGbcg6syK-tJv9W2FZIzC0vjUMz7faZTtzleRV_oD7UWHKrPqUDLuqpsKSCZv6tZxN3jnZMkq7zB9o7JePW46cDalUKVUTd1p9p7bVN7wU"/>
+</div>
+<p class="font-body-md font-bold">粉丝增长曲线</p>
+<p class="font-label-caps text-label-caps text-secondary mt-1">持续6个月的线性稳步增长</p>
+</div>
+<div class="bg-white p-4 rounded-lg shadow-sm border border-border-muted">
+<div class="aspect-[4/3] bg-surface-container rounded mb-4 overflow-hidden">
+<img alt="User Comments" class="w-full h-full object-cover" data-alt="A clean, flat-lay arrangement of high-quality printed screenshots showing a series of positive user comments and reviews. The screenshots are laid out on a soft cream linen fabric. The lighting is diffused and natural. The colors are muted, focusing on the clarity of the text and the warm, human element of the feedback. The style is professional, archival, and trustworthy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLVvaC0jJwI80ip_vaPCAchyl45CHJ74AfQtnrp-SswWDXNji_5eh60WbNrWL_almjIRCN_D5RTlhJJPF7K7DlsFNx4WzppVj4yuKCXh7wySzv0MtyLATw6C7jxeDeqK5rVuhCg_7e49mlUc4bGMO7Yf1DRJ_HN4p0NdIXwYiVVKwjzL_bOjdK-9Tj-R8xfmGbOP9xJUKxhmLN8GOidiTf3pS9zQ6C7ULtfbXJtI8YuF0R-cpChYAPkUMICAstZxnJTrmosdwb-3en"/>
+</div>
+<p class="font-body-md font-bold">高权重用户反馈</p>
+<p class="font-label-caps text-label-caps text-secondary mt-1">从深度互动中提取的真实学习闭环</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Skills Section -->
+<section class="py-16 md:py-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-4">
+<h2 class="font-headline-md text-headline-md text-primary">核心能力集</h2>
+</div>
+<div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-forest-accent" style="font-variation-settings: 'FILL' 1;">terminal</span>
+<span class="font-body-md font-bold text-primary">极致执行力 (Execution)</span>
+</div>
+<p class="font-body-md text-on-surface-variant">保持高频率、高质量的周更节奏，具备全栈视频剪辑及视觉包装能力。</p>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-forest-accent" style="font-variation-settings: 'FILL' 1;">visibility</span>
+<span class="font-body-md font-bold text-primary">内容穿透力 (Content Judgment)</span>
+</div>
+<p class="font-body-md text-on-surface-variant">敏锐捕捉平台热点，并将其与深度的教育知识点进行无缝结合。</p>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-forest-accent" style="font-variation-settings: 'FILL' 1;">groups</span>
+<span class="font-body-md font-bold text-primary">用户同理心 (User Understanding)</span>
+</div>
+<p class="font-body-md text-on-surface-variant">从评论区生长出内容，解决真实场景下的“哑巴英语”和“考证焦虑”。</p>
+</div>
+<div class="flex items-center gap-2 flex-wrap">
+<span class="px-4 py-2 bg-surface-container-high rounded-full font-label-caps text-label-caps text-on-surface-variant">Video Production</span>
+<span class="px-4 py-2 bg-surface-container-high rounded-full font-label-caps text-label-caps text-on-surface-variant">SEO Strategy</span>
+<span class="px-4 py-2 bg-surface-container-high rounded-full font-label-caps text-label-caps text-on-surface-variant">Brand Identity</span>
+<span class="px-4 py-2 bg-surface-container-high rounded-full font-label-caps text-label-caps text-on-surface-variant">AI Workflow</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Retrospective -->
+<section class="py-16 md:py-section-gap border-t border-border-muted mb-section-gap">
+<div class="max-w-3xl">
+<h2 class="font-headline-md text-headline-md text-primary mb-8 italic">"英语学习内容不一定非要从知识点开始，但必须在知识点结束。"</h2>
+<div class="space-y-6">
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                        在运营 Maki 羽轩自媒体的一年里，我最大的感悟是：在这个信息冗余的时代，稀缺的不是知识，而是“完成知识学习的动力”。
+                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        通过将知识碎片化、视觉化，并植入强烈的目标感，我们成功让英语学习从一种负担变成了一种“获得感”的反馈回路。未来的自媒体不仅仅是展示，更是一种 evidence-based 的教育实验。
+                    </p>
+<a class="inline-flex items-center gap-2 font-body-md font-bold text-forest-accent group" href="#">
+                        查看完整作品档案
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap bg-surface-cream dark:bg-surface-container-low border-t border-border-muted">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-gutter gap-8">
+<div class="flex flex-col items-center md:items-start gap-4">
+<span class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed">Maki Archive</span>
+<p class="font-label-caps text-label-caps text-on-secondary-container">© 2024 Maki Archive. All rights reserved.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-label-caps text-label-caps text-on-secondary-container dark:text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">LinkedIn</a>
+<a class="font-label-caps text-label-caps text-on-secondary-container dark:text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">GitHub</a>
+<a class="font-label-caps text-label-caps text-on-secondary-container dark:text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Instagram</a>
+<a class="font-label-caps text-label-caps text-on-secondary-container dark:text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">Email</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for scroll fade-in
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+
+        // Hover scale effect for buttons
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.classList.add('scale-95'));
+            btn.addEventListener('mouseup', () => btn.classList.remove('scale-95'));
+        });
+    </script>
+</body></html>

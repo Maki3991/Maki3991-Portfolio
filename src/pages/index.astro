@@ -4,13 +4,11 @@ import SectionIntro from "@/components/SectionIntro.astro";
 import StatGrid from "@/components/StatGrid.astro";
 import WorkCard from "@/components/WorkCard.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { profile, projects, stats, works, type Work } from "@/data/site";
+import { featuredWorkSlugs, profile, projects, stats, works, type Work } from "@/data/site";
 
-const featuredWorks = [
-  "四级六级听力吐槽与学习路径内容",
-  "40 天 四六级 如何阅读满分 一把过？",
-  "一个大二文科生思考：张雪峰“文科大有前途”",
-].map((title) => works.find((work) => work.title === title)).filter((work): work is Work => Boolean(work));
+const featuredWorks = featuredWorkSlugs
+  .map((slug) => works.find((work) => work.slug === slug))
+  .filter((work): work is Work => Boolean(work));
 ---
 
 <BaseLayout title="Maki 羽轩" description="Maki 羽轩的个人作品集：英语内容、自媒体运营、英语产品交付与 AI 辅助创作。">

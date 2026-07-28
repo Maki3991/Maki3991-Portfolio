@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Maki Archive | Works</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Source+Serif+4:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f1eee5",
+                    "on-surface-variant": "#414844",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "inverse-surface": "#31312b",
+                    "outline": "#717973",
+                    "primary-container": "#1b4332",
+                    "inverse-on-surface": "#f4f0e8",
+                    "surface-container-highest": "#e5e2da",
+                    "on-background": "#1c1c17",
+                    "on-secondary-fixed": "#1b1c19",
+                    "surface-bright": "#fcf9f1",
+                    "on-error": "#ffffff",
+                    "on-tertiary-container": "#a8a6a6",
+                    "tertiary-fixed": "#e4e2e1",
+                    "charcoal-text": "#2D2D2D",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#c8c6c2",
+                    "tertiary": "#262626",
+                    "forest-accent": "#1B4332",
+                    "primary-fixed-dim": "#a5d0b9",
+                    "tertiary-container": "#3c3c3c",
+                    "on-secondary-fixed-variant": "#474744",
+                    "outline-variant": "#c1c8c2",
+                    "secondary-fixed": "#e4e2dd",
+                    "tertiary-fixed-dim": "#c8c6c6",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#86af99",
+                    "on-surface": "#1c1c17",
+                    "background": "#fcf9f1",
+                    "inverse-primary": "#a5d0b9",
+                    "primary-fixed": "#c1ecd4",
+                    "surface-container-high": "#ebe8e0",
+                    "surface-cream": "#F9F7F2",
+                    "on-primary-fixed-variant": "#274e3d",
+                    "secondary-container": "#e1dfdb",
+                    "border-muted": "rgba(45, 45, 45, 0.1)",
+                    "on-secondary-container": "#63635f",
+                    "surface-dim": "#dddad2",
+                    "surface-container-low": "#f7f3eb",
+                    "surface-variant": "#e5e2da",
+                    "secondary": "#5e5e5b",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "surface": "#fcf9f1",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#3f6653",
+                    "on-primary-fixed": "#002114",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#012d1d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "gutter": "24px",
+                    "container-max": "1120px",
+                    "margin-mobile": "20px",
+                    "section-gap": "120px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Source Serif 4"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "display-lg": ["Source Serif 4"],
+                    "headline-sm": ["Source Serif 4"],
+                    "headline-md": ["Source Serif 4"],
+                    "label-caps": ["Hanken Grotesk"],
+                    "stat-number": ["Source Serif 4"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "stat-number": ["40px", {"lineHeight": "1.0", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .archive-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .filter-btn.active {
+            color: #1B4332;
+            border-bottom: 2px solid #1B4332;
+            padding-bottom: 4px;
+            font-weight: 700;
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed-dim selection:text-primary">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-border-muted h-16">
+<nav class="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-gutter h-full">
+<div class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed font-semibold">
+                Maki 羽轩
+            </div>
+<div class="hidden md:flex gap-8 items-center font-body-md text-body-md">
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">首页</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">项目</a>
+<a class="text-primary dark:text-primary-fixed border-b-2 border-forest-accent pb-1 font-bold" href="#">作品</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">关于</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary transition-colors" href="#">联系</a>
+</div>
+<button class="bg-forest-accent text-on-primary px-6 py-2 rounded-lg font-body-md text-body-md hover:opacity-90 transition-all active:scale-95">
+                Hire Me
+            </button>
+</nav>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-16 md:py-section-gap">
+<!-- Header & Filter Section -->
+<section class="mb-16 fade-in">
+<h1 class="font-display-lg text-display-lg mb-4">Works Archive</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12">
+                A structured evidence repository documenting my journey through language, operations, and creative exploration.
+            </p>
+<!-- Filters -->
+<div class="flex flex-wrap gap-x-8 gap-y-4 border-b border-border-muted pb-4">
+<button class="filter-btn active font-body-md text-body-md transition-all cursor-pointer">All Archive</button>
+<button class="filter-btn text-on-surface-variant hover:text-primary font-body-md text-body-md transition-all cursor-pointer">英语自媒体</button>
+<button class="filter-btn text-on-surface-variant hover:text-primary font-body-md text-body-md transition-all cursor-pointer">内容运营</button>
+<button class="filter-btn text-on-surface-variant hover:text-primary font-body-md text-body-md transition-all cursor-pointer">英语直播</button>
+<button class="filter-btn text-on-surface-variant hover:text-primary font-body-md text-body-md transition-all cursor-pointer">音乐创作</button>
+<button class="filter-btn text-on-surface-variant hover:text-primary font-body-md text-body-md transition-all cursor-pointer">Personal Lab</button>
+</div>
+</section>
+<!-- Archive Grid -->
+<div class="archive-grid">
+<!-- Item 1: Large Featured (English Media) -->
+<article class="col-span-12 md:col-span-8 group cursor-pointer fade-in" style="animation-delay: 0.1s;">
+<div class="relative overflow-hidden rounded-lg mb-6 border border-border-muted aspect-[16/9]">
+<img alt="English Media Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A sophisticated editorial workspace with a high-end laptop showing complex data visualization and English linguistic patterns. The room is bathed in soft, natural morning light, creating a calm, academic atmosphere with forest green accents in the background. The visual style is crisp and professional, emphasizing a modern archive aesthetic with high contrast and minimalist composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwgNLRE0FyMSMcuc-m6kmv2lIj1LDJ5riZBsZLpD6OhD78T0HMBjo8JxWGZuP5STgnRpsbhdmlgMFbmjM40fO25AwAXtZfD06pPsGwkAt4yNm2ZGFJMX_U8MgaSucdBB5TUT0SkAiN6ALjt5-TP79NaelRIt_x_nUscSmW3E0Vyuh8p7kgvsq31PClpUdPsCzcND1KzPYucUj2YUR3qsdoPCIJJfePzJ2VrQHSPG2JC-OmLexcGdOXi08HjfdrLM8f7k8iMEi8k3_M"/>
+<div class="absolute top-4 left-4">
+<span class="bg-forest-accent text-surface-cream font-label-caps text-label-caps px-3 py-1 rounded-full">ENGLISH MEDIA</span>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div class="max-w-xl">
+<div class="flex items-center gap-4 mb-2 text-on-surface-variant font-label-caps text-label-caps">
+<span>Bilibili / YouTube</span>
+<span>•</span>
+<span>2023 - Present</span>
+</div>
+<h3 class="font-headline-md text-headline-md group-hover:text-forest-accent transition-colors">Digital Language Lab: Cross-cultural Storytelling</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-3">
+                            A long-term project exploring the intersection of linguistics and digital media, focusing on making high-level English acquisition accessible through narrative.
+                        </p>
+</div>
+<div class="text-right">
+<div class="font-stat-number text-stat-number text-forest-accent">150K+</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase">Subscribers</div>
+</div>
+</div>
+</article>
+<!-- Item 2: Operations & Analysis -->
+<article class="col-span-12 md:col-span-4 group cursor-pointer fade-in" style="animation-delay: 0.2s;">
+<div class="h-full border border-border-muted rounded-lg p-6 bg-surface-cream hover:border-forest-accent transition-colors flex flex-col justify-between">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant border border-border-muted px-2 py-1 rounded mb-6 inline-block">OPERATIONS</span>
+<h3 class="font-headline-sm text-headline-sm mb-4">Content Strategy &amp; Viral Loop Analysis</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Deep dive into 10+ viral campaigns, analyzing hook points, retention metrics, and delivery optimization for educational products.
+                        </p>
+</div>
+<div class="mt-8 pt-8 border-t border-border-muted">
+<div class="grid grid-cols-2 gap-4">
+<div>
+<div class="font-headline-sm text-headline-sm text-forest-accent">4.2%</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant">Conversion</div>
+</div>
+<div>
+<div class="font-headline-sm text-headline-sm text-forest-accent">1.2M</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant">Total Reach</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Item 3: Music (The Archive Style) -->
+<article class="col-span-12 md:col-span-6 group cursor-pointer fade-in" style="animation-delay: 0.3s;">
+<div class="relative overflow-hidden rounded-lg mb-4 border border-border-muted aspect-square md:aspect-[4/3]">
+<img alt="Music Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A moody, atmospheric close-up of vintage analog music equipment and handwritten musical scores on aged paper. The lighting is low-key and dramatic, casting long shadows that suggest a personal archive of forgotten creations. The color palette is dominated by deep charcoal, warm cream, and subtle hints of forest green, creating a nostalgic yet modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSl-M-AJdtveo8Mqojui1zvcT7StOYD6vGNxn70BDN8n60QfY-owJLi60_4B6vZ9ViVEGKpoiqMmW52gYjrq1prhmzX2TQd4TS9mmmostFqtPVv2MlLA_ReIWQzTweWsOTVuu7iXHxMxfG0cNm36FKzzWWmJS5G4aviGQEcacTy7__Lk0vwAjGErYk2QDVz3eCRT_CgPMoEVhnbAe0vHzusdataSzp_HkNj115RNGfehxKJ5UwTHZZGrL_RfhnzIjFoD3xXFhka_AC"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-surface-cream text-5xl">play_circle</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1 block">MUSIC CREATION</span>
+<h3 class="font-headline-sm text-headline-sm">Things They Left Behind</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-forest-accent">arrow_outward</span>
+</div>
+</article>
+<!-- Item 4: Live & Delivery -->
+<article class="col-span-12 md:col-span-6 group cursor-pointer fade-in" style="animation-delay: 0.4s;">
+<div class="relative overflow-hidden rounded-lg mb-4 border border-border-muted aspect-square md:aspect-[4/3]">
+<img alt="Live Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A high-tech live streaming setup featuring multiple monitors with professional broadcasting software and a studio microphone. The environment is dark and focused, with soft green LED accents illuminating the edges of the desk. The scene captures a professional educational delivery setting, combining precision technology with a clean, archival aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrTzF86Gyj6kOoUf1v5CMn_pCW1PkmuCtATK0CM1U8o--fpG7CXI8ZPu-LdpLXlVU_wnYbq0jfQpF4qDjKhz54qcg0qbR20c8yU6mqg018dvtw4jLkfvlgoHOxfi2TN3_024MPNpmR-eyyxvs33yAsVqo2azQsrOAm3Hzcph5dJZu_exc1G9IVf3LeMOkUt8ssrmuDayGwRcESTj4q9ej9WgnK9dFOUFS2xhI9euunsHnMK_5HIfgZXFN4P7Gm389pAjFWiHLMJm8I"/>
+<div class="absolute top-4 right-4">
+<div class="flex items-center gap-2 bg-red-600 text-white font-label-caps text-[10px] px-2 py-0.5 rounded animate-pulse">
+<span class="w-1.5 h-1.5 bg-white rounded-full"></span> LIVE ARCHIVE
+                        </div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-1 block">LIVE &amp; DELIVERY</span>
+<h3 class="font-headline-sm text-headline-sm">Product Delivery Systems</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-forest-accent">arrow_outward</span>
+</div>
+</article>
+<!-- Item 5: Personal Lab / Side Notes -->
+<article class="col-span-12 group cursor-pointer fade-in" style="animation-delay: 0.5s;">
+<div class="grid grid-cols-1 md:grid-cols-3 border border-border-muted rounded-lg overflow-hidden bg-surface-cream hover:bg-surface-container-low transition-colors">
+<div class="p-8 col-span-1 border-b md:border-b-0 md:border-r border-border-muted">
+<span class="font-label-caps text-label-caps text-forest-accent mb-4 block">PERSONAL LAB</span>
+<h3 class="font-headline-sm text-headline-sm mb-4">The AI Experiment Archive</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                            Ongoing explorations of LLMs, prompt engineering, and the future of educational content production.
+                        </p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container-highest px-3 py-1 rounded-full font-label-caps text-[10px]">GPT-4O</span>
+<span class="bg-surface-container-highest px-3 py-1 rounded-full font-label-caps text-[10px]">PROMPT OPS</span>
+<span class="bg-surface-container-highest px-3 py-1 rounded-full font-label-caps text-[10px]">AUTOMATION</span>
+</div>
+</div>
+<div class="col-span-2 p-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant mb-2">LATEST NOTE</div>
+<h4 class="font-body-lg text-body-lg font-bold mb-2">Designing for Evidence: Why the Archive Matters</h4>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
+                                In an era of AI-generated filler, the proof of work is the only currency. This archive is a living document of that belief...
+                            </p>
+</div>
+<div class="relative rounded border border-border-muted overflow-hidden bg-white">
+<img alt="Lab Project" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="A clean, minimalist laboratory setting featuring abstract robotic parts and glowing fiber optic cables on a pristine white surface. The scene is lit with bright, neutral lighting that emphasizes a futuristic, clinical aesthetic. The color palette is primarily white and gray with subtle forest green highlights, representing a space for digital experimentation and personal research." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAxDkjwytVOIlxY8aorgnHfMMvce3DjnbXRDhS_BSAEXpkHpRcbd4k8H47vKNMdcYComwXlazTjDR3C_L8VWcBHWxNykW8L3JpjeCQU3qZLC8jquj_era8zFJ3XCoGsCow8CkmfJWmWONvw3VYvG7NRzpHSy4ckLwMUTpJ78cOtXRX61KnwpIrVLvmnACRH-lD28W2_lHp9BYd1HH-56swheHmeuNka91sHtR8s89sepkwELHUkoYD-3IE2Aa-OS5X5zT_GKLZ8zOQ"/>
+</div>
+</div>
+</div>
+</article>
+</div>
+<!-- Pagination/Load More -->
+<div class="mt-20 text-center">
+<button class="font-label-caps text-label-caps border border-charcoal-text px-12 py-4 rounded-lg hover:bg-forest-accent hover:text-surface-cream hover:border-forest-accent transition-all duration-300">
+                Load Full Archive (Page 1 of 5)
+            </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-cream dark:bg-surface-container-low border-t border-border-muted py-section-gap w-full">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-gutter gap-8">
+<div class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed">
+                Maki Archive
+            </div>
+<div class="flex gap-8 font-label-caps text-label-caps text-on-secondary-container dark:text-on-secondary-fixed-variant">
+<a class="hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">LinkedIn</a>
+<a class="hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">GitHub</a>
+<a class="hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Instagram</a>
+<a class="hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Email</a>
+</div>
+<div class="font-label-caps text-label-caps text-on-secondary-container dark:text-on-secondary-fixed-variant">
+                © 2024 Maki Archive. All rights reserved.
+            </div>
+</div>
+</footer>
+<script>
+        // Simple Filter Interactivity
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'text-primary', 'font-bold');
+                    b.classList.add('text-on-surface-variant');
+                });
+                btn.classList.add('active', 'text-primary', 'font-bold');
+                btn.classList.remove('text-on-surface-variant');
+                
+                // Add click feedback
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => btn.style.transform = 'scale(1)', 100);
+            });
+        });
+
+        // Hover effect for cards
+        const articles = document.querySelectorAll('article');
+        articles.forEach(article => {
+            article.addEventListener('mouseenter', () => {
+                article.style.transform = 'translateY(-4px)';
+                article.style.transition = 'transform 0.3s ease';
+            });
+            article.addEventListener('mouseleave', () => {
+                article.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

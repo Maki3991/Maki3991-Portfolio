@@ -1,0 +1,55 @@
+[
+  {
+    "label": "邮箱",
+    "href": "mailto:maki1344933709@gmail.com",
+    "status": "ready",
+    "note": "maki1344933709@gmail.com"
+  },
+  {
+    "label": "微信二维码",
+    "href": "/assets/contact/wechat.jpg",
+    "status": "ready",
+    "note": "扫码添加微信",
+    "image": "/assets/contact/wechat.jpg"
+  },
+  {
+    "label": "抖音主页",
+    "href": "https://v.douyin.com/CBc6conCqFk/",
+    "status": "ready",
+    "note": "Maki 羽轩英语自媒体",
+    "image": "/assets/contact/douyin-qr.png"
+  },
+  {
+    "label": "小红书主页",
+    "href": "https://www.xiaohongshu.com/user/profile/602a6c230000000001009527?xsec_token=YBqg7Wg_x5DJMdRsF6foCq44DuYhcBr6c2RuZbRk6j2B0=&xsec_source=app_share&&apptime=1777881646&shareRedId=ODY0QTlINjw2NzUyOTgwNjY0OTc9OjhA&share_id=642ddfde5194449584aa0e87ea5d5217&xhsshare=CopyLink",
+    "status": "ready",
+    "note": "英语学习内容账号",
+    "image": "/assets/contact/xiaohongshu-qr.jpg"
+  },
+  {
+    "label": "视频号",
+    "href": "/assets/contact/shipinhao-qr.jpg",
+    "status": "ready",
+    "note": "扫码查看视频号",
+    "image": "/assets/contact/shipinhao-qr.jpg"
+  },
+  {
+    "label": "网易云音乐",
+    "href": "http://music.163.com/artist?id=33795229&userid=2005170426",
+    "status": "ready",
+    "note": "音乐人 Maki3991",
+    "image": "/assets/contact/netease-qr.jpg"
+  },
+  {
+    "label": "GitHub",
+    "href": "https://github.com/Maki3991",
+    "status": "ready",
+    "note": "Maki3991"
+  },
+  {
+    "label": "自媒体简历 PDF",
+    "href": "/assets/files/self-media-v2.pdf",
+    "status": "ready",
+    "note": "可下载查看"
+  }
+]
