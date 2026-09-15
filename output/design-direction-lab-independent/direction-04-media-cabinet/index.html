@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Maki 羽轩 Home / Hero 方向 04：媒体档案柜。" />
+    <title>Media Cabinet — Maki 羽轩</title>
+    <link rel="stylesheet" href="../shared.css" />
+    <style>
+      :root { color-scheme: dark; }
+      body.d4 { background: #101217; color: #f4f7fb; font-family: Arial, "Helvetica Neue", "Noto Sans SC", sans-serif; }
+      .d4-header { position: sticky; top: 0; z-index: 8; display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 1rem 2rem; border-bottom: 1px solid #343a45; background: rgba(16,18,23,.94); }
+      .d4-brand { text-decoration: none; }
+      .d4-brand strong { display: block; font-size: 1.05rem; letter-spacing: -.06em; }
+      .d4-brand span, .d4-nav a, .d4-header .mobile-menu summary { color: #949eae; font: .67rem/1.2 ui-monospace, monospace; letter-spacing: .11em; text-transform: uppercase; }
+      .d4-nav { display: flex; gap: 1.35rem; }
+      .d4-nav a { text-decoration: none; }
+      .d4-nav a:hover, .d4-nav a[aria-current="page"] { color: #a2f2ff; }
+      .d4-main { max-width: 1480px; margin: 0 auto; padding: 0 2rem 4rem; }
+      .d4-hero { display: grid; grid-template-columns: .78fr 1.22fr; gap: 1rem; padding: 1rem 0 5rem; }
+      .d4-hero-copy { display: flex; flex-direction: column; justify-content: space-between; min-height: min(72vh, 800px); padding: 2rem 1.5rem 1.5rem; border: 1px solid #343a45; }
+      .d4-hero-copy h1 { max-width: 650px; margin: auto 0 1.5rem; font-size: clamp(4.2rem, 9vw, 10rem); line-height: .78; letter-spacing: -.12em; font-weight: 850; }
+      .d4-hero-copy h1 em { color: #a2f2ff; font-style: normal; }
+      .d4-hero-copy p { max-width: 520px; margin: 0; color: #aeb8c6; line-height: 1.7; }
+      .d4-hero-meta { display: flex; justify-content: space-between; gap: 1rem; color: #ff70c8; font: .68rem/1.4 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+      .d4-hero-link { display: inline-block; margin-top: 1.8rem; color: #a2f2ff; text-underline-offset: .3em; }
+      .d4-hero-media { position: relative; min-height: min(72vh, 800px); overflow: hidden; border: 1px solid #343a45; background: #1b2029; }
+      .d4-hero-media img { width: 100%; height: 100%; min-height: 560px; object-fit: cover; filter: saturate(.85) contrast(1.1); transition: transform 180ms ease; }
+      .d4-hero-media:hover img { transform: scale(1.015); }
+      .d4-media-label { position: absolute; left: 1.3rem; top: 1.3rem; padding: .45rem .6rem; background: #101217; color: #a2f2ff; font: .67rem/1 ui-monospace, monospace; letter-spacing: .08em; }
+      .d4-media-footer { position: absolute; right: 1.3rem; bottom: 1.3rem; left: 1.3rem; display: flex; justify-content: space-between; gap: 1rem; padding-top: .7rem; border-top: 1px solid rgba(255,255,255,.55); color: #fff; font: .68rem/1.4 ui-monospace, monospace; }
+      .d4-section-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 2rem; border-bottom: 1px solid #343a45; padding-bottom: .8rem; }
+      .d4-section-heading h2 { margin: 0; font-size: clamp(2rem, 4vw, 4rem); line-height: .9; letter-spacing: -.09em; }
+      .d4-section-heading span { color: #ff70c8; font: .68rem/1 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+      .d4-cabinet { display: grid; grid-template-columns: 1.2fr .8fr; gap: 1rem; padding: 1rem 0 5rem; }
+      .d4-tile { border: 1px solid #343a45; padding: 1.4rem; background: #15181e; }
+      .d4-tile:hover { border-color: #a2f2ff; }
+      .d4-tile-project { grid-row: span 2; min-height: 610px; display: flex; flex-direction: column; justify-content: space-between; }
+      .d4-tile-tag { color: #a2f2ff; font: .68rem/1.4 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+      .d4-tile h3 { max-width: 680px; margin: 2rem 0 1rem; font-size: clamp(2.5rem, 5vw, 6.5rem); line-height: .82; letter-spacing: -.1em; }
+      .d4-tile p { max-width: 620px; margin: 0; color: #aeb8c6; line-height: 1.7; }
+      .d4-project-foot { display: flex; justify-content: space-between; gap: 2rem; align-items: end; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #343a45; }
+      .d4-project-results { display: flex; flex-wrap: wrap; gap: 1rem 1.7rem; }
+      .d4-project-results strong { display: block; color: #a2f2ff; font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+      .d4-project-results span { color: #949eae; font: .62rem/1.3 ui-monospace, monospace; }
+      .d4-tile-work { min-height: 310px; background: #202631; }
+      .d4-tile-work h3 { margin: 2.5rem 0 1rem; font-size: clamp(1.7rem, 3vw, 3rem); }
+      .d4-work-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: .55rem 1.2rem; margin-top: 1.5rem; }
+      .d4-work-metrics li { padding-top: .5rem; border-top: 1px solid #424b59; color: #949eae; font-size: .8rem; }
+      .d4-work-metrics strong { display: block; color: #f4f7fb; font-variant-numeric: tabular-nums; }
+      .d4-tile-note { min-height: 300px; display: flex; flex-direction: column; justify-content: space-between; }
+      .d4-tile-note blockquote { margin: 2rem 0 0; font-size: clamp(1.5rem, 3vw, 3rem); line-height: .98; letter-spacing: -.06em; }
+      .d4-tile-note cite { color: #949eae; font: .65rem/1.4 ui-monospace, monospace; font-style: normal; }
+      .d4-info { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1rem 0 0; }
+      .d4-info-tile { min-height: 360px; border: 1px solid #343a45; padding: 1.4rem; }
+      .d4-info-tile h2 { max-width: 620px; margin: 2rem 0 1rem; font-size: clamp(2.1rem, 4vw, 4.6rem); line-height: .86; letter-spacing: -.09em; }
+      .d4-info-tile p { max-width: 620px; margin: 0; color: #aeb8c6; line-height: 1.75; }
+      .d4-info-tile dl { display: grid; grid-template-columns: 1fr auto; gap: .8rem 1rem; margin: 2rem 0 0; color: #aeb8c6; }
+      .d4-info-tile dt { color: #949eae; font: .66rem/1.4 ui-monospace, monospace; text-transform: uppercase; }
+      .d4-info-tile dd { margin: 0; text-align: right; }
+      .d4-contact-links { display: flex; flex-wrap: wrap; gap: .8rem 1.5rem; margin-top: 2rem; }
+      .d4-contact-links a { color: #a2f2ff; }
+      .d4-footer { display: flex; justify-content: space-between; gap: 2rem; padding: 1.5rem 0 0; color: #949eae; font: .67rem/1.5 ui-monospace, monospace; }
+      .d4-footer a { color: #a2f2ff; }
+      @media (max-width: 900px) { .d4-header { padding: 1rem 1.2rem; } .d4-nav { display: none; } .d4-header .mobile-menu { display: block; } .d4-header .mobile-menu summary { cursor: pointer; } .d4-header .mobile-menu nav { display: grid; gap: .65rem; padding: 1rem 0 .2rem; text-align: right; } .d4-main { padding: 0 1.2rem 3rem; } .d4-hero { grid-template-columns: 1fr; padding-bottom: 4rem; } .d4-hero-copy, .d4-hero-media { min-height: auto; } .d4-hero-copy { padding: 1.3rem 1.1rem 2rem; } .d4-hero-copy h1 { margin-top: 5rem; font-size: clamp(4rem, 17vw, 7.4rem); } .d4-hero-media { min-height: 480px; } .d4-hero-media img { min-height: 480px; } .d4-cabinet { grid-template-columns: 1fr; padding-bottom: 4rem; } .d4-tile-project { min-height: 520px; grid-row: auto; } .d4-info { grid-template-columns: 1fr; } }
+      @media (max-width: 560px) { .d4-brand span { display: none; } .d4-hero-meta, .d4-media-footer, .d4-project-foot, .d4-footer { display: block; } .d4-hero-meta span + span, .d4-media-footer span + span, .d4-project-results, .d4-footer a { display: block; margin-top: .7rem; } .d4-tile { padding: 1.1rem; } .d4-tile-project { min-height: 500px; } .d4-info-tile { min-height: 330px; } }
+    </style>
+  </head>
+  <body class="d4">
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <header class="d4-header"><a class="d4-brand" href="#top"><strong>Maki 羽轩</strong><span>MEDIA CABINET / 01</span></a><nav class="d4-nav" aria-label="主导航"><a href="#top" aria-current="page">Home</a><a href="#projects">Projects</a><a href="#notes">Notes</a><a href="#about">About</a><a href="#contact">Contact</a></nav><details class="mobile-menu"><summary>Open cabinet</summary><nav aria-label="移动主导航"><a href="#top">Home</a><a href="#projects">Projects</a><a href="#notes">Notes</a><a href="#about">About</a><a href="#contact">Contact</a></nav></details></header>
+    <main class="d4-main" id="main">
+      <section class="d4-hero" id="top" aria-labelledby="hero-title"><div class="d4-hero-copy"><div class="d4-hero-meta"><span>Home / Hero 04</span><span>China · 2026</span></div><div><h1 id="hero-title">内容<br /><em>在场。</em></h1><p>我关注英语学习、内容表达、自媒体运营、教育产品和 AI 辅助创作，正在把自己的内容、项目和学习系统整理成一个长期可验证的作品集。</p><a class="d4-hero-link" href="#projects">打开档案柜 ↓</a></div></div><a class="d4-hero-media" href="https://v.douyin.com/xe4D6L5DczE/" target="_blank" rel="noreferrer"><span class="d4-media-label">REAL WORK / V028</span><img src="../assets/V028.jpg" alt="四级六级听力吐槽与学习路径内容的真实作品封面" /><span class="d4-media-footer"><span>四级六级听力吐槽与学习路径内容</span><span>491.2 万 plays ↗</span></span></a></section>
+
+      <section id="projects" aria-labelledby="projects-title"><div class="d4-section-heading"><h2 id="projects-title">Selected cabinet</h2><span>01 / projects + works</span></div><div class="d4-cabinet"><article class="d4-tile d4-tile-project"><div><p class="d4-tile-tag">Project / 内容创作与账号运营</p><h3>Maki 羽轩英语自媒体</h3><p>独立运营英语学习类自媒体账号，覆盖抖音、小红书、视频号、B 站等平台。负责选题、脚本、拍摄、剪辑、发布、复盘和私信沟通。</p></div><div class="d4-project-foot"><div class="d4-project-results"><div><strong>829 万+</strong><span>累计播放 / 观看</span></div><div><strong>53 万+</strong><span>累计互动</span></div><div><strong>491 万+</strong><span>单条最高播放</span></div></div><span class="d4-tile-tag">ongoing ↗</span></div></article><article class="d4-tile d4-tile-work"><p class="d4-tile-tag">Work / Douyin / 2025-07-28</p><h3>四级六级听力吐槽与学习路径内容</h3><p>用强情绪入口切入四六级听力问题，再提供更具体的替代路径。</p><ul class="metrics d4-work-metrics"><li>播放<strong>491.2 万</strong></li><li>点赞<strong>22.4 万</strong></li><li>评论<strong>1.1 万</strong></li><li>收藏 / 分享<strong>1.8 / 4.4 万</strong></li></ul></article><article class="d4-tile d4-tile-note" id="notes"><div><p class="d4-tile-tag">Note / from project archive</p><blockquote>英语学习内容不一定从知识点开始，也可以从学习者被压抑的共同感受进入，再提供更清楚的替代路径。</blockquote></div><cite>Maki 羽轩英语自媒体项目记录</cite></article></div></section>
+
+      <section class="d4-info" id="about" aria-labelledby="about-title"><article class="d4-info-tile"><p class="d4-tile-tag">About / a short record</p><h2 id="about-title">一个持续更新的个人空间。</h2><p>我是一名国际政治本科生，也在持续做英语学习内容、自媒体账号运营、英语产品交付和个人学习系统搭建。我关心英语学习方法、内容表达、自媒体运营、教育产品、AI 辅助创作、学习系统、写作研究和音乐创作。</p></article><article class="d4-info-tile" id="now"><p class="d4-tile-tag">Now / current state</p><h2>把散落的作品整理出来。</h2><p>我在整理自己的内容作品、账号数据、项目经历和复盘方法，希望它们不只是散落在平台里的视频，而是可以被长期查看和验证的作品档案。</p><dl><dt>Belief</dt><dd>真实作品 / 数据 / 复盘</dd><dt>Seeking</dt><dd>内容运营 / 教育产品 / AI</dd></dl></article></section>
+
+      <section class="d4-info" id="contact" aria-labelledby="contact-title"><article class="d4-info-tile"><p class="d4-tile-tag">Contact / open channel</p><h2 id="contact-title">联系 Maki。</h2><p>如果内容、教育产品或 AI 辅助创作与你有关，欢迎通过邮箱联系。</p><div class="d4-contact-links"><a href="mailto:maki1344933709@gmail.com">邮箱 ↗</a><a href="https://v.douyin.com/CBc6conCqFk/" target="_blank" rel="noreferrer">抖音主页 ↗</a><a href="https://github.com/Maki3991" target="_blank" rel="noreferrer">GitHub ↗</a></div></article><article class="d4-info-tile"><p class="d4-tile-tag">Role / current label</p><h2>英语内容创作者<br />内容运营实践者<br />国际政治本科生</h2><p>地点：中国</p></article></section>
+      <footer class="d4-footer"><span>© Maki 羽轩 · Home / Hero direction 04</span><a href="#top">回到顶部 ↑</a></footer>
+    </main>
+  </body>
+</html>

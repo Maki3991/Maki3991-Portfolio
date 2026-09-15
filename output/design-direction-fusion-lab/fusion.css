@@ -1,0 +1,7 @@
+@import url('./fusion-base.css');
+
+/* The three directions intentionally expose one different hero-side composition each. */
+.hero-aside--identity { display: none; }
+body[data-direction="1"] .hero-aside--identity { display: flex; }
+body[data-direction="2"] .hero-aside--identity,
+body[data-direction="3"] .hero-aside--identity { display: none; }

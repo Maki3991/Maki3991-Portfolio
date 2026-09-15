@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Maki 羽轩 Home / Hero 方向 01：冷静档案。" />
+    <title>Cold Index — Maki 羽轩</title>
+    <link rel="stylesheet" href="../shared.css" />
+    <style>
+      :root { color-scheme: light; }
+      body.d1 { background: #f2f5f7; color: #17212b; font-size: 16px; }
+      .d1-header { position: sticky; top: 0; z-index: 5; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2rem; padding: 1.05rem 3.5rem; border-bottom: 1px solid #c9d4dd; background: rgba(242,245,247,.94); backdrop-filter: blur(10px); }
+      .d1-brand { display: flex; align-items: baseline; gap: 1rem; text-decoration: none; }
+      .d1-brand strong { font-size: 1rem; }
+      .d1-brand span, .d1-nav a, .d1-header .mobile-menu summary { color: #647484; font: .7rem/1 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+      .d1-nav { display: flex; gap: 1.35rem; }
+      .d1-nav a { text-decoration: none; }
+      .d1-nav a:hover, .d1-nav a[aria-current="page"] { color: #0d7fb0; }
+      .d1-main { max-width: 1440px; margin: 0 auto; padding: 0 3.5rem; }
+      .d1-hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr); gap: 5vw; min-height: 77vh; align-items: end; padding: 7rem 0 6rem; border-bottom: 1px solid #c9d4dd; }
+      .d1-hero h1 { max-width: 900px; margin: 1.35rem 0 2.2rem; font-size: clamp(4.2rem, 9.6vw, 10.5rem); line-height: .87; letter-spacing: -.085em; font-weight: 800; }
+      .d1-hero h1 em { color: #0d7fb0; font-style: normal; }
+      .d1-lede { max-width: 600px; margin: 0; color: #4f6070; font-size: 1.1rem; line-height: 1.75; }
+      .d1-actions { display: flex; flex-wrap: wrap; gap: .9rem 1.5rem; margin-top: 2rem; }
+      .d1-actions a { color: #0d7fb0; text-underline-offset: .3em; }
+      .d1-hero-index { align-self: stretch; display: flex; flex-direction: column; justify-content: flex-end; border-left: 1px solid #c9d4dd; padding-left: 2rem; }
+      .d1-hero-index dl { display: grid; grid-template-columns: 1fr auto; gap: .7rem 1.5rem; margin: 0; }
+      .d1-hero-index dt { color: #778898; font: .68rem/1.4 ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; }
+      .d1-hero-index dd { margin: 0; text-align: right; font-weight: 600; }
+      .d1-hero-index .now { grid-column: 1 / -1; border-top: 1px solid #c9d4dd; padding-top: 1.2rem; margin-top: .5rem; color: #4f6070; font-size: .94rem; line-height: 1.65; }
+      .d1-section { padding: 6rem 0; border-bottom: 1px solid #c9d4dd; }
+      .d1-section-head { display: grid; grid-template-columns: 19% 1fr; gap: 2rem; margin-bottom: 2.4rem; }
+      .d1-section-head h2 { max-width: 760px; margin: 0; font-size: clamp(2rem, 4vw, 4.2rem); line-height: .98; letter-spacing: -.065em; }
+      .d1-section-head p { margin: .3rem 0 0; color: #0d7fb0; }
+      .d1-row { display: grid; grid-template-columns: 4rem 1fr minmax(180px, 27%); gap: 2rem; align-items: start; padding: 2rem 0; border-top: 1px solid #c9d4dd; }
+      .d1-row:last-child { border-bottom: 1px solid #c9d4dd; }
+      .d1-row-number { color: #0d7fb0; font: .85rem/1 ui-monospace, monospace; }
+      .d1-row h3 { margin: 0 0 .55rem; font-size: clamp(1.35rem, 2vw, 2rem); letter-spacing: -.04em; }
+      .d1-row p { max-width: 690px; margin: 0; color: #526273; line-height: 1.7; }
+      .d1-meta { color: #6f7e8c; font: .72rem/1.6 ui-monospace, monospace; text-transform: uppercase; letter-spacing: .06em; }
+      .d1-metrics { display: grid; gap: .55rem; color: #536473; font-size: .86rem; }
+      .d1-metrics li { border-bottom: 1px solid #d7e0e6; padding-bottom: .45rem; }
+      .d1-metrics strong { color: #17212b; font-size: 1rem; }
+      .d1-thumb { width: 100%; aspect-ratio: 4 / 2.7; object-fit: cover; filter: saturate(.75) contrast(1.02); }
+      .d1-thumb-caption { margin-top: .65rem; color: #7b8a98; font: .68rem/1.45 ui-monospace, monospace; }
+      .d1-note { display: grid; grid-template-columns: 19% 1fr; gap: 2rem; }
+      .d1-note blockquote { max-width: 760px; margin: 0; font-size: clamp(1.45rem, 3vw, 3rem); line-height: 1.12; letter-spacing: -.045em; }
+      .d1-note cite { display: block; margin-top: 1.5rem; color: #6f7e8c; font: .73rem/1.5 ui-monospace, monospace; font-style: normal; letter-spacing: .06em; }
+      .d1-about-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 4rem; }
+      .d1-about-grid article { padding: 1.35rem 0 1.65rem; border-top: 1px solid #c9d4dd; }
+      .d1-about-grid article:last-child { grid-column: span 2; }
+      .d1-about-grid h3 { margin: 0 0 .7rem; font-size: .78rem; color: #0d7fb0; font-family: ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+      .d1-about-grid p { max-width: 700px; margin: 0; color: #4f6070; line-height: 1.75; }
+      .d1-contact { display: grid; grid-template-columns: 19% 1fr; gap: 2rem; }
+      .d1-contact h2 { margin: 0 0 1rem; font-size: clamp(2.3rem, 5vw, 5.5rem); line-height: .9; letter-spacing: -.08em; }
+      .d1-contact p { max-width: 550px; color: #536473; line-height: 1.7; }
+      .d1-contact-links { display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; margin-top: 1.8rem; }
+      .d1-contact-links a { color: #0d7fb0; }
+      .d1-footer { display: flex; justify-content: space-between; gap: 2rem; padding: 1.2rem 0 2rem; color: #738392; font: .7rem/1.5 ui-monospace, monospace; }
+      .d1-footer a { color: #0d7fb0; }
+      @media (max-width: 840px) { .d1-header { padding: 1rem 1.25rem; } .d1-nav { display: none; } .d1-header .mobile-menu { display: block; justify-self: end; } .d1-header .mobile-menu summary { cursor: pointer; } .d1-header .mobile-menu nav { display: grid; gap: .7rem; padding: 1rem 0 .25rem; text-align: right; } .d1-main { padding: 0 1.25rem; } .d1-hero { grid-template-columns: 1fr; min-height: auto; gap: 3rem; padding: 5rem 0 4rem; } .d1-hero h1 { font-size: clamp(4rem, 17vw, 7rem); } .d1-hero-index { border-left: 0; border-top: 1px solid #c9d4dd; padding: 1.4rem 0 0; } .d1-section { padding: 4rem 0; } .d1-section-head, .d1-note, .d1-contact { grid-template-columns: 1fr; gap: 1.1rem; } .d1-row { grid-template-columns: 2.2rem 1fr; gap: 1rem; } .d1-row > :last-child { grid-column: 2; } }
+      @media (max-width: 560px) { .d1-brand span { display: none; } .d1-lede { font-size: 1rem; } .d1-about-grid { grid-template-columns: 1fr; } .d1-about-grid article:last-child { grid-column: auto; } .d1-footer { display: block; } .d1-footer span, .d1-footer a { display: block; margin-top: .6rem; } }
+    </style>
+  </head>
+  <body class="d1">
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <header class="d1-header">
+      <a class="d1-brand" href="#top"><strong>Maki 羽轩</strong><span>PERSONAL ARCHIVE / CHINA</span></a>
+      <nav class="d1-nav" aria-label="主导航">
+        <a href="#top" aria-current="page">Home</a><a href="#projects">Projects</a><a href="#notes">Notes</a><a href="#about">About</a><a href="#contact">Contact</a>
+      </nav>
+      <details class="mobile-menu"><summary>Index</summary><nav aria-label="移动主导航"><a href="#top">Home</a><a href="#projects">Projects</a><a href="#notes">Notes</a><a href="#about">About</a><a href="#contact">Contact</a></nav></details>
+    </header>
+    <main class="d1-main" id="main">
+      <section class="d1-hero" id="top" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">00 / Identity</p>
+          <h1 id="hero-title">英语内容<br /><em>创作者</em>与运营实践者。</h1>
+          <p class="d1-lede">我关注英语学习、内容表达、自媒体运营、教育产品和 AI 辅助创作，正在把自己的内容、项目和学习系统整理成一个长期可验证的作品集。</p>
+          <div class="d1-actions"><a href="#projects">查看项目与作品 ↓</a><a href="mailto:maki1344933709@gmail.com">maki1344933709@gmail.com ↗</a></div>
+        </div>
+        <aside class="d1-hero-index" aria-label="个人信息摘要">
+          <dl><dt>Role</dt><dd>英语内容创作者</dd><dt>Study</dt><dd>国际政治本科生</dd><dt>Location</dt><dd>中国</dd><dt>Seeking</dt><dd>内容 / 教育产品 / AI</dd><div class="now"><strong>Now</strong><br />正在整理内容作品、账号数据、项目经历和复盘方法；继续沉淀爆款复盘、平台数据截图和可复用的选题方法。</div></dl>
+        </aside>
+      </section>
+
+      <section class="d1-section" id="projects" aria-labelledby="projects-title">
+        <div class="d1-section-head"><p class="section-label">01 / Selected</p><h2 id="projects-title">把可验证的内容记录，放进可以持续增长的档案。</h2></div>
+        <div class="d1-row">
+          <div class="d1-row-number">01</div>
+          <div><p class="d1-meta">Project · 内容创作与账号运营</p><h3>Maki 羽轩英语自媒体</h3><p>独立运营英语学习类自媒体账号，覆盖抖音、小红书、视频号、B 站等平台。负责选题、脚本、拍摄、剪辑、发布、复盘和私信沟通。</p><p style="margin-top:1rem"><a class="inline-link" href="#about">看我如何做事 →</a></p></div>
+          <ul class="metrics d1-metrics"><li><span>累计播放 / 观看</span><strong>829 万+</strong></li><li><span>累计互动</span><strong>53 万+</strong></li><li><span>单条最高播放</span><strong>491 万+</strong></li></ul>
+        </div>
+        <div class="d1-row">
+          <div class="d1-row-number">02</div>
+          <div><p class="d1-meta">Work · 抖音 · 2025-07-28</p><h3>四级六级听力吐槽与学习路径内容</h3><p>用强情绪入口切入四六级听力问题，再提供更具体的替代路径。</p><p style="margin-top:1rem"><a class="inline-link" href="https://v.douyin.com/xe4D6L5DczE/" target="_blank" rel="noreferrer">打开真实作品 ↗</a></p></div>
+          <div><img class="d1-thumb" src="../assets/V028.jpg" alt="四级六级听力吐槽与学习路径内容的真实作品封面" /><p class="d1-thumb-caption">V028.jpg · 真实作品封面</p><ul class="metrics d1-metrics" style="margin-top:1rem"><li><span>播放</span><strong>491.2 万</strong></li><li><span>点赞</span><strong>22.4 万</strong></li><li><span>评论 / 收藏 / 分享</span><strong>1.1 / 1.8 / 4.4 万</strong></li></ul></div>
+        </div>
+      </section>
+
+      <section class="d1-section" id="notes" aria-labelledby="notes-title">
+        <div class="d1-note"><p class="section-label">02 / Note</p><div><blockquote id="notes-title">英语学习内容不一定从知识点开始，也可以从学习者被压抑的共同感受进入，再提供更清楚的替代路径。</blockquote><cite>来自 Maki 羽轩英语自媒体项目记录</cite></div></div>
+      </section>
+
+      <section class="d1-section" id="about" aria-labelledby="about-title">
+        <div class="d1-section-head"><p class="section-label">03 / About</p><h2 id="about-title">身份、方法和长期关心的事情。</h2></div>
+        <div class="d1-about-grid">
+          <article><h3>我是谁</h3><p>我是一名国际政治本科生，也在持续做英语学习内容、自媒体账号运营、英语产品交付和个人学习系统搭建。</p></article>
+          <article><h3>我现在在做什么</h3><p>我在整理自己的内容作品、账号数据、项目经历和复盘方法，希望它们不只是散落在平台里的视频，而是可以被长期查看和验证的作品档案。</p></article>
+          <article><h3>我长期关心什么</h3><p>我关心英语学习方法、内容表达、自媒体运营、教育产品、AI 辅助创作、学习系统、写作研究和音乐创作。</p></article>
+          <article><h3>我相信什么</h3><p>我相信可信度来自真实作品、真实数据和真实复盘。把复杂知识讲清楚，比把自己包装得很厉害更重要。</p></article>
+          <article><h3>我正在寻找什么</h3><p>内容运营、新媒体运营、英语教育产品与 AI 辅助创作相关机会。</p></article>
+        </div>
+      </section>
+
+      <section class="d1-section" id="contact" aria-labelledby="contact-title">
+        <div class="d1-contact"><p class="section-label">04 / Contact</p><div><h2 id="contact-title">如果内容、教育产品或 AI 辅助创作与你有关，欢迎联系。</h2><p>邮箱是最直接的入口。也可以查看真实的账号与代码入口。</p><div class="d1-contact-links"><a href="mailto:maki1344933709@gmail.com">邮箱 ↗</a><a href="https://v.douyin.com/CBc6conCqFk/" target="_blank" rel="noreferrer">抖音主页 ↗</a><a href="https://github.com/Maki3991" target="_blank" rel="noreferrer">GitHub ↗</a></div></div></div>
+      </section>
+      <footer class="d1-footer"><span>© Maki 羽轩 · Home / Hero direction 01</span><a href="#top">回到顶部 ↑</a></footer>
+    </main>
+  </body>
+</html>
