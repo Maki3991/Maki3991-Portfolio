@@ -5,3 +5,4 @@ dist
 .env.local
 .vercel
 .playwright-cli/
+/docs/.obsidian

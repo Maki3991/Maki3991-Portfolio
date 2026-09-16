@@ -1,0 +1,64 @@
+---
+import ArchiveRow from "@/components/ArchiveRow.astro";
+import { archiveItems } from "@/data/archive";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import "@/styles/archive.css";
+
+const publicCount = archiveItems.filter((item) => item.visibility === "public").length;
+const anonymizedCount = archiveItems.filter(
+  (item) => item.visibility === "public-anonymized",
+).length;
+---
+
+<BaseLayout
+  title="Archive"
+  description="Maki 羽轩的长期个人工作档案：项目、经历、黑客松和可核验的作品记录。"
+>
+  <div class="archive-page">
+    <section class="archive-hero" aria-labelledby="archive-title">
+      <div class="archive-hero-copy">
+        <p class="archive-kicker">WORKING ARCHIVE / 2025—2026</p>
+        <h1 id="archive-title">Archive</h1>
+        <p class="archive-intro">
+          把做过的项目、经历和作品整理成一份可以继续更新的公开档案。
+        </p>
+      </div>
+
+      <dl class="archive-index">
+        <div>
+          <dt>ITEMS</dt>
+          <dd>{archiveItems.length}</dd>
+        </div>
+        <div>
+          <dt>PUBLIC</dt>
+          <dd>{publicCount}</dd>
+        </div>
+        <div>
+          <dt>ANONYMIZED</dt>
+          <dd>{anonymizedCount}</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="archive-section" aria-labelledby="archive-list-title">
+      <div class="archive-section-heading">
+        <p class="archive-kicker">01 / INDEX</p>
+        <div>
+          <h2 id="archive-list-title">Selected records</h2>
+          <p>
+            这里先记录四个已经整理过的条目。详情页、作品证据和后续筛选会在内容稳定后接入。
+          </p>
+        </div>
+      </div>
+
+      <div class="archive-list">
+        {archiveItems.map((item) => <ArchiveRow item={item} />)}
+      </div>
+    </section>
+
+    <aside class="archive-footnote">
+      <span class="archive-kicker">NEXT</span>
+      <p>下一阶段：为每条记录接入详情页、证据和相关作品。</p>
+    </aside>
+  </div>
+</BaseLayout>

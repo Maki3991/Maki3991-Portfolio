@@ -1,0 +1,55 @@
+---
+import type { ArchiveItemWithBody, ArchiveType } from "@/data/archive";
+
+type Props = {
+  item: ArchiveItemWithBody;
+};
+
+const { item } = Astro.props;
+
+const typeLabels: Record<ArchiveType, string> = {
+  project: "PROJECT",
+  experience: "EXPERIENCE",
+  hackathon: "HACKATHON",
+  creation: "CREATION",
+};
+
+const statusLabels = {
+  active: "进行中",
+  completed: "已完成",
+  archived: "已归档",
+  paused: "暂停",
+  draft: "草稿",
+} as const;
+
+const visibilityLabels = {
+  public: "公开",
+  "public-anonymized": "匿名公开",
+  private: "私有",
+} as const;
+
+const formatPeriod = (start: string, end?: string) =>
+  start.replace("-", ".") + (end ? " — " + end.replace("-", ".") : "");
+---
+
+<article class="archive-row" id={item.id}>
+  <div class="archive-row-number" aria-hidden="true">
+    {String(item.order ?? 0).padStart(2, "0")}
+  </div>
+
+  <div class="archive-row-main">
+    <div class="archive-row-meta">
+      <span>{typeLabels[item.type]}</span>
+      <span>{formatPeriod(item.period.start, item.period.end)}</span>
+      <span>{statusLabels[item.status]}</span>
+    </div>
+    <h2>{item.title}</h2>
+    <p>{item.summary}</p>
+  </div>
+
+  <div class="archive-row-aside">
+    <p class="archive-row-role">{item.role}</p>
+    <p class="archive-row-visibility">{visibilityLabels[item.visibility]}</p>
+    <p class="archive-row-outcome">{item.outcomes[0]}</p>
+  </div>
+</article>
