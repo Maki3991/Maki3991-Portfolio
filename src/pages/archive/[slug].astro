@@ -27,10 +27,10 @@ export const getStaticPaths: GetStaticPaths = () =>
 const { item } = Astro.props as Props;
 
 const typeLabels: Record<ArchiveType, string> = {
-  project: "PROJECT",
-  experience: "EXPERIENCE",
-  hackathon: "HACKATHON",
-  creation: "CREATION",
+  project: "项目",
+  experience: "经历",
+  hackathon: "黑客松",
+  creation: "创作",
 };
 
 const statusLabels = {
@@ -48,11 +48,11 @@ const visibilityLabels = {
 } as const;
 
 const evidenceKindLabels: Record<ArchiveEvidence["kind"], string> = {
-  "public-link": "PUBLIC LINK",
-  "local-file": "LOCAL FILE",
-  screenshot: "SCREENSHOT",
-  "source-record": "SOURCE RECORD",
-  "user-confirmation": "USER CONFIRMATION",
+  "public-link": "公开链接",
+  "local-file": "本地文件",
+  screenshot: "截图",
+  "source-record": "来源记录",
+  "user-confirmation": "用户确认",
 };
 
 const visibleEvidence = item.evidence.filter(
@@ -72,7 +72,7 @@ const formatPeriod = (start: string, end?: string) =>
 >
   <div class="archive-detail-page">
     <div class="archive-detail-shell">
-      <a class="archive-detail-back" href="/archive/">← 返回 Archive</a>
+      <a class="archive-detail-back" href="/archive/">← 返回档案库</a>
 
       <header class="archive-detail-header">
         <div class="archive-detail-kicker">
@@ -84,15 +84,15 @@ const formatPeriod = (start: string, end?: string) =>
         <p class="archive-detail-summary">{item.summary}</p>
         <dl class="archive-detail-meta">
           <div>
-            <dt>PERIOD</dt>
+            <dt>时间</dt>
             <dd>{formatPeriod(item.period.start, item.period.end)}</dd>
           </div>
           <div>
-            <dt>ROLE</dt>
+            <dt>角色</dt>
             <dd>{item.role}</dd>
           </div>
           <div>
-            <dt>VISIBILITY</dt>
+            <dt>公开范围</dt>
             <dd>{visibilityLabels[item.visibility]}</dd>
           </div>
         </dl>
@@ -100,8 +100,8 @@ const formatPeriod = (start: string, end?: string) =>
 
       <div class="archive-detail-grid">
         <section class="archive-detail-body" aria-labelledby="archive-detail-work-title">
-          <p class="archive-detail-label">HOW I CONTRIBUTED</p>
-          <h2 id="archive-detail-work-title">What I did</h2>
+          <p class="archive-detail-label">我的贡献</p>
+          <h2 id="archive-detail-work-title">我做了什么</h2>
           <ul>
             {item.contributions.map((contribution) => <li>{contribution}</li>)}
           </ul>
@@ -109,21 +109,21 @@ const formatPeriod = (start: string, end?: string) =>
 
         <aside class="archive-detail-aside">
           <section>
-            <p class="archive-detail-label">OUTCOMES</p>
+            <p class="archive-detail-label">结果</p>
             <ul>
               {item.outcomes.map((outcome) => <li>{outcome}</li>)}
             </ul>
           </section>
 
           <section>
-            <p class="archive-detail-label">PUBLIC BOUNDARY</p>
+            <p class="archive-detail-label">公开边界</p>
             <p>本页只展示已标记为公开或匿名公开的内容；待公开材料不会在这里展开。</p>
           </section>
         </aside>
       </div>
 
       <section class="archive-detail-section" aria-labelledby="archive-detail-evidence-title">
-        <p class="archive-detail-label">EVIDENCE</p>
+        <p class="archive-detail-label">证据</p>
         <h2 id="archive-detail-evidence-title">可核验的公开入口</h2>
         {visibleEvidence.length > 0 ? (
           <ul class="archive-detail-evidence-list">
@@ -150,10 +150,10 @@ const formatPeriod = (start: string, end?: string) =>
         )}
       </section>
 
-      <nav class="archive-detail-end-nav" aria-label="Detail navigation">
+      <nav class="archive-detail-end-nav" aria-label="详情导航">
         <a class="archive-detail-end-link" href="/archive/">
           <span aria-hidden="true">←</span>
-          <span>BACK TO ARCHIVE</span>
+          <span>返回档案库</span>
         </a>
       </nav>
     </div>
