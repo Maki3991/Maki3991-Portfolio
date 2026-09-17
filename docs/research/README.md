@@ -23,6 +23,7 @@
 | 05 | [Design Baseline v0.2](./05-Design-Baseline-v0.2/) | 当前有效 | 记录方向确定后的 Working Archive 风格、主题策略、组件契约与 Astro 实现闸门 | [基线正文](./05-Design-Baseline-v0.2/design-baseline-v0.2-working-archive.md) |
 | 06 | [Site Architecture v0.1](./06-Site-Architecture-v0.1/) | 当前有效 | 记录核心页面、页面关系、内容边界与后续可扩展页面 | [Site Map 正文](./06-Site-Architecture-v0.1/site-map-v0.1.md) |
 | 07 | [Component Lab v0.2 + Remaining](./07-Component-Lab-v0.1/) | 当前有效 | 保留 v0.1 决策，已完成 21×5，并继续记录其余 39×5 候选组件 | [21 项选择表](./07-Component-Lab-v0.1/component-selection-decisions-v0.2-21x5.md) |
+| 11 | [Component Implementation Workflow v0.1](./11-Component-Implementation-Workflow-v0.1/) | 当前有效 | 记录基于直播原文修正后的组件级实施循环、页面角色、验收闸门与返工规则 | [子目录说明](./11-Component-Implementation-Workflow-v0.1/README.md) |
 
 ## 当前总判断
 
@@ -38,6 +39,7 @@
 - `02-国际参考网站/`：外部参考资源研究。
 - `03-参考网站筛选与方向/`：方向实验、用户反馈和原型证据。
 - `05-Design-Baseline-v0.2/`：方向确定后的实现基线、主题策略和验收闸门。
+- `11-Component-Implementation-Workflow-v0.1/`：组件级实现循环和页面联调规则。
 
 `script/` 中的原始逐字稿已按用户决定删除；不要尝试恢复或要求用户重新整理。
 

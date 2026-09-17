@@ -238,6 +238,29 @@ body:has(.archive-page) .site-footer {
   margin: 0;
 }
 
+.archive-footnote-link {
+  align-items: center;
+  color: var(--archive-text);
+  display: inline-flex;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  gap: 8px;
+  letter-spacing: 0.06em;
+  text-decoration: underline;
+  text-decoration-color: var(--archive-accent);
+  text-underline-offset: 4px;
+}
+
+.archive-footnote-link:hover,
+.archive-footnote-link:focus-visible {
+  color: var(--archive-accent-strong);
+  text-decoration-color: var(--archive-accent-strong);
+}
+
+.archive-footnote-link:focus-visible {
+  outline: 2px solid var(--archive-accent);
+  outline-offset: 4px;
+}
+
 @media (max-width: 760px) {
   .archive-page {
     margin-inline: -16px;

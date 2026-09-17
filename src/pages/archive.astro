@@ -3,6 +3,7 @@ import ArchiveRow from "@/components/ArchiveRow.astro";
 import { archiveItems } from "@/data/archive";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import "@/styles/archive.css";
+import "@/styles/archive-implementation.css";
 
 const publicCount = archiveItems.filter((item) => item.visibility === "public").length;
 const anonymizedCount = archiveItems.filter(
@@ -46,7 +47,7 @@ const anonymizedCount = archiveItems.filter(
         <div>
           <h2 id="archive-list-title">Selected records</h2>
           <p>
-            这里先记录四个已经整理过的条目。详情页、作品证据和后续筛选会在内容稳定后接入。
+            这里先记录四个已经整理过的条目。详情页已经接入，公开证据和后续筛选会在内容稳定后逐步补充。
           </p>
         </div>
       </div>
@@ -58,7 +59,9 @@ const anonymizedCount = archiveItems.filter(
 
     <aside class="archive-footnote">
       <span class="archive-kicker">NEXT</span>
-      <p>下一阶段：为每条记录接入详情页、证据和相关作品。</p>
+      <a class="archive-footnote-link" href="/now/">
+        NOW / 当前阶段 <span aria-hidden="true">→</span>
+      </a>
     </aside>
   </div>
 </BaseLayout>

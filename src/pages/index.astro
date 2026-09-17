@@ -1,54 +1,117 @@
 ---
-import ProjectCard from "@/components/ProjectCard.astro";
-import SectionIntro from "@/components/SectionIntro.astro";
-import StatGrid from "@/components/StatGrid.astro";
-import WorkCard from "@/components/WorkCard.astro";
+import LiveIndex from "@/components/LiveIndex.astro";
+import WorkbenchList from "@/components/WorkbenchList.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { featuredWorkSlugs, profile, projects, stats, works, type Work } from "@/data/site";
+import { archiveItems } from "@/data/archive";
+import { homeLiveIndex, homeSelection, homeWorkbench } from "@/data/home";
+import { links } from "@/data/site";
+import "@/styles/home.css";
 
-const featuredWorks = featuredWorkSlugs
-  .map((slug) => works.find((work) => work.slug === slug))
-  .filter((work): work is Work => Boolean(work));
+const selectedArchiveItem = archiveItems.find((item) => item.id === homeSelection.archiveId);
+const selectedArchiveHref = selectedArchiveItem
+  ? `/archive/${selectedArchiveItem.id}/`
+  : "/archive/";
+const emailLink = links.find((link) => link.href.startsWith("mailto:"));
+const wechatLink = links.find((link) => link.image?.endsWith("wechat.jpg"));
 ---
 
-<BaseLayout title="Maki 羽轩" description="Maki 羽轩的个人作品集：英语内容、自媒体运营、英语产品交付与 AI 辅助创作。">
-  <section class="hero">
-    <div class="hero-copy">
-      <h1>{profile.name}</h1>
-      <p class="headline">{profile.headline}</p>
-      <p>{profile.intro}</p>
-      <div class="button-row">
-        <a class="button primary" href="/works/">查看代表作品</a>
-        <a class="button" href="/projects/">查看项目经历</a>
-        <a class="button ghost" href="/contact/">联系我</a>
+<BaseLayout
+  title="Maki 羽轩"
+  description="Maki 羽轩的个人工作档案：持续记录项目、内容和正在推进的事情。"
+>
+  <div class="home-page">
+    <section class="home-hero" aria-labelledby="home-title">
+      <div class="home-hero-copy">
+        <p class="home-kicker">PERSONAL WORK ARCHIVE / BEIJING</p>
+        <h1 id="home-title">Maki / 羽轩</h1>
+        <p class="home-tagline">In it for the long haul.</p>
+        <p class="home-hero-intro">
+          国际政治本科生，做过英语内容、自媒体运营和教育产品交付；现在也在用代码和 AI 做自己的工具。
+        </p>
+        <div class="home-actions">
+          <a class="button primary" href={selectedArchiveHref}>查看代表项目</a>
+          <a class="button" href="/contact/">联系我</a>
+        </div>
       </div>
-    </div>
-    <aside class="portrait-panel" aria-label="Maki 羽轩头像">
-      <img src="/assets/profile/maki-avatar.jpg" alt="Maki 羽轩头像" />
-    </aside>
-  </section>
 
-  <section class="section">
-    <SectionIntro
-      title="这些数字不是榜单，是内容操盘的证据。"
-    />
-    <StatGrid stats={stats} />
-  </section>
+      <aside class="home-hero-side" aria-label="当前状态">
+        <div class="home-portrait-block">
+          <figure class="home-portrait">
+            <img src="/assets/profile/maki-avatar.jpg" alt="Maki 羽轩头像" />
+            <figcaption>PHOTO / MAKI</figcaption>
+          </figure>
+          <p class="home-portrait-note">把做过的事留下来，也把现在正在做的事说清楚。</p>
+        </div>
 
-  <section class="section">
-    <SectionIntro title="我正在长期投入的三件事" />
-    <div class="card-grid three">
-      {projects.map((project) => <ProjectCard project={project} compact />)}
-    </div>
-  </section>
+        <div>
+          <p class="home-kicker">01 / LIVE INDEX</p>
+          <LiveIndex items={homeLiveIndex} />
+        </div>
+      </aside>
+    </section>
 
-  <section class="section">
-    <SectionIntro title="精选作品" />
-    <div class="card-grid three">
-      {featuredWorks.map((work) => <WorkCard work={work} />)}
-    </div>
-    <div class="section-action">
-      <a class="button" href="/works/">查看完整作品集</a>
-    </div>
-  </section>
+    <section class="home-section" aria-labelledby="workbench-title">
+      <div class="home-section-heading">
+        <p class="home-kicker">02 / CURRENT WORKBENCH</p>
+        <div>
+          <h2 id="workbench-title">现在在做什么</h2>
+          <p>这里记录我此刻愿意公开的注意力，不是完整项目清单。</p>
+        </div>
+      </div>
+      <WorkbenchList items={homeWorkbench} />
+    </section>
+
+    {selectedArchiveItem && (
+      <section class="home-section" aria-labelledby="selected-title">
+        <div class="home-section-heading">
+          <p class="home-kicker">03 / SELECTED WORK</p>
+          <div>
+            <h2 id="selected-title">一件代表性工作</h2>
+            <p>先从一段真实的内容实践开始。</p>
+          </div>
+        </div>
+
+        <article class="home-selected">
+          <span class="home-selected-index">01</span>
+          <div class="home-selected-main">
+            <p class="home-meta">SELECTED WORK / CONTENT</p>
+            <h2>{selectedArchiveItem.title}</h2>
+            <p class="home-selected-summary">{selectedArchiveItem.summary}</p>
+            <a class="home-selected-link" href={selectedArchiveHref}>查看代表项目 ↗</a>
+          </div>
+          <div class="home-selected-aside">
+            <p class="home-meta">ROLE</p>
+            <p class="home-selected-role">{selectedArchiveItem.role}</p>
+          </div>
+        </article>
+      </section>
+    )}
+
+    <section class="home-contact" aria-labelledby="contact-title">
+      <div class="home-contact-copy">
+        <p class="home-kicker">04 / CONTACT</p>
+        <h2 id="contact-title">如果你想继续聊</h2>
+        <p>项目合作、求职或普通交流，可以先通过微信联系。</p>
+      </div>
+
+      <div class="home-contact-links">
+        {wechatLink && (
+          <a class="home-contact-card wechat" href="/contact/">
+            <span class="home-contact-card-text">
+              <strong>微信</strong>
+              <small>微信号 · Maki3991</small>
+            </span>
+          </a>
+        )}
+        {emailLink && (
+          <a class="home-contact-card email" href={emailLink.href}>
+            <span class="home-contact-card-text">
+              <strong>邮箱</strong>
+              <small>{emailLink.note ?? emailLink.href.replace("mailto:", "")}</small>
+            </span>
+          </a>
+        )}
+      </div>
+    </section>
+  </div>
 </BaseLayout>

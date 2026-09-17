@@ -1,0 +1,15 @@
+---
+import type { LiveIndexItem } from "@/data/home";
+
+type Props = { items: LiveIndexItem[] };
+const { items } = Astro.props;
+---
+
+<dl class="live-index">
+  {items.map((item) => (
+    <div class="live-index-row">
+      <dt>{item.label}</dt>
+      <dd>{item.value}</dd>
+    </div>
+  ))}
+</dl>

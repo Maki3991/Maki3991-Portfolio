@@ -1,0 +1,16 @@
+[
+  {
+    "order": 1,
+    "title": "个人网站更新迭代",
+    "type": "PROJECT",
+    "status": "进行中",
+    "why": "希望开启一个长期记录和更新的场所。"
+  },
+  {
+    "order": 2,
+    "title": "Speedrun ETH",
+    "type": "LEARNING",
+    "status": "进行中",
+    "why": "入门 Web3，尝试在 Web3 行业找到实习工作。"
+  }
+]

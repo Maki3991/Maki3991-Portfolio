@@ -614,6 +614,24 @@ h3 {
   font-weight: 800;
 }
 
+.contact-link-main .contact-link-external {
+  color: var(--accent);
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.contact-link-main:hover,
+.contact-link-main:focus-visible {
+  color: var(--accent-strong);
+}
+
+.contact-link-main:focus-visible,
+.qr-zoom-trigger:focus-visible,
+.qr-dialog-close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
 .contact-link.pending {
   color: var(--muted);
 }

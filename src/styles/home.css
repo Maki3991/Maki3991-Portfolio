@@ -1,0 +1,628 @@
+body:has(.home-page) {
+  --home-bg: #eef2f7;
+  --home-surface: #f7f9fb;
+  --home-surface-raised: #ffffff;
+  --home-text: #142032;
+  --home-muted: #5d6a7b;
+  --home-line: #cfd7e2;
+  --home-line-strong: #b7c4d4;
+  --home-accent: #315cdc;
+  --home-accent-strong: #173c9e;
+  background: var(--home-bg);
+  color: var(--home-text);
+}
+
+html:has(.home-page) {
+  --home-header-offset: 64px;
+  scroll-padding-top: var(--home-header-offset);
+}
+
+body:has(.home-page) .site-header {
+  background: rgba(238, 242, 247, 0.94);
+  border-bottom: 1px solid var(--home-line);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+body:has(.home-page) .site-header .brand {
+  color: var(--home-text);
+  font-size: 1.05rem;
+  letter-spacing: -0.03em;
+}
+
+body:has(.home-page) .site-header .brand small {
+  display: none;
+}
+
+body:has(.home-page) .site-header .nav {
+  gap: 20px;
+}
+
+body:has(.home-page) .site-header .nav a {
+  border-radius: 0;
+  color: var(--home-muted);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
+  padding: 6px 0;
+  text-transform: uppercase;
+}
+
+body:has(.home-page) .site-header .nav a:hover,
+body:has(.home-page) .site-header .nav a.active {
+  background: transparent;
+  color: var(--home-text);
+}
+
+body:has(.home-page) .site-header .nav a.active {
+  box-shadow: inset 0 -2px 0 var(--home-accent);
+}
+
+body:has(.home-page) .nav-toggle {
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--home-line);
+  color: var(--home-text);
+  cursor: pointer;
+  display: none;
+  font: 0.72rem/1 "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  letter-spacing: 0.1em;
+  min-height: 36px;
+  padding: 0 10px;
+}
+
+.home-page {
+  color: var(--home-text);
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-bottom: 24px;
+}
+
+.home-hero {
+  align-items: end;
+  border-bottom: 1px solid var(--home-line-strong);
+  display: grid;
+  gap: clamp(42px, 8vw, 88px);
+  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+  min-height: min(720px, calc(100vh - 80px));
+  padding: 76px 0 86px;
+}
+
+.home-hero-copy {
+  display: grid;
+  gap: 22px;
+  max-width: 690px;
+}
+
+.home-kicker,
+.home-meta {
+  color: var(--home-accent-strong);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.home-hero h1 {
+  color: var(--home-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Microsoft YaHei", sans-serif;
+  font-size: clamp(4.2rem, 11vw, 8.7rem);
+  font-weight: 800;
+  letter-spacing: -0.09em;
+  line-height: 0.86;
+  margin: 0;
+}
+
+.home-tagline {
+  color: var(--home-accent-strong);
+  font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.home-hero-intro {
+  color: var(--home-muted);
+  font-size: clamp(1.08rem, 2vw, 1.28rem);
+  line-height: 1.8;
+  margin: 0;
+  max-width: 650px;
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 10px;
+}
+
+.home-page .button {
+  border-radius: 3px;
+  box-shadow: none;
+  min-height: 46px;
+}
+
+.home-page .button.primary {
+  background: var(--home-accent);
+  border-color: var(--home-accent);
+}
+
+.home-page .button.primary:hover,
+.home-page .button.primary:focus-visible {
+  background: var(--home-accent-strong);
+  border-color: var(--home-accent-strong);
+}
+
+.home-page .button:not(.primary) {
+  background: transparent;
+  border-color: var(--home-line);
+  color: var(--home-text);
+}
+
+.home-page .button:not(.primary):hover,
+.home-page .button:not(.primary):focus-visible {
+  border-color: var(--home-accent);
+  color: var(--home-accent-strong);
+}
+
+.home-hero-side {
+  align-self: stretch;
+  display: grid;
+  gap: 28px;
+  grid-template-rows: auto 1fr;
+}
+
+.home-portrait-block {
+  align-items: end;
+  border-left: 1px solid var(--home-accent);
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 142px minmax(0, 1fr);
+  padding-left: 24px;
+}
+
+.home-portrait {
+  margin: 0;
+}
+
+.home-portrait img {
+  aspect-ratio: 1;
+  border: 1px solid var(--home-line);
+  border-radius: 4px;
+  display: block;
+  object-fit: cover;
+  object-position: center 36%;
+  width: 100%;
+}
+
+.home-portrait figcaption {
+  color: var(--home-muted);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+.home-portrait-note {
+  align-self: end;
+  color: var(--home-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin: 0 0 2px;
+}
+
+.live-index {
+  border-top: 1px solid var(--home-line);
+  margin: 0;
+  min-width: 0;
+  padding-top: 8px;
+}
+
+.live-index-row {
+  align-items: baseline;
+  border-bottom: 1px solid var(--home-line);
+  display: grid;
+  gap: 18px;
+  grid-template-columns: minmax(92px, 0.34fr) minmax(0, 1fr);
+  min-width: 0;
+  padding: 12px 0;
+}
+
+.live-index dt {
+  color: var(--home-muted);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.67rem;
+  letter-spacing: 0.09em;
+}
+
+.live-index dd {
+  color: var(--home-text);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.home-section {
+  border-bottom: 1px solid var(--home-line-strong);
+  padding: 88px 0 92px;
+}
+
+.home-section-heading {
+  border-bottom: 1px solid var(--home-line);
+  display: block;
+  margin-bottom: 36px;
+  padding-bottom: 24px;
+}
+
+.home-section-heading > .home-kicker {
+  margin-bottom: 16px;
+}
+
+.home-section-heading > div {
+  display: grid;
+  gap: 14px;
+}
+
+.home-section-heading h2,
+.home-contact h2 {
+  color: var(--home-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Microsoft YaHei", sans-serif;
+  font-size: clamp(2rem, 4.3vw, 3.6rem);
+  font-weight: 750;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  margin: 0;
+}
+
+.home-section-heading p:last-child {
+  color: var(--home-muted);
+  line-height: 1.75;
+  margin: 0;
+  max-width: 620px;
+}
+
+.workbench-list {
+  border-top: 1px solid var(--home-line);
+}
+
+.workbench-item {
+  align-items: start;
+  border-bottom: 1px solid var(--home-line);
+  display: grid;
+  gap: 22px;
+  grid-template-columns: 48px minmax(190px, 0.7fr) minmax(0, 1fr) auto;
+  padding: 26px 0;
+}
+
+.workbench-number {
+  color: var(--home-accent);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.82rem;
+  padding-top: 4px;
+}
+
+.workbench-title-block {
+  display: grid;
+  gap: 8px;
+}
+
+.workbench-item h3 {
+  color: var(--home-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Microsoft YaHei", sans-serif;
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  font-weight: 720;
+  letter-spacing: -0.04em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.workbench-why {
+  color: var(--home-muted);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 500px;
+}
+
+.workbench-status {
+  border-bottom: 1px solid rgba(49, 92, 220, 0.48);
+  color: var(--home-accent-strong);
+  display: inline-block;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.68rem;
+  justify-self: start;
+  letter-spacing: 0.06em;
+  padding: 0 0 4px;
+  white-space: nowrap;
+}
+
+.home-selected {
+  background: var(--home-accent);
+  color: white;
+  display: grid;
+  gap: 28px;
+  grid-template-columns: 48px minmax(0, 1fr) minmax(220px, 0.42fr);
+  padding: 32px;
+}
+
+.home-selected .home-meta,
+.home-selected .home-selected-index {
+  color: #cdd8ff;
+}
+
+.home-selected-index {
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.82rem;
+  padding-top: 4px;
+}
+
+.home-selected-main {
+  display: grid;
+  gap: 16px;
+}
+
+.home-selected h2 {
+  color: white;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Microsoft YaHei", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 760;
+  letter-spacing: -0.07em;
+  line-height: 0.98;
+  margin: 0;
+}
+
+.home-selected-summary,
+.home-selected-role {
+  color: #e8edff;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.home-selected-aside {
+  align-self: end;
+  border-left: 1px solid rgba(255, 255, 255, 0.42);
+  display: grid;
+  gap: 10px;
+  padding-left: 20px;
+}
+
+.home-selected-aside .home-meta {
+  color: #cdd8ff;
+}
+
+.home-selected-link {
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.62);
+  color: white;
+  display: inline-flex;
+  font-weight: 700;
+  justify-self: start;
+  padding-bottom: 4px;
+  width: max-content;
+}
+
+.home-selected-link:hover,
+.home-selected-link:focus-visible {
+  border-color: white;
+  color: white;
+}
+
+.home-contact {
+  align-items: start;
+  display: grid;
+  gap: 48px;
+  grid-template-columns: minmax(0, 0.8fr) minmax(360px, 1.2fr);
+  padding: 72px 0 88px;
+}
+
+.home-contact-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.home-contact-copy p:last-child {
+  color: var(--home-muted);
+  line-height: 1.75;
+  margin: 0;
+  max-width: 440px;
+}
+
+.home-contact-links {
+  display: grid;
+  gap: 12px;
+}
+
+.home-contact-card {
+  align-items: center;
+  border: 1px solid var(--home-line);
+  color: var(--home-text);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 62px minmax(0, 1fr);
+  padding: 12px;
+}
+
+.home-contact-card:hover,
+.home-contact-card:focus-visible {
+  border-color: var(--home-accent);
+}
+
+.home-contact-card img {
+  aspect-ratio: 1;
+  border: 1px solid var(--home-line);
+  display: block;
+  object-fit: cover;
+  width: 62px;
+}
+
+.home-contact-card-text {
+  display: grid;
+  gap: 5px;
+}
+
+.home-contact-card-text strong {
+  font-size: 1.05rem;
+}
+
+.home-contact-card-text small {
+  color: var(--home-muted);
+  font-size: 0.85rem;
+}
+
+.home-contact-card.email {
+  grid-template-columns: 1fr;
+  padding: 18px;
+}
+
+.home-contact-card.wechat {
+  grid-template-columns: 1fr;
+  padding: 18px;
+}
+
+.home-contact-card.email .home-contact-card-text small {
+  overflow-wrap: anywhere;
+}
+
+/* Keep the opening Hero focused in the viewport; let later regions follow their content height. */
+.home-hero {
+  align-content: center;
+  min-height: calc(100svh - var(--home-header-offset));
+}
+
+body:has(.home-page) .site-footer {
+  border-color: var(--home-line);
+  color: var(--home-muted);
+}
+
+body:has(.home-page) :focus-visible {
+  outline: 3px solid rgba(49, 92, 220, 0.42);
+  outline-offset: 3px;
+}
+
+@media (max-width: 860px) {
+  .home-hero {
+    gap: 48px;
+    grid-template-columns: 1fr;
+    min-height: calc(100svh - var(--home-header-offset));
+  }
+
+  .home-hero-side {
+    grid-template-rows: auto auto;
+  }
+
+  .home-selected,
+  .home-contact {
+    grid-template-columns: 1fr;
+  }
+
+  .home-selected-aside {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.42);
+    padding-left: 0;
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  body:has(.home-page) .site-header {
+    align-items: center;
+    flex-direction: row;
+    gap: 14px;
+  }
+
+  body:has(.home-page) .nav-toggle {
+    display: inline-flex;
+    margin-left: auto;
+  }
+
+  body:has(.home-page) .site-header .nav {
+    background: var(--home-surface-raised);
+    border-bottom: 1px solid var(--home-line);
+    display: none;
+    gap: 0;
+    left: 0;
+    padding: 8px 16px 12px;
+    position: absolute;
+    right: 0;
+    top: 100%;
+  }
+
+  body:has(.home-page) .site-header .nav[data-open="true"] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  body:has(.home-page) .site-header .nav a {
+    padding: 12px 0;
+  }
+
+  .home-page {
+    padding-bottom: 0;
+  }
+
+  .home-hero,
+  .home-section,
+  .home-contact {
+    padding-block: 64px;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(3.8rem, 19vw, 6rem);
+  }
+
+  .home-portrait-block {
+    grid-template-columns: 112px minmax(0, 1fr);
+    padding-left: 16px;
+  }
+
+  .live-index-row {
+    gap: 12px;
+    grid-template-columns: 86px minmax(0, 1fr);
+  }
+
+  .home-section-heading {
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+  }
+
+  .workbench-item {
+    gap: 12px;
+    grid-template-columns: 34px minmax(0, 1fr);
+  }
+
+  .workbench-why {
+    grid-column: 2;
+  }
+
+  .workbench-status {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .home-selected {
+    padding: 24px;
+  }
+
+  .home-selected-index {
+    display: none;
+  }
+
+  .home-contact {
+    gap: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(.home-page) {
+    scroll-behavior: auto;
+  }
+}

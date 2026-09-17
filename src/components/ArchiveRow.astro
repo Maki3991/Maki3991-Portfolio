@@ -22,14 +22,8 @@ const statusLabels = {
   draft: "草稿",
 } as const;
 
-const visibilityLabels = {
-  public: "公开",
-  "public-anonymized": "匿名公开",
-  private: "私有",
-} as const;
-
 const formatPeriod = (start: string, end?: string) =>
-  start.replace("-", ".") + (end ? " — " + end.replace("-", ".") : "");
+  start.replaceAll("-", ".") + (end ? " — " + end.replaceAll("-", ".") : "");
 ---
 
 <article class="archive-row" id={item.id}>
@@ -41,15 +35,19 @@ const formatPeriod = (start: string, end?: string) =>
     <div class="archive-row-meta">
       <span>{typeLabels[item.type]}</span>
       <span>{formatPeriod(item.period.start, item.period.end)}</span>
-      <span>{statusLabels[item.status]}</span>
+      <span class="archive-row-status">{statusLabels[item.status]}</span>
     </div>
-    <h2>{item.title}</h2>
+    <h2 class="archive-row-title">
+      <a href={"/archive/" + item.id + "/"}>
+        {item.title} <span aria-hidden="true">↗</span>
+      </a>
+    </h2>
     <p>{item.summary}</p>
   </div>
 
   <div class="archive-row-aside">
-    <p class="archive-row-role">{item.role}</p>
-    <p class="archive-row-visibility">{visibilityLabels[item.visibility]}</p>
-    <p class="archive-row-outcome">{item.outcomes[0]}</p>
+    <a class="archive-row-link" href={"/archive/" + item.id + "/"}>
+      查看记录 <span aria-hidden="true">↗</span>
+    </a>
   </div>
 </article>
