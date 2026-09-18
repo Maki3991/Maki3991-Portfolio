@@ -2,9 +2,15 @@
 
 ## 状态
 
-**当前有效 / 已完成首轮生产迁移 / 待用户做最终视觉接受。**
+**当前有效 / 已完成首轮生产迁移 / 当前阶段视觉已接受并冻结 / 待组件级生产验收。**
 
 这份文件是 Foundation v0.1 从候选参数进入生产 CSS 后的交接记录。它不重新打开已经确认的五类基础选择。
+
+## 当前阶段接受记录
+
+2026-09-18，Maki 反馈当前暂时找不到更多 UI 细节问题。因此，Foundation v0.1 作为当前阶段的视觉基线接受并冻结，后续不再主动发散新的颜色、字体、密度、形状或 Header 候选。
+
+这里的“接受”只表示基础层可以进入组件级生产验收，不表示所有页面和组件已经通过最终 Gate。真实组件出现冲突时，优先判断是实现问题、内容问题还是组件组合问题，再做局部修订。
 
 ## 已确认的 Foundation 组合
 
@@ -26,6 +32,9 @@
 - Now、About、Contact、Projects、Works 已同步到同一套基础颜色与标题字体；
 - 旧暖色变量不再作为有效生产 token 使用；
 - 旧 serif 字体声明已从有效字体路径移除；少量旧 fallback 文本暂以 legacy custom property 形式保留，作为迁移痕迹，不参与渲染。
+- 封闭式边框容器统一使用 14px raised radius；胶囊标签保留 pill radius；开放式列表行不使用容器圆角或默认阴影；
+- 导航链接保留直角，当前页面通过底部 inset line 标记，避免导航当前态被卡片圆角改变；导航切换按钮仍使用 14px 圆角；
+- raised surface 统一使用 shadow-soft，列表行、普通按钮和线性区块保持平面。
 
 ## 已验证证据
 
@@ -36,6 +45,8 @@ npm.cmd run build 通过：
 - 11 个静态页面生成；
 - Astro check：0 errors、0 warnings；
 - 仅有 2 个原有 hints，来源是 output/design-direction-lab/lab.js 的 deprecated name 属性，与本次 Foundation 迁移无关。
+
+最近一次导航当前态修复后再次执行 npm.cmd run build：0 errors、0 warnings、2 个同源 hints。
 
 ### 真实浏览器
 
@@ -60,17 +71,18 @@ npm.cmd run build 通过：
 - [Archive mobile](../../../output/playwright/foundation-production-archive-mobile.png)
 - [Archive Detail desktop](../../../output/playwright/foundation-production-detail-desktop.png)
 
-## 现在需要用户判断的内容
+## 本阶段已接受的范围
 
-请优先看上面的 Home desktop、Home mobile、Archive mobile 和 Archive Detail desktop 四张图，只反馈视觉是否接受，不需要读 CSS：
+当前接受以下 Foundation 组合及其生产例外：
 
-1. 96px 桌面大标题是否仍然有足够存在感，但没有压过真实内容；
-2. 52px 移动标题是否过松、过紧或换行不理想；
-3. Home section 的 64px 节奏、Archive row 的 72px 高度是否舒服；
-4. 14px raised surface 和 soft shadow 是否应该保留；
-5. Header C 的透明度与模糊是否安静，还是仍然太像玻璃效果。
+1. Cold Index 亮色语义色板；
+2. Quiet Editorial 排印层级；
+3. Open Field 的 64px section gap、24px grid gap 和 72px row min-height；
+4. Soft Surface 的 14px 封闭容器圆角和 shadow-soft；
+5. Quiet Blur Header 的半透明背景与 12px blur；
+6. 导航当前态的直角底部指示线、列表行的开放式细线结构，以及标签的胶囊语义。
 
-反馈可以直接写：接受、某张图的某个位置需要改，或自由描述感受。
+上面的截图仍然是 Foundation 的视觉证据，但不再作为重新选择基础参数的待办项。
 
 ## 尚未擅自锁死的内容
 
@@ -78,14 +90,13 @@ npm.cmd run build 通过：
 - 空状态、错误状态、loading 的具体组件与文案；
 - 暗色主题的最终参数；
 - 图标、媒体比例和复杂动效；
-- Component Contract v0.2 的正式回写；
+- 组件级真实内容、响应式、可访问性和维护性 Gate；
 - 旧 legacy custom property 的代码清理。
 
 这些项目不是当前五类 Foundation 选择的缺口；它们应在真实组件或真实状态出现后再决定。
 
 ## 下一道闸门
 
-只有当用户接受这四张生产截图后，才进入 Component Contract v0.2 回写和逐组件生产验收。之后遵循：
+Foundation 接受后，进入 [Component Contract v0.2](../08-Component-Contract-v0.1/component-contract-v0.2.md) 作为当前执行入口，并从 Page Shell / Section Rhythm 开始逐组件生产验收。之后遵循：
 
 改一个 → 看一个 → 反馈一个
-

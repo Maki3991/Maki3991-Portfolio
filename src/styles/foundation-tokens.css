@@ -1,0 +1,108 @@
+/*
+ * Foundation v0.1 / selected profile A-B-A-B-C
+ *
+ * This is the code-level token source for the selected Foundation profile.
+ * It is intentionally not imported yet. Import it only after the migration
+ * phases in docs/research/13-Design-System-Foundation-v0.1/.
+ */
+
+:root {
+  /* Palette A / Cold Index */
+  --color-canvas: #f7f9fb;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-text: #1d3341;
+  --color-text-muted: #556b75;
+  --color-text-subtle: #68808d;
+  --color-line: #d8e2e5;
+  --color-line-strong: #b7c8ce;
+  --color-accent: #217895;
+  --color-accent-strong: #1d3341;
+  --color-accent-soft: rgb(33 120 149 / 8%);
+  --color-on-accent: #ffffff;
+  --color-focus: #217895;
+  --color-selection: rgb(33 120 149 / 14%);
+  --color-disabled: #9aaab1;
+  --color-disabled-surface: #edf2f3;
+
+  /* Typography B / Quiet Editorial */
+  --font-family-body: Inter, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+  --font-family-display: "Avenir Next", Inter, ui-sans-serif, system-ui,
+    "Microsoft YaHei", sans-serif;
+  --font-family-meta: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --font-family-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --font-size-display: clamp(3.25rem, 8vw, 6rem);
+  --font-size-h1: clamp(2.75rem, 7vw, 5rem);
+  --font-size-h2: 2rem;
+  --font-size-h3: 1.25rem;
+  --font-size-body-lg: 1.125rem;
+  --font-size-body: 1rem;
+  --font-size-body-sm: 0.875rem;
+  --font-size-meta: 0.75rem;
+  --font-size-label: 0.75rem;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-display: 0.98;
+  --line-height-heading: 1.15;
+  --line-height-body: 1.65;
+  --line-height-meta: 1.4;
+  --tracking-display: -0.055em;
+  --tracking-meta: 0.08em;
+
+  /* Density A / Open Field */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --layout-page-max: 1120px;
+  --layout-content-max: 980px;
+  --layout-prose-max: 35em;
+  --layout-gutter-mobile: 16px;
+  --layout-gutter-desktop: 32px;
+  --layout-section-gap: 64px;
+  --layout-grid-gap: 24px;
+  --layout-row-min-height: 72px;
+
+  /* Shape B / Soft Surface */
+  --radius-none: 0;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
+  --border-width-thin: 1px;
+  --border-width-strong: 2px;
+  --shadow-none: none;
+  --shadow-soft: 0 10px 28px rgb(29 51 65 / 10%);
+  --focus-width: 2px;
+  --focus-offset: 4px;
+
+  /* Header C / Quiet Blur */
+  --header-background: rgb(255 255 255 / 88%);
+  --header-backdrop-filter: blur(12px);
+  --header-border: #d8e2e5;
+
+  /* Interaction */
+  --size-control-sm: 36px;
+  --size-control-md: 44px;
+  --size-control-lg: 52px;
+  --size-target-min: 44px;
+  --motion-duration-fast: 120ms;
+  --motion-duration-base: 180ms;
+  --motion-duration-slow: 220ms;
+  --motion-ease-standard: ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration-fast: 0ms;
+    --motion-duration-base: 0ms;
+    --motion-duration-slow: 0ms;
+  }
+}

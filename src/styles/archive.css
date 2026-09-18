@@ -1,37 +1,38 @@
 html:has(.archive-page) {
-  background: #f7f9fb;
+  background: var(--color-canvas);
 }
 
 body:has(.archive-page) {
-  background: #f7f9fb;
-  color: #1d3341;
+  background: var(--color-canvas);
+  color: var(--color-text);
 }
 
 body:has(.archive-page) .site-header {
-  background: rgba(247, 249, 251, 0.86);
-  border-bottom: 1px solid #d8e2e5;
+  background: var(--header-background);
+  border-bottom: 1px solid var(--header-border);
+  backdrop-filter: var(--header-backdrop-filter);
 }
 
 body:has(.archive-page) .site-header .nav a:hover,
 body:has(.archive-page) .site-header .nav a.active {
-  background: #e1f0f3;
-  color: #1d3341;
+  background: var(--color-accent-soft);
+  color: var(--color-text);
 }
 
 body:has(.archive-page) .site-footer {
   border-color: #d8e2e5;
-  color: #68808d;
+  color: var(--color-text-muted);
 }
 
 .archive-page {
-  --archive-bg: #f7f9fb;
-  --archive-surface: #ffffff;
-  --archive-surface-raised: #ffffff;
-  --archive-text: #1d3341;
-  --archive-muted: #68808d;
-  --archive-line: #d8e2e5;
-  --archive-accent: #217895;
-  --archive-accent-strong: #1d3341;
+  --archive-bg: var(--color-canvas);
+  --archive-surface: var(--color-surface);
+  --archive-surface-raised: var(--color-surface-raised);
+  --archive-text: var(--color-text);
+  --archive-muted: var(--color-text-muted);
+  --archive-line: var(--color-line);
+  --archive-accent: var(--color-accent);
+  --archive-accent-strong: var(--color-accent-strong);
   background: var(--archive-bg);
   color: var(--archive-text);
   margin-inline: -16px;
@@ -76,12 +77,12 @@ body:has(.archive-page) .site-footer {
 .archive-page h1,
 .archive-page h2 {
   color: var(--archive-text);
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-family-display);
   letter-spacing: -0.055em;
 }
 
 .archive-page h1 {
-  font-size: clamp(4.2rem, 12vw, 9rem);
+  font-size: var(--font-size-display);
   font-weight: 780;
   line-height: 0.88;
 }
@@ -153,11 +154,12 @@ body:has(.archive-page) .site-footer {
   display: grid;
   gap: 24px;
   grid-template-columns: 52px minmax(0, 1fr) minmax(220px, 0.32fr);
+  min-height: var(--layout-row-min-height);
   padding: 28px 0;
 }
 
 .archive-row:hover {
-  background: rgba(255, 255, 255, 0.32);
+  background: var(--color-accent-soft);
 }
 
 .archive-row-number {
@@ -230,7 +232,7 @@ body:has(.archive-page) .site-footer {
 
 .archive-footnote {
   align-items: baseline;
-  border-top: 1px solid var(--archive-line);
+  border-top: 0;
   display: flex;
   gap: 28px;
   margin-top: 72px;

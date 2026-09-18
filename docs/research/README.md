@@ -23,6 +23,7 @@
 | 05 | [Design Baseline v0.2](./05-Design-Baseline-v0.2/) | 当前有效 | 记录方向确定后的 Working Archive 风格、主题策略、组件契约与 Astro 实现闸门 | [基线正文](./05-Design-Baseline-v0.2/design-baseline-v0.2-working-archive.md) |
 | 06 | [Site Architecture v0.1](./06-Site-Architecture-v0.1/) | 当前有效 | 记录核心页面、页面关系、内容边界与后续可扩展页面 | [Site Map 正文](./06-Site-Architecture-v0.1/site-map-v0.1.md) |
 | 07 | [Component Lab v0.2 + Remaining](./07-Component-Lab-v0.1/) | 当前有效 | 保留 v0.1 决策，已完成 21×5，并继续记录其余 39×5 候选组件 | [21 项选择表](./07-Component-Lab-v0.1/component-selection-decisions-v0.2-21x5.md) |
+| 08 | [Component Contract v0.2](./08-Component-Contract-v0.1/) | 当前有效 | 记录已接受 Foundation 与组件选择的生产执行合同 | [当前合同](./08-Component-Contract-v0.1/component-contract-v0.2.md) |
 | 11 | [Component Implementation Workflow v0.1](./11-Component-Implementation-Workflow-v0.1/) | 当前有效 | 记录基于直播原文修正后的组件级实施循环、页面角色、验收闸门与返工规则 | [子目录说明](./11-Component-Implementation-Workflow-v0.1/README.md) |
 | 12 | [Color Migration Audit v0.1](./12-Color-Migration-Audit-v0.1/) | 当前有效 | 记录 F-01/B 色板迁移结果、旧页面边界和暗色模式延期决定 | [颜色迁移审计](./12-Color-Migration-Audit-v0.1/color-migration-audit-v0.1.md) |
 | 13 | [Design System Foundation v0.1](./13-Design-System-Foundation-v0.1/) | 当前有效 | 记录 Foundation A/B/A/B/C 选择、token、生产迁移和视觉验收闸门 | [生产迁移交接](./13-Design-System-Foundation-v0.1/foundation-production-migration-review-v0.1.md) |

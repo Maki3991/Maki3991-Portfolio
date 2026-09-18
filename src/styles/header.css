@@ -2,12 +2,12 @@
   --header-bg: #f7f9fb;
   --header-surface: #ffffff;
   --header-text: #1d3341;
-  --header-muted: #68808d;
+  --header-muted: #556b75;
   --header-line: #d8e2e5;
   --header-accent: #217895;
   align-items: center;
-  background: rgba(247, 249, 251, 0.94);
-  backdrop-filter: none;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--header-line);
 }
 
@@ -45,14 +45,15 @@
 .site-header .brand:focus-visible,
 .site-header .nav a:focus-visible,
 .site-header .nav-toggle:focus-visible {
-  outline: 3px solid rgba(33, 120, 149, 0.42);
-  outline-offset: 3px;
+  outline: 2px solid var(--header-accent);
+  outline-offset: 4px;
 }
 
 .site-header .nav-toggle {
   align-items: center;
   background: transparent;
   border: 1px solid var(--header-line);
+  border-radius: var(--radius-md);
   color: var(--header-text);
   cursor: pointer;
   display: none;
@@ -63,7 +64,7 @@
 }
 
 body:has(.archive-page) .site-header {
-  background: rgba(247, 249, 251, 0.94);
+  background: rgba(255, 255, 255, 0.88);
   border-bottom-color: var(--header-line);
 }
 

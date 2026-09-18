@@ -1,0 +1,990 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Foundation Decision Board v0.1</title>
+    <style>
+      :root {
+        --canvas: #f7f9fb;
+        --surface: #ffffff;
+        --surface-raised: #ffffff;
+        --text: #1d3341;
+        --muted: #556b75;
+        --subtle: #68808d;
+        --line: #d8e2e5;
+        --line-strong: #b7c8ce;
+        --accent: #217895;
+        --accent-strong: #1d3341;
+        --accent-soft: rgba(33, 120, 149, 0.08);
+        --on-accent: #ffffff;
+        --focus: #217895;
+        --space-1: 4px;
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 16px;
+        --space-5: 24px;
+        --space-6: 32px;
+        --space-7: 48px;
+        --space-8: 64px;
+        --radius-sm: 6px;
+        --radius-md: 8px;
+        --radius-pill: 999px;
+        --shadow-soft: 0 12px 32px rgba(29, 51, 65, 0.1);
+        --font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+        --font-meta: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        --page-max: 1120px;
+        --prose-max: 35em;
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        background: var(--canvas);
+        color: var(--text);
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background: var(--canvas);
+        color: var(--text);
+        font-family: var(--font-body);
+        line-height: 1.65;
+      }
+
+      a { color: inherit; }
+
+      button,
+      textarea {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      button:focus-visible,
+      textarea:focus-visible,
+      a:focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 4px;
+      }
+
+      .shell {
+        width: min(var(--page-max), calc(100% - 32px));
+        margin-inline: auto;
+      }
+
+      .topbar {
+        border-bottom: 1px solid var(--line);
+        padding: 22px 0;
+      }
+
+      .topbar-inner,
+      .topbar-nav,
+      .section-heading,
+      .decision-footer,
+      .fixture-header {
+        align-items: center;
+        display: flex;
+        gap: var(--space-4);
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: grid;
+        gap: 2px;
+      }
+
+      .kicker,
+      .meta,
+      .option-code,
+      .choice-status,
+      .field-label {
+        color: var(--subtle);
+        font-family: var(--font-meta);
+        font-size: 0.75rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .brand strong {
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+
+      .topbar-nav {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .topbar-nav a {
+        color: var(--muted);
+        font-size: 0.875rem;
+        text-decoration: none;
+      }
+
+      .topbar-nav a:hover {
+        color: var(--accent-strong);
+      }
+
+      .hero {
+        border-bottom: 1px solid var(--line);
+        padding: 64px 0 56px;
+      }
+
+      .hero-grid {
+        align-items: end;
+        display: grid;
+        gap: 48px;
+        grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: clamp(2.75rem, 7vw, 5rem);
+        letter-spacing: -0.045em;
+        line-height: 0.98;
+        max-width: 10ch;
+      }
+
+      h2 {
+        font-size: clamp(1.75rem, 3vw, 2.35rem);
+        letter-spacing: -0.025em;
+        line-height: 1.1;
+      }
+
+      h3 {
+        font-size: 1.1rem;
+        line-height: 1.25;
+      }
+
+      .hero-copy {
+        display: grid;
+        gap: 18px;
+      }
+
+      .hero-copy > p:not(.kicker) {
+        color: var(--muted);
+        max-width: 35em;
+      }
+
+      .hero-note {
+        border-left: 2px solid var(--accent);
+        color: var(--muted);
+        padding-left: 16px;
+      }
+
+      .index-card,
+      .sample-surface,
+      .option-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+      }
+
+      .index-card {
+        display: grid;
+        gap: 14px;
+        padding: 20px;
+      }
+
+      .index-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .index-item {
+        align-items: baseline;
+        border-top: 1px solid var(--line);
+        display: flex;
+        gap: 12px;
+        justify-content: space-between;
+        padding-top: 10px;
+      }
+
+      .index-item span:first-child {
+        color: var(--subtle);
+        font-family: var(--font-meta);
+        font-size: 0.72rem;
+      }
+
+      .index-item span:last-child {
+        font-size: 0.9rem;
+        text-align: right;
+      }
+
+      main {
+        padding-bottom: 96px;
+      }
+
+      .decision-section {
+        border-bottom: 1px solid var(--line);
+        padding: 56px 0;
+      }
+
+      .section-heading {
+        align-items: end;
+        margin-bottom: 24px;
+      }
+
+      .section-heading p {
+        color: var(--muted);
+        max-width: 42em;
+      }
+
+      .round-number {
+        color: var(--accent);
+        font-family: var(--font-meta);
+        font-size: 0.75rem;
+      }
+
+      .option-grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .option-card {
+        display: grid;
+        gap: 18px;
+        min-width: 0;
+        padding: 20px;
+        position: relative;
+      }
+
+      .option-card.is-selected {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px rgba(33, 120, 149, 0.16);
+      }
+
+      .option-card.is-selected::before {
+        background: var(--accent);
+        color: var(--on-accent);
+        content: "已选择";
+        font-family: var(--font-meta);
+        font-size: 0.68rem;
+        padding: 4px 8px;
+        position: absolute;
+        right: 12px;
+        top: 12px;
+      }
+
+      .option-head {
+        display: flex;
+        gap: 12px;
+        justify-content: space-between;
+      }
+
+      .option-head strong {
+        font-size: 1.05rem;
+      }
+
+      .option-description {
+        color: var(--muted);
+        font-size: 0.9rem;
+        min-height: 48px;
+      }
+
+      .choice-button {
+        background: var(--surface);
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-sm);
+        color: var(--accent-strong);
+        font-weight: 700;
+        min-height: 44px;
+        padding: 10px 14px;
+        width: 100%;
+      }
+
+      .choice-button:hover,
+      .choice-button[aria-pressed="true"] {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
+      }
+
+      .mini-home {
+        border: 1px solid var(--line);
+        display: grid;
+        gap: 16px;
+        padding: 16px;
+      }
+
+      .mini-home h3 {
+        font-size: 1.35rem;
+        letter-spacing: -0.025em;
+      }
+
+      .mini-home p {
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .mini-row {
+        align-items: start;
+        border-top: 1px solid var(--line);
+        display: grid;
+        gap: 8px;
+        grid-template-columns: 42px minmax(0, 1fr);
+        padding-top: 12px;
+      }
+
+      .mini-row-index {
+        color: var(--accent);
+        font-family: var(--font-meta);
+        font-size: 0.72rem;
+      }
+
+      .mini-row strong {
+        display: block;
+        font-size: 0.92rem;
+        line-height: 1.3;
+      }
+
+      .mini-row small {
+        color: var(--subtle);
+        display: block;
+        font-size: 0.76rem;
+        margin-top: 4px;
+      }
+
+      .type-a { font-family: var(--font-body); }
+      .type-a h3 { font-size: 1.35rem; }
+      .type-b { font-family: system-ui, "Microsoft YaHei", sans-serif; }
+      .type-b h3 { font-size: 1.2rem; letter-spacing: -0.015em; }
+      .type-c { font-family: var(--font-body); }
+      .type-c h3 { font-size: 1.55rem; letter-spacing: -0.05em; }
+      .type-c p { line-height: 1.8; }
+
+      .density-a { gap: 24px; }
+      .density-a .mini-row { padding-top: 16px; }
+      .density-a .mini-home { gap: 22px; padding: 20px; }
+      .density-b { gap: 16px; }
+      .density-b .mini-row { padding-top: 12px; }
+      .density-b .mini-home { gap: 16px; padding: 16px; }
+      .density-c { gap: 10px; }
+      .density-c .mini-row { padding-top: 8px; }
+      .density-c .mini-home { gap: 12px; padding: 12px; }
+
+      .shape-a .mini-home { border-radius: 0; box-shadow: none; }
+      .shape-b .mini-home { border-radius: 8px; box-shadow: var(--shadow-soft); }
+      .shape-c .mini-home { border-radius: 0; border-width: 2px; box-shadow: none; }
+
+      .round-feedback {
+        display: grid;
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .round-feedback textarea,
+      .global-feedback textarea {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        color: var(--text);
+        min-height: 88px;
+        padding: 12px;
+        resize: vertical;
+        width: 100%;
+      }
+
+      .fixture {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 24px;
+      }
+
+      .fixture-header {
+        align-items: start;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 20px;
+      }
+
+      .fixture-header h3 {
+        font-size: clamp(1.45rem, 3vw, 2.2rem);
+        max-width: 18ch;
+      }
+
+      .fixture-grid {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: minmax(0, 1.3fr) minmax(220px, 0.7fr);
+        padding-top: 24px;
+      }
+
+      .fixture-copy {
+        display: grid;
+        gap: 16px;
+      }
+
+      .fixture-copy p {
+        color: var(--muted);
+        max-width: var(--prose-max);
+      }
+
+      .fixture-cover {
+        aspect-ratio: 16 / 10;
+        border-radius: var(--radius-sm);
+        display: block;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .detail-facts {
+        display: grid;
+        gap: 12px;
+      }
+
+      .fact {
+        border-top: 1px solid var(--line);
+        display: grid;
+        gap: 3px;
+        padding-top: 10px;
+      }
+
+      .fact strong {
+        font-size: 0.92rem;
+      }
+
+      .fact span {
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .state-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-top: 24px;
+      }
+
+      .state-sample {
+        border: 1px solid var(--line);
+        min-height: 92px;
+        padding: 14px;
+      }
+
+      .state-sample strong {
+        display: block;
+        font-size: 0.85rem;
+        margin-bottom: 8px;
+      }
+
+      .state-sample p {
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .state-sample.focused {
+        outline: 2px solid var(--focus);
+        outline-offset: 4px;
+      }
+
+      .state-sample.empty {
+        background: var(--accent-soft);
+      }
+
+      .global-feedback {
+        display: grid;
+        gap: 12px;
+        padding: 56px 0 0;
+      }
+
+      .decision-footer {
+        align-items: start;
+        border-top: 1px solid var(--line);
+        margin-top: 56px;
+        padding: 24px 0;
+      }
+
+      .decision-summary {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .footer-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .secondary-button,
+      .primary-button {
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-sm);
+        min-height: 44px;
+        padding: 10px 14px;
+      }
+
+      .secondary-button {
+        background: var(--surface);
+        color: var(--accent-strong);
+      }
+
+      .primary-button {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
+        font-weight: 700;
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid,
+        .fixture-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .option-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .state-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 640px) {
+        .shell {
+          width: min(100% - 24px, var(--page-max));
+        }
+
+        .topbar-inner,
+        .section-heading,
+        .decision-footer,
+        .fixture-header {
+          align-items: start;
+          flex-direction: column;
+        }
+
+        .topbar-nav {
+          justify-content: flex-start;
+        }
+
+        .hero {
+          padding: 44px 0;
+        }
+
+        .state-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <div class="brand">
+          <span class="kicker">FOUNDATION / V0.1</span>
+          <strong>Working Archive Design System</strong>
+        </div>
+        <nav class="topbar-nav" aria-label="Decision rounds">
+          <a href="#palette">01 色彩</a>
+          <a href="#type">02 排印</a>
+          <a href="#density">03 密度</a>
+          <a href="#shape">04 形状</a>
+          <a href="#fixture">真实内容</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="shell hero-grid">
+          <div class="hero-copy">
+            <span class="kicker">DECISION BOARD / PROVISIONAL</span>
+            <h1>先看组合，再选参数。</h1>
+            <p>
+              这是 Foundation v0.1 的可视化判断板。每一轮只改变一类变量，
+              其他内容保持稳定。选择会保存在当前浏览器，也可以导出为 Markdown。
+            </p>
+            <p class="hero-note">
+              这里展示的是候选系统，不是生产页面。你的选择可以是 A / B / C，
+              也可以直接写出“整体方向对，但某个细节需要改”。
+            </p>
+          </div>
+          <aside class="index-card" aria-label="Current profile">
+            <span class="kicker">CURRENT FIXTURE</span>
+            <div class="index-list">
+              <div class="index-item"><span>PERSON</span><span>Maki 羽轩</span></div>
+              <div class="index-item"><span>WORK</span><span>英语自媒体</span></div>
+              <div class="index-item"><span>PROOF</span><span>V028 / 抖音</span></div>
+              <div class="index-item"><span>MODE</span><span>Light-first</span></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="decision-section" id="palette">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <span class="round-number">ROUND 01</span>
+              <h2>色彩：哪一组更像你的工作档案？</h2>
+            </div>
+            <p>布局、内容和字体暂时固定，只比较背景冷度、文字强度、线条和 accent 的气质。</p>
+          </div>
+          <div class="option-grid">
+            <article class="option-card palette-a" data-option-card="palette-a">
+              <div class="option-head"><span class="option-code">A / COLD INDEX</span><strong>冷蓝灰</strong></div>
+              <p class="option-description">当前 Baseline 的方向：安静、清晰、偏编辑部索引。</p>
+              <div class="mini-home">
+                <span class="kicker">CURRENT WORK</span>
+                <h3>Maki 羽轩</h3>
+                <p>英语内容创作者 / 内容运营实践者 / 国际政治本科生</p>
+                <div class="mini-row"><span class="mini-row-index">01</span><div><strong>英语自媒体</strong><small>829 万+累计播放 · 内容创作与账号运营</small></div></div>
+                <div class="mini-row"><span class="mini-row-index">02</span><div><strong>四级六级听力内容</strong><small>491.2 万播放 · 抖音作品</small></div></div>
+              </div>
+              <button class="choice-button" type="button" data-round="palette" data-choice="A">选择 A</button>
+            </article>
+
+            <article class="option-card palette-b" data-option-card="palette-b">
+              <div class="option-head"><span class="option-code">B / PAPER INDEX</span><strong>中性纸面</strong></div>
+              <p class="option-description">降低蓝色存在感，保留冷静秩序，整体更接近纸张和档案。</p>
+              <div class="mini-home">
+                <span class="kicker">CURRENT WORK</span>
+                <h3>Maki 羽轩</h3>
+                <p>英语内容创作者 / 内容运营实践者 / 国际政治本科生</p>
+                <div class="mini-row"><span class="mini-row-index">01</span><div><strong>英语自媒体</strong><small>829 万+累计播放 · 内容创作与账号运营</small></div></div>
+                <div class="mini-row"><span class="mini-row-index">02</span><div><strong>四级六级听力内容</strong><small>491.2 万播放 · 抖音作品</small></div></div>
+              </div>
+              <button class="choice-button" type="button" data-round="palette" data-choice="B">选择 B</button>
+            </article>
+
+            <article class="option-card palette-c" data-option-card="palette-c">
+              <div class="option-head"><span class="option-code">C / HIGH CONTRAST</span><strong>深墨蓝</strong></div>
+              <p class="option-description">提高文字和线条存在感，信息更明确，个性更硬朗。</p>
+              <div class="mini-home">
+                <span class="kicker">CURRENT WORK</span>
+                <h3>Maki 羽轩</h3>
+                <p>英语内容创作者 / 内容运营实践者 / 国际政治本科生</p>
+                <div class="mini-row"><span class="mini-row-index">01</span><div><strong>英语自媒体</strong><small>829 万+累计播放 · 内容创作与账号运营</small></div></div>
+                <div class="mini-row"><span class="mini-row-index">02</span><div><strong>四级六级听力内容</strong><small>491.2 万播放 · 抖音作品</small></div></div>
+              </div>
+              <button class="choice-button" type="button" data-round="palette" data-choice="C">选择 C</button>
+            </article>
+          </div>
+          <div class="round-feedback">
+            <label class="field-label" for="feedback-palette">自由反馈 / 色彩</label>
+            <textarea id="feedback-palette" data-feedback="palette" placeholder="例如：A 的背景可以，但 B 的线条更舒服；accent 希望更偏蓝、不要偏青。"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="decision-section" id="type">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <span class="round-number">ROUND 02</span>
+              <h2>排印：哪种层级更适合长期阅读？</h2>
+            </div>
+            <p>颜色固定为 A，比较标题比例、正文节奏、标签和元信息的关系。</p>
+          </div>
+          <div class="option-grid">
+            <article class="option-card type-a" data-option-card="type-a">
+              <div class="option-head"><span class="option-code">A / NEUTRAL SANS</span><strong>中性无衬线</strong></div>
+              <p class="option-description">标题、正文统一 sans，比例清楚，最接近系统基础候选。</p>
+              <div class="mini-home">
+                <span class="kicker">PROJECT / 01</span>
+                <h3>Maki 羽轩英语自媒体</h3>
+                <p>独立运营英语学习类自媒体账号，覆盖抖音、小红书、视频号、B 站等平台。</p>
+                <div class="mini-row"><span class="mini-row-index">NEXT</span><div><strong>继续沉淀复盘</strong><small>内容证据 / 方法 / 下一步</small></div></div>
+              </div>
+              <button class="choice-button" type="button" data-round="type" data-choice="A">选择 A</button>
+            </article>
+
+            <article class="option-card type-b" data-option-card="type-b">
+              <div class="option-head"><span class="option-code">B / QUIET EDITORIAL</span><strong>安静编辑式</strong></div>
+              <p class="option-description">标题收敛一些，正文更舒展，元信息承担更多索引感。</p>
+              <div class="mini-home">
+                <span class="kicker">PROJECT / 01</span>
+                <h3>Maki 羽轩英语自媒体</h3>
+                <p>独立运营英语学习类自媒体账号，覆盖抖音、小红书、视频号、B 站等平台。</p>
+                <div class="mini-row"><span class="mini-row-index">NEXT</span><div><strong>继续沉淀复盘</strong><small>内容证据 / 方法 / 下一步</small></div></div>
+              </div>
+              <button class="choice-button" type="button" data-round="type" data-choice="B">选择 B</button>
+            </article>
+
+            <article class="option-card type-c" data-option-card="type-c">
+              <div class="option-head"><span class="option-code">C / LARGE SIGNAL</span><strong>大标题信号</strong></div>
+              <p class="option-description">强化标题识别度和个人表达，正文保持较宽松的阅读节奏。</p>
+              <div class="mini-home">
+                <span class="kicker">PROJECT / 01</span>
+                <h3>Maki 羽轩英语自媒体</h3>
+                <p>独立运营英语学习类自媒体账号，覆盖抖音、小红书、视频号、B 站等平台。</p>
+                <div class="mini-row"><span class="mini-row-index">NEXT</span><div><strong>继续沉淀复盘</strong><small>内容证据 / 方法 / 下一步</small></div></div>
+              </div>
+              <button class="choice-button" type="button" data-round="type" data-choice="C">选择 C</button>
+            </article>
+          </div>
+          <div class="round-feedback">
+            <label class="field-label" for="feedback-type">自由反馈 / 排印</label>
+            <textarea id="feedback-type" data-feedback="type" placeholder="例如：A 的正文最好读，但标题太普通；C 的标题有辨识度，不过移动端可能太大。"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="decision-section" id="density">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <span class="round-number">ROUND 03</span>
+              <h2>密度：页面应该留多少呼吸？</h2>
+            </div>
+            <p>颜色和排印固定，比较 section、列表行和卡片内部的松紧程度。</p>
+          </div>
+          <div class="option-grid">
+            <article class="option-card density-a" data-option-card="density-a">
+              <div class="option-head"><span class="option-code">A / OPEN FIELD</span><strong>宽松</strong></div>
+              <p class="option-description">留白更多，强调档案感和阅读停顿。</p>
+              <div class="mini-home">
+                <span class="kicker">ARCHIVE / 02 ITEMS</span>
+                <div class="mini-row"><span class="mini-row-index">01</span><div><strong>英语自媒体</strong><small>内容创作与账号运营</small></div></div>
+                <div class="mini-row"><span class="mini-row-index">02</span><div><strong>四级六级听力内容</strong><small>真实作品与传播证据</small></div></div>
+              </div>
+              <button class="choice-button" type="button" data-round="density" data-choice="A">选择 A</button>
+            </article>
+
+            <article class="option-card density-b" data-option-card="density-b">
+              <div class="option-head"><span class="option-code">B / BALANCED INDEX</span><strong>平衡</strong></div>
+              <p class="option-description">保留留白，但让一屏能看到更多真实条目。</p>
+              <div class="mini-home">
+                <span class="kicker">ARCHIVE / 02 ITEMS</span>
+                <div class="mini-row"><span class="mini-row-index">01</span><div><strong>英语自媒体</strong><small>内容创作与账号运营</small></div></div>
+                <div class="mini-row"><span class="mini-row-index">02</span><div><strong>四级六级听力内容</strong><small>真实作品与传播证据</small></div></div>
+              </div>
+              <button class="choice-button" type="button" data-round="density" data-choice="B">选择 B</button>
+            </article>
+
+            <article class="option-card density-c" data-option-card="density-c">
+              <div class="option-head"><span class="option-code">C / DENSE INDEX</span><strong>紧凑</strong></div>
+              <p class="option-description">信息密度更高，接近索引和工作台，但更容易显得像后台。</p>
+              <div class="mini-home">
+                <span class="kicker">ARCHIVE / 02 ITEMS</span>
+                <div class="mini-row"><span class="mini-row-index">01</span><div><strong>英语自媒体</strong><small>内容创作与账号运营</small></div></div>
+                <div class="mini-row"><span class="mini-row-index">02</span><div><strong>四级六级听力内容</strong><small>真实作品与传播证据</small></div></div>
+              </div>
+              <button class="choice-button" type="button" data-round="density" data-choice="C">选择 C</button>
+            </article>
+          </div>
+          <div class="round-feedback">
+            <label class="field-label" for="feedback-density">自由反馈 / 密度</label>
+            <textarea id="feedback-density" data-feedback="density" placeholder="例如：B 更接近网站整体；A 的首页可以，但 Archive 需要更紧。"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="decision-section" id="shape">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <span class="round-number">ROUND 04</span>
+              <h2>形状：秩序主要来自线、面还是边界？</h2>
+            </div>
+            <p>只比较圆角、边框和阴影；内容、色彩和间距固定。</p>
+          </div>
+          <div class="option-grid">
+            <article class="option-card shape-a" data-option-card="shape-a">
+              <div class="option-head"><span class="option-code">A / QUIET LINE</span><strong>细线优先</strong></div>
+              <p class="option-description">几乎不使用阴影，依靠细线、留白和自然高度分组。</p>
+              <div class="mini-home">
+                <span class="kicker">EVIDENCE</span>
+                <h3>491.2 万播放</h3>
+                <p>使用真实指标作为证据，不把数字做成 Dashboard。</p>
+              </div>
+              <button class="choice-button" type="button" data-round="shape" data-choice="A">选择 A</button>
+            </article>
+
+            <article class="option-card shape-b" data-option-card="shape-b">
+              <div class="option-head"><span class="option-code">B / SOFT SURFACE</span><strong>安静表面</strong></div>
+              <p class="option-description">保留克制圆角和少量阴影，让详情与证据有轻微层次。</p>
+              <div class="mini-home">
+                <span class="kicker">EVIDENCE</span>
+                <h3>491.2 万播放</h3>
+                <p>使用真实指标作为证据，不把数字做成 Dashboard。</p>
+              </div>
+              <button class="choice-button" type="button" data-round="shape" data-choice="B">选择 B</button>
+            </article>
+
+            <article class="option-card shape-c" data-option-card="shape-c">
+              <div class="option-head"><span class="option-code">C / HARD INDEX</span><strong>硬边界</strong></div>
+              <p class="option-description">边框更明确、圆角更少，索引感更强，但可能偏工具界面。</p>
+              <div class="mini-home">
+                <span class="kicker">EVIDENCE</span>
+                <h3>491.2 万播放</h3>
+                <p>使用真实指标作为证据，不把数字做成 Dashboard。</p>
+              </div>
+              <button class="choice-button" type="button" data-round="shape" data-choice="C">选择 C</button>
+            </article>
+          </div>
+          <div class="round-feedback">
+            <label class="field-label" for="feedback-shape">自由反馈 / 形状</label>
+            <textarea id="feedback-shape" data-feedback="shape" placeholder="例如：A 最符合长期档案，B 可以只用于 Detail，C 太像后台。"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="decision-section" id="fixture">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <span class="round-number">FIXTURE</span>
+              <h2>固定真实内容检查</h2>
+            </div>
+            <p>最后不要只看卡片。用真实项目、作品封面、中文英文混排和证据字段检查系统是否能一起成立。</p>
+          </div>
+          <article class="fixture">
+            <div class="fixture-header">
+              <div>
+                <span class="kicker">WORK / V028</span>
+                <h3>四级六级听力吐槽与学习路径内容</h3>
+              </div>
+              <span class="meta">2025-07-28 / 抖音 / READY</span>
+            </div>
+            <div class="fixture-grid">
+              <div class="fixture-copy">
+                <p>
+                  用强情绪入口切入四六级听力问题，再提供更具体的替代路径。
+                  这类内容说明，学习方法内容可以先承认真实痛感，再给出可执行的改变方向。
+                </p>
+                <div class="detail-facts">
+                  <div class="fact"><span class="kicker">RESULTS</span><strong>播放 491.2 万 · 点赞 22.4 万 · 评论 1.1 万</strong></div>
+                  <div class="fact"><span class="kicker">ROLE</span><span>选题、脚本、拍摄、剪辑、发布、复盘和私信沟通</span></div>
+                  <div class="fact"><span class="kicker">NEXT</span><span>继续沉淀爆款复盘、平台数据截图和可复用的选题方法。</span></div>
+                </div>
+              </div>
+              <img class="fixture-cover" src="../../public/assets/covers/V028.jpg" alt="四级六级听力作品 V028 封面" />
+            </div>
+            <div class="state-grid">
+              <div class="state-sample"><strong>Default</strong><p>普通证据字段和列表入口。</p></div>
+              <div class="state-sample focused"><strong>Focus</strong><p>键盘焦点不能依赖 hover。</p></div>
+              <div class="state-sample empty"><strong>Empty</strong><p>空状态说明现状和下一步。</p></div>
+              <div class="state-sample"><strong>Long text</strong><p>中文 English mixed content remains readable.</p></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="shell global-feedback">
+        <div>
+          <span class="kicker">FINAL NOTES</span>
+          <h2>还有任何“不对劲”都可以写在这里。</h2>
+        </div>
+        <textarea data-feedback="global" placeholder="可以不选 A/B/C，直接描述你想保留什么、哪里不舒服、哪两个方案可以融合。"></textarea>
+      </section>
+    </main>
+
+    <footer class="shell decision-footer">
+      <div class="decision-summary" id="summary">尚未选择。选择会保存在当前浏览器。</div>
+      <div class="footer-actions">
+        <button class="secondary-button" type="button" id="reset">清空选择</button>
+        <button class="primary-button" type="button" id="export">导出我的判断 Markdown</button>
+      </div>
+    </footer>
+
+    <script>
+      const STORAGE_KEY = "maki-foundation-decision-board-v0.1";
+      const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      const rounds = ["palette", "type", "density", "shape"];
+
+      function persist() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        render();
+      }
+
+      function render() {
+        document.querySelectorAll(".choice-button").forEach((button) => {
+          const selected = state[button.dataset.round] === button.dataset.choice;
+          button.setAttribute("aria-pressed", String(selected));
+          const card = button.closest("[data-option-card]");
+          card.classList.toggle("is-selected", selected);
+        });
+
+        document.querySelectorAll("[data-feedback]").forEach((field) => {
+          field.value = state["feedback-" + field.dataset.feedback] || "";
+        });
+
+        const selected = rounds.filter((round) => state[round]).length;
+        document.querySelector("#summary").textContent =
+          selected + " / " + rounds.length + " 轮已选择。选择和文字反馈保存在当前浏览器。";
+      }
+
+      document.querySelectorAll(".choice-button").forEach((button) => {
+        button.addEventListener("click", () => {
+          state[button.dataset.round] = button.dataset.choice;
+          persist();
+        });
+      });
+
+      document.querySelectorAll("[data-feedback]").forEach((field) => {
+        field.addEventListener("input", () => {
+          state["feedback-" + field.dataset.feedback] = field.value;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        });
+      });
+
+      document.querySelector("#reset").addEventListener("click", () => {
+        Object.keys(state).forEach((key) => delete state[key]);
+        localStorage.removeItem(STORAGE_KEY);
+        render();
+      });
+
+      document.querySelector("#export").addEventListener("click", () => {
+        const lines = [
+          "# Foundation Decision Board v0.1",
+          "",
+          "## 选择",
+          "",
+          "- 色彩：" + (state.palette || "未选择"),
+          "- 排印：" + (state.type || "未选择"),
+          "- 密度：" + (state.density || "未选择"),
+          "- 形状：" + (state.shape || "未选择"),
+          "",
+          "## 自由反馈",
+          "",
+          "### 色彩",
+          state["feedback-palette"] || "无",
+          "",
+          "### 排印",
+          state["feedback-type"] || "无",
+          "",
+          "### 密度",
+          state["feedback-density"] || "无",
+          "",
+          "### 形状",
+          state["feedback-shape"] || "无",
+          "",
+          "### 总体",
+          state["feedback-global"] || "无",
+          ""
+        ];
+        const blob = new Blob([lines.join("\n")], { type: "text/markdown;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "foundation-decision-v0.1.md";
+        link.click();
+        URL.revokeObjectURL(url);
+      });
+
+      render();
+    </script>
+  </body>
+</html>

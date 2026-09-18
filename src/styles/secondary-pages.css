@@ -13,7 +13,7 @@ body:has(.contact-page) .page-hero {
 
 body:has(.about-page) .page-hero .eyebrow,
 body:has(.contact-page) .page-hero .eyebrow {
-  color: var(--accent-strong);
+  color: var(--color-accent-strong);
   font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 0.72rem;
   font-weight: 700;
@@ -24,13 +24,13 @@ body:has(.contact-page) .page-hero .eyebrow {
 
 body:has(.about-page) .page-hero h1,
 body:has(.contact-page) .page-hero h1 {
-  color: var(--text);
+  color: var(--color-text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Microsoft YaHei", sans-serif;
-  font-size: clamp(3.5rem, 9vw, 7rem);
+  font-size: var(--font-size-display);
   font-weight: 800;
-  letter-spacing: -0.08em;
-  line-height: 0.94;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--line-height-display);
 }
 
 body:has(.about-page) .page-hero + .section,
@@ -57,7 +57,7 @@ body:has(.about-page) .about-grid article:last-child {
 }
 
 body:has(.about-page) .about-grid article h2 {
-  color: var(--text);
+  color: var(--color-text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Microsoft YaHei", sans-serif;
   font-size: clamp(1.45rem, 2.8vw, 2.1rem);
@@ -67,7 +67,7 @@ body:has(.about-page) .about-grid article h2 {
 }
 
 body:has(.about-page) .about-grid article p {
-  color: var(--muted);
+  color: var(--color-text-muted);
   line-height: 1.8;
 }
 
@@ -78,12 +78,12 @@ body:has(.contact-page) .contact-layout {
 }
 
 body:has(.contact-page) .qr-placeholder {
-  border-radius: 4px;
+  border-radius: var(--radius-md);
   padding: 20px;
 }
 
 body:has(.contact-page) .qr-placeholder span {
-  color: var(--accent-strong);
+  color: var(--color-accent-strong);
   font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
@@ -109,7 +109,7 @@ body:has(.contact-page) .contact-link-main {
 }
 
 body:has(.contact-page) .contact-link-main span {
-  color: var(--text);
+  color: var(--color-text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Microsoft YaHei", sans-serif;
 }
@@ -117,6 +117,13 @@ body:has(.contact-page) .contact-link-main span {
 body:has(.contact-page) .contact-link-main:hover,
 body:has(.contact-page) .contact-link-main:focus-visible {
   color: var(--accent-strong);
+}
+
+body:has(.about-page) .page-hero h1,
+body:has(.contact-page) .page-hero h1,
+body:has(.about-page) .about-grid article h2,
+body:has(.contact-page) .contact-link-main span {
+  font-family: var(--font-family-display);
 }
 
 @media (max-width: 900px) {

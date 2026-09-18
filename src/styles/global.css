@@ -1,15 +1,17 @@
+@import url(./foundation-tokens.css);
+
 :root {
-  --bg: #f7f5f0;
-  --surface: #fffdf8;
-  --surface-strong: #ffffff;
-  --text: #1f2523;
-  --muted: #68706c;
-  --line: #ded9cf;
-  --accent: #217895;
-  --accent-strong: #1d3341;
-  --warm: #b76f3b;
-  --shadow: 0 18px 50px rgba(32, 35, 31, 0.08);
-  font-family:
+  --bg: var(--color-canvas);
+  --surface: var(--color-surface);
+  --surface-strong: var(--color-surface-raised);
+  --text: var(--color-text);
+  --muted: var(--color-text-muted);
+  --line: var(--color-line);
+  --accent: var(--color-accent);
+  --accent-strong: var(--color-accent-strong);
+  --shadow: var(--shadow-soft);
+  font-family: var(--font-family-body);
+  --legacy-font-stack:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Microsoft YaHei", sans-serif;
 }
@@ -25,9 +27,10 @@ html {
 }
 
 body {
+  font-family: var(--font-family-body);
   margin: 0;
   min-width: 320px;
-  line-height: 1.7;
+  line-height: var(--line-height-body);
 }
 
 html:has(.home-page),
@@ -36,7 +39,7 @@ html:has(.archive-detail-page),
 html:has(.now-page),
 html:has(.about-page),
 html:has(.contact-page) {
-  background: #f7f9fb;
+  background: var(--color-canvas);
 }
 
 body:has(.home-page),
@@ -45,15 +48,14 @@ body:has(.archive-detail-page),
 body:has(.now-page),
 body:has(.about-page),
 body:has(.contact-page) {
-  --bg: #f7f9fb;
-  --surface: #ffffff;
-  --surface-strong: #ffffff;
-  --text: #1d3341;
-  --muted: #68808d;
-  --line: #d8e2e5;
-  --accent: #217895;
-  --accent-strong: #1d3341;
-  --warm: #217895;
+  --bg: var(--color-canvas);
+  --surface: var(--color-surface);
+  --surface-strong: var(--color-surface-raised);
+  --text: var(--color-text);
+  --muted: var(--color-text-muted);
+  --line: var(--color-line);
+  --accent: var(--color-accent);
+  --accent-strong: var(--color-accent-strong);
   background: var(--bg);
   color: var(--text);
 }
@@ -82,8 +84,8 @@ main {
 }
 
 .site-header {
-  background: rgba(247, 245, 240, 0.72);
-  backdrop-filter: blur(24px) saturate(1.3);
+  background: var(--header-background);
+  backdrop-filter: var(--header-backdrop-filter);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -120,7 +122,7 @@ main {
 
 .nav a {
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: var(--radius-md);
   color: var(--muted);
   font-size: 0.94rem;
   padding: 8px 12px;
@@ -158,31 +160,34 @@ main {
 }
 
 .eyebrow {
-  color: var(--warm);
+  color: var(--color-accent);
   font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0;
+  letter-spacing: var(--tracking-meta);
   text-transform: uppercase;
 }
 
 h1 {
-  font-size: clamp(3rem, 9vw, 6.5rem);
-  line-height: 0.95;
-  letter-spacing: 0;
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display);
+  line-height: var(--line-height-display);
+  letter-spacing: var(--tracking-display);
 }
 
 .hero h1 {
-  font-family:
+  font-family: var(--font-family-display);
+  --legacy-font-stack:
     "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
   font-weight: 800;
 }
 
 .page-hero h1 {
-  font-family:
+  font-family: var(--font-family-display);
+  --legacy-font-stack:
     "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
-  font-size: clamp(3rem, 6.4vw, 5.8rem);
+  font-size: var(--font-size-h1);
   font-weight: 800;
-  line-height: 1.08;
+  line-height: var(--line-height-heading);
 }
 
 .page-hero .eyebrow {
@@ -195,20 +200,22 @@ h1 {
 }
 
 h2 {
-  font-family:
+  font-family: var(--font-family-display);
+  --legacy-font-stack:
     "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: var(--font-size-h2);
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: 0;
+  line-height: var(--line-height-heading);
+  letter-spacing: var(--tracking-display);
 }
 
 h3 {
-  font-family:
+  font-family: var(--font-family-display);
+  --legacy-font-stack:
     "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
-  font-size: 1.15rem;
+  font-size: var(--font-size-h3);
   font-weight: 800;
-  line-height: 1.35;
+  line-height: var(--line-height-heading);
 }
 
 .headline {
@@ -242,18 +249,18 @@ h3 {
   align-items: center;
   background: var(--surface-strong);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   display: inline-flex;
   font-weight: 700;
   justify-content: center;
-  min-height: 44px;
+  min-height: var(--size-control-md);
   padding: 10px 16px;
 }
 
 .button.primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: white;
+  color: var(--color-on-accent);
 }
 
 .button.ghost {
@@ -281,12 +288,12 @@ h3 {
 .contact-link {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
 }
 
 .portrait-panel {
   align-self: start;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-soft);
   margin-top: 24px;
   overflow: hidden;
   padding: 0;
@@ -373,7 +380,8 @@ h3 {
 }
 
 .project-card h3 {
-  font-family:
+  font-family: var(--font-family-display);
+  --legacy-font-stack:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Microsoft YaHei", sans-serif;
   font-size: clamp(1.28rem, 2vw, 1.6rem);
@@ -388,7 +396,7 @@ h3 {
 
 .work-cover {
   aspect-ratio: 16 / 10;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   display: block;
   height: auto;
   object-fit: cover;
@@ -397,7 +405,7 @@ h3 {
 
 .work-cover.contain {
   aspect-ratio: 1;
-  background: #f0ece4;
+  background: var(--color-canvas);
   object-fit: contain;
 }
 
@@ -487,9 +495,10 @@ h3 {
 
 .category-toggle summary span {
   color: var(--text);
-  font-family:
+  font-family: var(--font-family-display);
+  --legacy-font-stack:
     "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: var(--font-size-h2);
   font-weight: 850;
   line-height: 1.15;
 }
@@ -517,7 +526,7 @@ h3 {
 .proof-card {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   overflow: hidden;
 }
 
@@ -589,12 +598,13 @@ h3 {
 .qr-placeholder {
   display: grid;
   gap: 12px;
+  box-shadow: var(--shadow-soft);
   text-align: center;
   padding: 24px;
 }
 
 .qr-placeholder img {
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   display: block;
   width: 100%;
 }
@@ -608,7 +618,7 @@ h3 {
 }
 
 .qr-placeholder span {
-  color: var(--warm);
+  color: var(--color-accent);
   font-weight: 800;
 }
 
@@ -656,8 +666,8 @@ h3 {
 .contact-link-main:focus-visible,
 .qr-zoom-trigger:focus-visible,
 .qr-dialog-close:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
 }
 
 .contact-link.pending {
@@ -675,7 +685,7 @@ h3 {
 .qr-zoom-trigger img {
   aspect-ratio: 1;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   display: block;
   height: 58px;
   object-fit: cover;
@@ -685,8 +695,8 @@ h3 {
 .qr-dialog {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: var(--shadow);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
   max-width: min(520px, calc(100vw - 40px));
   padding: 22px;
 }
@@ -697,7 +707,7 @@ h3 {
 }
 
 .qr-dialog img {
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   display: block;
   max-height: min(70vh, 520px);
   width: 100%;
