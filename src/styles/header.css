@@ -1,12 +1,12 @@
 .site-header {
-  --header-bg: #eef2f7;
-  --header-surface: #f7f9fb;
-  --header-text: #142032;
-  --header-muted: #5d6a7b;
-  --header-line: #cfd7e2;
-  --header-accent: #315cdc;
+  --header-bg: #f7f9fb;
+  --header-surface: #ffffff;
+  --header-text: #1d3341;
+  --header-muted: #68808d;
+  --header-line: #d8e2e5;
+  --header-accent: #217895;
   align-items: center;
-  background: rgba(238, 242, 247, 0.94);
+  background: rgba(247, 249, 251, 0.94);
   backdrop-filter: none;
   border-bottom: 1px solid var(--header-line);
 }
@@ -45,7 +45,7 @@
 .site-header .brand:focus-visible,
 .site-header .nav a:focus-visible,
 .site-header .nav-toggle:focus-visible {
-  outline: 3px solid rgba(49, 92, 220, 0.42);
+  outline: 3px solid rgba(33, 120, 149, 0.42);
   outline-offset: 3px;
 }
 
@@ -63,7 +63,7 @@
 }
 
 body:has(.archive-page) .site-header {
-  background: rgba(238, 242, 247, 0.94);
+  background: rgba(247, 249, 251, 0.94);
   border-bottom-color: var(--header-line);
 }
 

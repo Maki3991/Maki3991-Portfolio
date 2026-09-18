@@ -94,14 +94,14 @@
 
 | Token | 责任 | Light 起点 | Dark 起点 |
 |---|---|---|---|
-| `background` | 页面背景 | `#eef2f7` | `#0b1017` |
-| `surface` | 普通区块和索引表面 | `#f7f9fb` | `#111923` |
+| `background` | 页面背景 | `#f7f9fb` | `#0b1017` |
+| `surface` | 普通区块和索引表面 | `#ffffff` | `#111923` |
 | `surface-raised` | 详情、菜单和悬浮表面 | 待验证 | 待验证 |
-| `text` | 标题和正文 | `#142032` | `#edf3fb` |
-| `muted` | 次要说明 | 待验证 | 待验证 |
-| `line` | 细线和边界 | 待验证 | 待验证 |
-| `accent` | 编号、链接和主要行动 | `#315cdc` | `#7f9dff` |
-| `accent-strong` | Hover、Active、Focus | 待验证 | 待验证 |
+| `text` | 标题和正文 | `#1d3341` | `#edf3fb` |
+| `muted` | 次要说明 | `#68808d` | 待验证 |
+| `line` | 细线和边界 | `#d8e2e5` | 待验证 |
+| `accent` | 编号、链接和主要行动 | `#217895` | `#7f9dff` |
+| `accent-strong` | Hover、Active、Focus | `#1d3341` | 待验证 |
 | `focus` | 键盘焦点 | 待验证 | 待验证 |
 
 上表的 Hex 只是原型起点，不是最终值。必须在真实中文、弱文字、细线、按钮、Focus 和图片上复核对比度。

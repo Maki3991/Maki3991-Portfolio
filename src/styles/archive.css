@@ -1,33 +1,37 @@
+html:has(.archive-page) {
+  background: #f7f9fb;
+}
+
 body:has(.archive-page) {
-  background: #eef2f7;
-  color: #142032;
+  background: #f7f9fb;
+  color: #1d3341;
 }
 
 body:has(.archive-page) .site-header {
-  background: rgba(238, 242, 247, 0.86);
-  border-bottom: 1px solid #cfd7e2;
+  background: rgba(247, 249, 251, 0.86);
+  border-bottom: 1px solid #d8e2e5;
 }
 
 body:has(.archive-page) .site-header .nav a:hover,
 body:has(.archive-page) .site-header .nav a.active {
-  background: #dbe5f5;
-  color: #142032;
+  background: #e1f0f3;
+  color: #1d3341;
 }
 
 body:has(.archive-page) .site-footer {
-  border-color: #cfd7e2;
-  color: #5d6a7b;
+  border-color: #d8e2e5;
+  color: #68808d;
 }
 
 .archive-page {
-  --archive-bg: #eef2f7;
-  --archive-surface: #f7f9fb;
+  --archive-bg: #f7f9fb;
+  --archive-surface: #ffffff;
   --archive-surface-raised: #ffffff;
-  --archive-text: #142032;
-  --archive-muted: #5d6a7b;
-  --archive-line: #cfd7e2;
-  --archive-accent: #315cdc;
-  --archive-accent-strong: #173c9e;
+  --archive-text: #1d3341;
+  --archive-muted: #68808d;
+  --archive-line: #d8e2e5;
+  --archive-accent: #217895;
+  --archive-accent-strong: #1d3341;
   background: var(--archive-bg);
   color: var(--archive-text);
   margin-inline: -16px;

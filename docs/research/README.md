@@ -24,6 +24,7 @@
 | 06 | [Site Architecture v0.1](./06-Site-Architecture-v0.1/) | 当前有效 | 记录核心页面、页面关系、内容边界与后续可扩展页面 | [Site Map 正文](./06-Site-Architecture-v0.1/site-map-v0.1.md) |
 | 07 | [Component Lab v0.2 + Remaining](./07-Component-Lab-v0.1/) | 当前有效 | 保留 v0.1 决策，已完成 21×5，并继续记录其余 39×5 候选组件 | [21 项选择表](./07-Component-Lab-v0.1/component-selection-decisions-v0.2-21x5.md) |
 | 11 | [Component Implementation Workflow v0.1](./11-Component-Implementation-Workflow-v0.1/) | 当前有效 | 记录基于直播原文修正后的组件级实施循环、页面角色、验收闸门与返工规则 | [子目录说明](./11-Component-Implementation-Workflow-v0.1/README.md) |
+| 12 | [Color Migration Audit v0.1](./12-Color-Migration-Audit-v0.1/) | 当前有效 | 记录 F-01/B 色板迁移结果、旧页面边界和暗色模式延期决定 | [颜色迁移审计](./12-Color-Migration-Audit-v0.1/color-migration-audit-v0.1.md) |
 
 ## 当前总判断
 

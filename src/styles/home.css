@@ -1,24 +1,25 @@
 body:has(.home-page) {
-  --home-bg: #eef2f7;
-  --home-surface: #f7f9fb;
+  --home-bg: #f7f9fb;
+  --home-surface: #ffffff;
   --home-surface-raised: #ffffff;
-  --home-text: #142032;
-  --home-muted: #5d6a7b;
-  --home-line: #cfd7e2;
+  --home-text: #1d3341;
+  --home-muted: #68808d;
+  --home-line: #d8e2e5;
   --home-line-strong: #b7c4d4;
-  --home-accent: #315cdc;
-  --home-accent-strong: #173c9e;
+  --home-accent: #217895;
+  --home-accent-strong: #1d3341;
   background: var(--home-bg);
   color: var(--home-text);
 }
 
 html:has(.home-page) {
+  background: #f7f9fb;
   --home-header-offset: 64px;
   scroll-padding-top: var(--home-header-offset);
 }
 
 body:has(.home-page) .site-header {
-  background: rgba(238, 242, 247, 0.94);
+  background: rgba(247, 249, 251, 0.94);
   border-bottom: 1px solid var(--home-line);
   box-shadow: none;
   backdrop-filter: none;
@@ -339,7 +340,7 @@ body:has(.home-page) .nav-toggle {
 }
 
 .workbench-status {
-  border-bottom: 1px solid rgba(49, 92, 220, 0.48);
+  border-bottom: 1px solid rgba(33, 120, 149, 0.48);
   color: var(--home-accent-strong);
   display: inline-block;
   font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
@@ -361,7 +362,7 @@ body:has(.home-page) .nav-toggle {
 
 .home-selected .home-meta,
 .home-selected .home-selected-index {
-  color: #cdd8ff;
+  color: #e1f0f3;
 }
 
 .home-selected-index {
@@ -388,7 +389,7 @@ body:has(.home-page) .nav-toggle {
 
 .home-selected-summary,
 .home-selected-role {
-  color: #e8edff;
+  color: #e1f0f3;
   line-height: 1.7;
   margin: 0;
 }
@@ -402,7 +403,7 @@ body:has(.home-page) .nav-toggle {
 }
 
 .home-selected-aside .home-meta {
-  color: #cdd8ff;
+  color: #e1f0f3;
 }
 
 .home-selected-link {
@@ -510,7 +511,7 @@ body:has(.home-page) .site-footer {
 }
 
 body:has(.home-page) :focus-visible {
-  outline: 3px solid rgba(49, 92, 220, 0.42);
+  outline: 3px solid rgba(33, 120, 149, 0.42);
   outline-offset: 3px;
 }
 

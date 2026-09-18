@@ -1,14 +1,16 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { links } from "@/data/site";
+import "@/styles/secondary-pages.css";
+import "@/styles/display-title.css";
 
 const isExternalLink = (href: string) => href.startsWith("http");
 ---
 
 <BaseLayout title="联系" description="联系 Maki 羽轩，查看账号主页、简历和作品集入口。">
-  <section class="page-hero">
+  <section class="page-hero contact-page">
     <p class="eyebrow">Contact</p>
-    <h1>联系我</h1>
+    <h1 class="display-title">Contact</h1>
   </section>
 
   <section class="section contact-layout">

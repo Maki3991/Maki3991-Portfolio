@@ -1,6 +1,10 @@
+html:has(.now-page) {
+  background: #f7f9fb;
+}
+
 body:has(.now-page) {
-  background: #eef2f7;
-  color: #142032;
+  background: #f7f9fb;
+  color: #1d3341;
 }
 
 .now-page {
@@ -17,7 +21,7 @@ body:has(.now-page) {
 }
 
 .now-kicker {
-  color: #173c9e;
+  color: #1d3341;
   font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 0.72rem;
   font-weight: 700;
@@ -27,7 +31,7 @@ body:has(.now-page) {
 }
 
 .now-shell h1 {
-  color: #142032;
+  color: #1d3341;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Microsoft YaHei", sans-serif;
   font-size: clamp(4rem, 12vw, 8rem);
@@ -38,7 +42,7 @@ body:has(.now-page) {
 }
 
 .now-intro {
-  color: #5d6a7b;
+  color: #68808d;
   font-size: clamp(1.1rem, 2.2vw, 1.45rem);
   line-height: 1.7;
   margin: 0;
@@ -46,8 +50,8 @@ body:has(.now-page) {
 }
 
 .now-back-link {
-  border-bottom: 1px solid #315cdc;
-  color: #173c9e;
+  border-bottom: 1px solid #217895;
+  color: #1d3341;
   font-weight: 700;
   justify-self: start;
   padding-bottom: 4px;
@@ -55,8 +59,8 @@ body:has(.now-page) {
 
 .now-back-link:focus-visible,
 .now-back-link:hover {
-  border-color: #173c9e;
-  color: #142032;
+  border-color: #1d3341;
+  color: #1d3341;
 }
 
 @media (max-width: 640px) {

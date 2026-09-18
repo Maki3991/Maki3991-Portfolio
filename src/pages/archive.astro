@@ -4,6 +4,7 @@ import { archiveItems } from "@/data/archive";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import "@/styles/archive.css";
 import "@/styles/archive-implementation.css";
+import "@/styles/display-title.css";
 
 const publicCount = archiveItems.filter((item) => item.visibility === "public").length;
 const anonymizedCount = archiveItems.filter(
@@ -19,7 +20,7 @@ const anonymizedCount = archiveItems.filter(
     <section class="archive-hero" aria-labelledby="archive-title">
       <div class="archive-hero-copy">
         <p class="archive-kicker">WORKING ARCHIVE / 2025—2026</p>
-        <h1 id="archive-title">Archive</h1>
+        <h1 id="archive-title" class="display-title">Archive</h1>
         <p class="archive-intro">
           把做过的项目、经历和作品整理成一份可以继续更新的公开档案。
         </p>

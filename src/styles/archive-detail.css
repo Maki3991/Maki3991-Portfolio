@@ -1,15 +1,15 @@
 html:has(.archive-detail-page),
 body:has(.archive-detail-page) {
-  background: #eef2f7;
+  background: #f7f9fb;
 }
 
 .archive-detail-page {
-  --archive-bg: #eef2f7;
-  --archive-text: #142032;
-  --archive-muted: #5d6a7b;
-  --archive-line: #cfd7e2;
-  --archive-accent: #315cdc;
-  --archive-accent-strong: #173c9e;
+  --archive-bg: #f7f9fb;
+  --archive-text: #1d3341;
+  --archive-muted: #68808d;
+  --archive-line: #d8e2e5;
+  --archive-accent: #217895;
+  --archive-accent-strong: #1d3341;
   background: var(--archive-bg);
   color: var(--archive-text);
   min-height: calc(100svh - 72px);
