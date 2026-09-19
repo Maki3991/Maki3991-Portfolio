@@ -27,6 +27,7 @@
 | 11 | [Component Implementation Workflow v0.1](./11-Component-Implementation-Workflow-v0.1/) | 当前有效 | 记录基于直播原文修正后的组件级实施循环、页面角色、验收闸门与返工规则 | [子目录说明](./11-Component-Implementation-Workflow-v0.1/README.md) |
 | 12 | [Color Migration Audit v0.1](./12-Color-Migration-Audit-v0.1/) | 当前有效 | 记录 F-01/B 色板迁移结果、旧页面边界和暗色模式延期决定 | [颜色迁移审计](./12-Color-Migration-Audit-v0.1/color-migration-audit-v0.1.md) |
 | 13 | [Design System Foundation v0.1](./13-Design-System-Foundation-v0.1/) | 当前有效 | 记录 Foundation A/B/A/B/C 选择、token、生产迁移和视觉验收闸门 | [生产迁移交接](./13-Design-System-Foundation-v0.1/foundation-production-migration-review-v0.1.md) |
+| 14 | [Now Article UI v0.1](./14-Now-Article-UI-v0.1/) | 当前有效 / P1 决策已记录，P1-02 试用 980px | 记录 Now Markdown 文章展示的工作流、页面级变量和可视化决策边界 | [工作流](./14-Now-Article-UI-v0.1/now-article-ui-workflow-v0.1.md) |
 
 ## 当前总判断
 

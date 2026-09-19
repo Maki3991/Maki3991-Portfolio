@@ -1,21 +1,36 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import "@/styles/now.css";
-import "@/styles/display-title.css";
+import { nowEntries } from '@/data/now';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import '@/styles/now.css';
+import '@/styles/now-content.css';
+import '@/styles/display-title.css';
 ---
 
 <BaseLayout
-  title="Now"
-  description="Maki 羽轩当前正在关注的事情和工作阶段。"
+  title='Now'
+  description='Maki 羽轩当前正在关注的事情和工作阶段。'
 >
-  <div class="now-page">
-    <section class="now-shell" aria-labelledby="now-title">
-      <p class="now-kicker">NOW / CURRENT PHASE</p>
-      <h1 id="now-title" class="display-title">Now</h1>
-      <p class="now-intro">
-        这个页面正在整理。当前正在做的事情，先记录在 Home 的 Current Workbench 和 Archive 中。
+  <div class='now-page'>
+    <section class='now-shell' aria-labelledby='now-title'>
+      <p class='now-kicker'>NOW / CURRENT PHASE</p>
+      <h1 id='now-title' class='display-title'>Now</h1>
+      <p class='now-intro'>
+        记录我当前的注意力、取舍和下一步；新的阶段会以新的 Markdown 更新加入。
       </p>
-      <a class="now-back-link" href="/">回到 Home ↗</a>
+
+      <div class='now-entries'>
+        {nowEntries.length > 0 ? (
+          nowEntries.map((entry) => (
+            <article class='now-entry'>
+              <div class='now-entry-content' set:html={entry.html}></div>
+            </article>
+          ))
+        ) : (
+          <p class='now-empty'>还没有发布中的 Now 文章。</p>
+        )}
+      </div>
+
+      <a class='now-back-link' href='/'>回到 Home ↗</a>
     </section>
   </div>
 </BaseLayout>

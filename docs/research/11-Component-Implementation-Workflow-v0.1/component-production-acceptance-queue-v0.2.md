@@ -81,7 +81,7 @@ Home / Working Archive → Archive 列表 → 一个真实 Archive Detail
 
 | 顺序 | 组件 / 页面 | 责任 | 代码入口 | 当前状态 |
 |---:|---|---|---|---|
-| P1-01 | Now Page | 当前阶段、简短说明、回到 Home | src/pages/now.astro；src/styles/now.css | 已完成代码审计；Q2 标题轨道已同步，P1 视觉验收暂缓，内容仍在整理 |
+| P1-01 | Now Page | 当前阶段、简短说明、回到 Home | src/pages/now.astro；src/styles/now.css | 已完成首次 UI 实现；Now 标题保持 1120px 主轨道，文章正文正在试用 980px 可读轨道；等待本地视觉验收 |
 | P1-02 | About Page | 个人背景、长期兴趣、工作方式的开放列表 | src/pages/about.astro；src/styles/secondary-pages.css | 已完成代码审计；Q2/Q3 共享规则已同步，P1 视觉验收暂缓 |
 | P1-03 | Contact Page Shell | 独立联系页的标题、二维码区、联系方式列表 | src/pages/contact.astro；src/styles/secondary-pages.css | 已完成代码审计；Q2/Q3 共享规则已同步，P1 视觉验收暂缓 |
 | P1-04 | QR Preview / Dialog | 二维码缩略图、放大、关闭、键盘和焦点回收 | contact.astro；global.css；contact page script | 已完成代码审计；打开/关闭/Escape/焦点回收已通过，视觉验收暂缓 |
