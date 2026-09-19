@@ -7,20 +7,8 @@ body:has(.archive-page) {
   color: var(--color-text);
 }
 
-body:has(.archive-page) .site-header {
-  background: var(--header-background);
-  border-bottom: 1px solid var(--header-border);
-  backdrop-filter: var(--header-backdrop-filter);
-}
-
-body:has(.archive-page) .site-header .nav a:hover,
-body:has(.archive-page) .site-header .nav a.active {
-  background: var(--color-accent-soft);
-  color: var(--color-text);
-}
-
 body:has(.archive-page) .site-footer {
-  border-color: #d8e2e5;
+  border-color: var(--color-line);
   color: var(--color-text-muted);
 }
 
@@ -44,7 +32,7 @@ body:has(.archive-page) .site-footer {
 .archive-section,
 .archive-footnote {
   margin-inline: auto;
-  max-width: 1120px;
+  max-width: var(--layout-page-max);
 }
 
 .archive-hero {

@@ -1,13 +1,13 @@
 .site-header {
-  --header-bg: #f7f9fb;
-  --header-surface: #ffffff;
-  --header-text: #1d3341;
-  --header-muted: #556b75;
-  --header-line: #d8e2e5;
-  --header-accent: #217895;
+  --header-bg: var(--color-canvas);
+  --header-surface: var(--color-surface);
+  --header-text: var(--color-text);
+  --header-muted: var(--color-text-muted);
+  --header-line: var(--color-line);
+  --header-accent: var(--color-accent);
   align-items: center;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(12px);
+  background: var(--header-background);
+  backdrop-filter: var(--header-backdrop-filter);
   border-bottom: 1px solid var(--header-line);
 }
 
@@ -59,19 +59,8 @@
   display: none;
   font: 0.72rem/1 "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
   letter-spacing: 0.1em;
-  min-height: 36px;
+  min-height: var(--size-target-min);
   padding: 0 10px;
-}
-
-body:has(.archive-page) .site-header {
-  background: rgba(255, 255, 255, 0.88);
-  border-bottom-color: var(--header-line);
-}
-
-body:has(.archive-page) .site-header .nav a:hover,
-body:has(.archive-page) .site-header .nav a.active {
-  background: transparent !important;
-  color: var(--header-text);
 }
 
 @media (max-width: 640px) {
@@ -79,6 +68,7 @@ body:has(.archive-page) .site-header .nav a.active {
     align-items: center;
     flex-direction: row;
     gap: 14px;
+    padding-inline: var(--layout-gutter-mobile);
   }
 
   .site-header .nav-toggle {

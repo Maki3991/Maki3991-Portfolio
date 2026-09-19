@@ -69,13 +69,13 @@ body:has(.home-page) .nav-toggle {
   display: none;
   font: 0.72rem/1 "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
   letter-spacing: 0.1em;
-  min-height: 36px;
+  min-height: var(--size-target-min);
   padding: 0 10px;
 }
 
 .home-page {
   color: var(--home-text);
-  max-width: 1120px;
+  max-width: var(--layout-page-max);
   margin-inline: auto;
   padding-bottom: 24px;
 }
@@ -639,10 +639,4 @@ body:has(.home-page) :focus-visible {
 .workbench-item h3,
 .home-selected h2 {
   font-family: var(--font-family-display);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html:has(.home-page) {
-    scroll-behavior: auto;
-  }
 }

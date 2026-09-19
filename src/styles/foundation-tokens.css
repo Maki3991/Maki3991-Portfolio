@@ -2,8 +2,7 @@
  * Foundation v0.1 / selected profile A-B-A-B-C
  *
  * This is the code-level token source for the selected Foundation profile.
- * It is intentionally not imported yet. Import it only after the migration
- * phases in docs/research/13-Design-System-Foundation-v0.1/.
+ * It is imported by src/styles/global.css and is the production token source.
  */
 
 :root {
@@ -67,6 +66,8 @@
   --layout-prose-max: 35em;
   --layout-gutter-mobile: 16px;
   --layout-gutter-desktop: 32px;
+  --layout-title-offset-desktop: var(--space-9);
+  --layout-title-offset-mobile: var(--space-8);
   --layout-section-gap: 64px;
   --layout-grid-gap: 24px;
   --layout-row-min-height: 72px;

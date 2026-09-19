@@ -17,7 +17,7 @@ body:has(.archive-detail-page) {
 
 .archive-detail-shell {
   margin: 0 auto;
-  max-width: 1240px;
+  max-width: var(--layout-page-max);
   padding: 40px 24px 96px;
 }
 

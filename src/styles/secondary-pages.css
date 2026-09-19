@@ -4,10 +4,9 @@
 
 body:has(.about-page) .page-hero,
 body:has(.contact-page) .page-hero {
-  border-bottom: 1px solid var(--line);
   gap: 18px;
   margin-inline: auto;
-  max-width: 1120px;
+  max-width: var(--layout-page-max);
   padding: 72px 0 56px;
 }
 

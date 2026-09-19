@@ -20,7 +20,7 @@ body:has(.archive-page) .archive-hero,
 body:has(.now-page) .now-page,
 body:has(.about-page) .page-hero,
 body:has(.contact-page) .page-hero {
-  padding-top: 132px;
+  padding-top: var(--layout-title-offset-desktop);
 }
 
 body:has(.home-page) .home-hero {
@@ -61,27 +61,13 @@ body:has(.contact-page) .page-hero .eyebrow {
   margin: 0;
 }
 
-@media (max-width: 900px) {
-  body:has(.home-page) .home-hero,
-  body:has(.archive-page) .archive-hero,
-  body:has(.now-page) .now-page,
-  body:has(.about-page) .page-hero,
-  body:has(.contact-page) .page-hero {
-    padding-top: 72px;
-  }
-
-  body:has(.archive-page) .archive-page {
-    padding-top: 0;
-  }
-}
-
 @media (max-width: 640px) {
   body:has(.home-page) .home-hero,
   body:has(.archive-page) .archive-hero,
   body:has(.now-page) .now-page,
   body:has(.about-page) .page-hero,
   body:has(.contact-page) .page-hero {
-    padding-top: 72px !important;
+    padding-top: var(--layout-title-offset-mobile) !important;
   }
 
   body:has(.archive-page) .archive-page {

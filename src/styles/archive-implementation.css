@@ -31,7 +31,7 @@
 .archive-page .archive-row-title a:focus-visible,
 .archive-page .archive-row-link:hover,
 .archive-page .archive-row-link:focus-visible {
-  color: var(--archive-accent-strong);
+  color: var(--archive-accent);
 }
 
 .archive-page .archive-row-title a:focus-visible,

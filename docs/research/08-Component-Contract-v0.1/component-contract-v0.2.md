@@ -54,6 +54,8 @@ v0.2 不表示所有组件已经通过最终视觉、响应式、可访问性和
 
 - 页面最大宽度：--layout-page-max / 1120px；
 - 内容最大宽度：--layout-content-max / 980px；
+- [LOCKED] 全站主页面轨道使用 --layout-page-max；可读正文使用 --layout-content-max；Archive Detail 不再保留 1240px 宽轨道特例；
+- [LOCKED] Display Title 顶部留白使用 --layout-title-offset-desktop / 96px，移动端使用 --layout-title-offset-mobile / 64px；Archive Detail 保留自己的详情页顶部节奏；
 - 页面 section gap：--layout-section-gap / 64px；
 - 网格 gap：--layout-grid-gap / 24px；
 - 列表行最小高度：--layout-row-min-height / 72px；
@@ -76,23 +78,30 @@ v0.2 不表示所有组件已经通过最终视觉、响应式、可访问性和
 ### 2.5 Header、焦点和动效
 
 - Header 使用 Quiet Blur：rgba(255, 255, 255, 0.88) + blur(12px)；
-- 当前导航项使用清晰但克制的底部指示线，不能只依赖颜色；
+- [LOCKED] 所有页面的当前导航项都使用透明背景、直角和清晰但克制的底部 inset 指示线；Archive 不再保留 accent-soft 当前背景例外；
 - Focus 使用 2px outline、4px offset；
 - 动效保持 L0/L1 范围，使用 120–220ms token；
 - prefers-reduced-motion 下内容和操作仍然直接可用。
+
+### 2.6 [LOCKED] 边界线密度
+
+- 横线只承担列表分隔、section 结构或页面收束等明确语义；
+- 次级页面的 Hero 不再使用单独悬空的底线；
+- 不为制造“设计感”重复叠加相邻边界线。
 
 ## 3. 生产代码映射与当前状态
 
 | 组件 / 设计维度 | 主要代码入口 | 当前状态 |
 |---|---|---|
 | Foundation tokens | src/styles/foundation-tokens.css、src/styles/global.css | accepted |
-| Page Shell / Section Rhythm | src/styles/global.css、home.css、archive.css、secondary-pages.css | needs review |
-| Header / Navigation | src/components/SiteHeader.astro、src/styles/header.css、home.css、archive.css | implemented / needs component Gate |
-| Home / Working Archive | src/pages/index.astro、src/styles/home.css | foundation-synced / needs review |
-| Archive list | src/pages/archive.astro、src/styles/archive.css、archive-implementation.css | foundation-synced / needs review |
-| Archive detail | src/pages/archive/[slug].astro、src/styles/archive-detail.css | foundation-synced / needs review |
+| Page Shell / Section Rhythm | src/styles/global.css、home.css、archive.css、secondary-pages.css | implemented / Gate passed 2026-09-19 |
+| Display Title / Page Hero | src/styles/display-title.css、src/styles/global.css、各页面样式 | Gate passed 2026-09-19 |
+| Header / Navigation | src/components/SiteHeader.astro、src/styles/header.css、home.css、archive.css | Desktop + Mobile Gate passed 2026-09-19 |
+| Home / Working Archive | src/pages/index.astro、src/styles/home.css | Real content / responsive Gate passed 2026-09-19 |
+| Archive list | src/pages/archive.astro、src/styles/archive.css、archive-implementation.css | Real content / interaction Gate passed 2026-09-19 |
+| Archive detail | src/pages/archive/[slug].astro、src/styles/archive-detail.css | Real content / state Gate passed 2026-09-19 |
 | Now / About / Contact | src/pages/now.astro、about.astro、contact.astro、src/styles/now.css、secondary-pages.css | foundation-synced / needs review |
-| Shared footer | src/components/SiteFooter.astro 及对应页面样式 | needs review |
+| Shared footer | src/components/SiteFooter.astro 及对应页面样式 | P0 cross-page Gate passed 2026-09-19 |
 
 这里的 needs review 是组件级 Gate 状态，不代表 Foundation 需要重新选择。
 
@@ -144,8 +153,13 @@ v0.2 不表示所有组件已经通过最终视觉、响应式、可访问性和
 ## 7. 变更记录
 
 - v0.2：Foundation v0.1 已接受；补入实际生产 token、14px/胶囊/开放列表的形状规则、raised surface 的 shadow-soft 规则，以及导航当前态的直角例外；建立组件级生产验收入口。
+- 2026-09-18：记录并实施 Q1–Q4 A 选择：统一 1120px 主轨道、980px 可读内容轨道、96/64px Display Title 顶部节奏、语义横线密度和全站底部当前线导航。
+- 2026-09-19：Page Shell / Section Rhythm 通过组件级 Gate；修正 desktop gutter 未接入的问题，确认 32px desktop、16px mobile、1120px 主轨道和全站无横向溢出。
+- 2026-09-19：Header / Desktop Navigation 通过组件级 Gate；确认 Quiet Blur、透明直角 active、底部 inset 当前线、aria-current、hover 和键盘 Focus。Mobile Navigation 随后通过 Gate，并将 MENU 入口收敛到 44px 触控目标。
+- 2026-09-19：Display Title / Page Hero 通过组件级 Gate；确认五个主页面使用统一 display 排印、96/64px 顶部节奏、390px 移动折叠和无横向溢出。
+- 2026-09-19：Home / Archive 剩余组件与共享联调通过 Gate；确认真实 Home 内容、4 条 ArchiveRow、Archive 行 hover / Focus、Footer、Responsive 和 reduced-motion；Archive 行链接 hover 收敛到 `--color-accent`。
 - v0.1：保留在 component-contract-v0.1.md，作为 21×5 与 39×5 选择和融合关系的历史来源。
 
 ## 8. 当前下一步
 
-从 [Component Production Acceptance Queue v0.2](../11-Component-Implementation-Workflow-v0.1/component-production-acceptance-queue-v0.2.md) 的 Page Shell / Section Rhythm 开始做内部源码审计；没有重大设计取舍时直接修改，之后按“改一个 → 看一个 → 反馈一个”进入组件级生产验收。不要重新发散 Foundation，也不要在本阶段主动实现暗色主题或 FUTURE 页面。
+从 [Component Production Acceptance Queue v0.2](../11-Component-Implementation-Workflow-v0.1/component-production-acceptance-queue-v0.2.md) 的 P1-01 Now Page 继续；P0 的 Home / Archive、Archive Detail、Footer、Focus、Responsive 和 reduced-motion 均已通过，Q1–Q4 不再重新发散 Foundation。之后按“改一个 → 看一个 → 反馈一个”完成 P1，不主动实现暗色主题或 FUTURE 页面。
