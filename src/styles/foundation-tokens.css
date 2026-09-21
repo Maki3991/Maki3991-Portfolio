@@ -70,7 +70,7 @@
   --layout-title-offset-mobile: var(--space-8);
   --layout-section-gap: 64px;
   --layout-grid-gap: 24px;
-  --layout-row-min-height: 72px;
+  --layout-row-min-height: 88px;
 
   /* Shape B / Soft Surface */
   --radius-none: 0;
@@ -85,8 +85,8 @@
   --focus-offset: 4px;
 
   /* Header C / Quiet Blur */
-  --header-background: rgb(255 255 255 / 88%);
-  --header-backdrop-filter: blur(12px);
+  --header-background: rgb(255 255 255 / 72%);
+  --header-backdrop-filter: blur(18px);
   --header-border: #d8e2e5;
 
   /* Interaction */
