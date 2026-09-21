@@ -14,9 +14,11 @@ import '@/styles/display-title.css';
     <section class='now-shell' aria-labelledby='now-title'>
       <p class='now-kicker'>NOW / CURRENT PHASE</p>
       <h1 id='now-title' class='display-title'>Now</h1>
-      <p class='now-intro'>
-        记录我当前的注意力、取舍和下一步；新的阶段会以新的 Markdown 更新加入。
-      </p>
+      <div class='now-intro-block'>
+        <p class='now-intro'>
+          记录我当前的注意力、取舍和下一步。
+        </p>
+      </div>
 
       <div class='now-entries'>
         {nowEntries.length > 0 ? (

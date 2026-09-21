@@ -37,7 +37,7 @@ body:has(.archive-page) .site-footer {
 
 .archive-hero {
   align-items: end;
-  border-bottom: 1px solid var(--archive-line);
+  border-bottom: var(--border-width-strong) solid var(--archive-line);
   display: grid;
   gap: 56px;
   grid-template-columns: minmax(0, 1fr) minmax(260px, 0.42fr);
@@ -133,12 +133,12 @@ body:has(.archive-page) .site-footer {
 }
 
 .archive-list {
-  border-bottom: 1px solid var(--archive-line);
+  border-bottom: var(--border-width-thin) solid var(--archive-line);
 }
 
 .archive-row {
   align-items: start;
-  border-top: 1px solid var(--archive-line);
+  border-top: var(--border-width-thin) solid var(--archive-line);
   display: grid;
   gap: 24px;
   grid-template-columns: 52px minmax(0, 1fr) minmax(220px, 0.32fr);
@@ -190,7 +190,7 @@ body:has(.archive-page) .site-footer {
 }
 
 .archive-row-aside {
-  border-left: 1px solid var(--archive-line);
+  border-left: var(--border-width-thin) solid var(--archive-line);
   display: grid;
   gap: 10px;
   padding-left: 20px;
@@ -291,7 +291,7 @@ body:has(.archive-page) .site-footer {
 
   .archive-row-aside {
     border-left: 0;
-    border-top: 1px solid var(--archive-line);
+    border-top: var(--border-width-thin) solid var(--archive-line);
     grid-column: 2;
     padding-left: 0;
     padding-top: 14px;

@@ -4,6 +4,7 @@
 
 body:has(.about-page) .page-hero,
 body:has(.contact-page) .page-hero {
+  border-bottom: var(--border-width-strong) solid var(--color-line);
   gap: 18px;
   margin-inline: auto;
   max-width: var(--layout-page-max);
@@ -32,65 +33,43 @@ body:has(.contact-page) .page-hero h1 {
   line-height: var(--line-height-display);
 }
 
+body:has(.about-page) .page-hero-subtitle,
+body:has(.contact-page) .page-hero-subtitle {
+  color: var(--color-text-muted);
+  font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 640px;
+}
+
 body:has(.about-page) .page-hero + .section,
 body:has(.contact-page) .page-hero + .section {
   padding-top: 64px;
 }
 
-body:has(.about-page) .about-grid {
-  gap: 0 40px;
-}
-
-body:has(.about-page) .about-grid article {
-  background: transparent;
-  border: 0;
-  border-top: 1px solid var(--line);
-  border-radius: 0;
-  display: grid;
-  gap: 14px;
-  padding: 24px 0 30px;
-}
-
-body:has(.about-page) .about-grid article:last-child {
-  border-bottom: 1px solid var(--line);
-}
-
-body:has(.about-page) .about-grid article h2 {
-  color: var(--color-text);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Microsoft YaHei", sans-serif;
-  font-size: clamp(1.45rem, 2.8vw, 2.1rem);
-  font-weight: 750;
-  letter-spacing: -0.05em;
-  line-height: 1.1;
-}
-
-body:has(.about-page) .about-grid article p {
-  color: var(--color-text-muted);
-  line-height: 1.8;
-}
-
 body:has(.contact-page) .contact-layout {
-  align-items: start;
-  gap: 56px;
-  grid-template-columns: 280px minmax(0, 1fr);
+  display: block;
 }
 
-body:has(.contact-page) .qr-placeholder {
-  border-radius: var(--radius-md);
-  padding: 20px;
+body:has(.contact-page) .contact-group + .contact-group {
+  margin-top: 56px;
 }
 
-body:has(.contact-page) .qr-placeholder span {
+body:has(.contact-page) .contact-group-kicker {
+  border-bottom: 1px solid var(--line);
   color: var(--color-accent-strong);
   font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 0.72rem;
+  font-weight: 700;
   letter-spacing: 0.08em;
+  line-height: 1.4;
+  margin: 0;
+  padding-bottom: 16px;
   text-transform: uppercase;
 }
 
 body:has(.contact-page) .link-list {
-  border-top: 1px solid var(--line);
+  border-top: 0;
   gap: 0;
 }
 
@@ -118,9 +97,27 @@ body:has(.contact-page) .contact-link-main:focus-visible {
   color: var(--accent-strong);
 }
 
+body:has(.contact-page) .contact-link-copy {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  width: 100%;
+}
+
+body:has(.contact-page) .archive-evidence-dialog {
+  --archive-line: var(--color-line);
+  --archive-text: var(--color-text);
+  --archive-muted: var(--color-text-muted);
+  --archive-accent: var(--color-accent);
+  --archive-accent-strong: var(--color-accent-strong);
+}
+
 body:has(.about-page) .page-hero h1,
 body:has(.contact-page) .page-hero h1,
-body:has(.about-page) .about-grid article h2,
 body:has(.contact-page) .contact-link-main span {
   font-family: var(--font-family-display);
 }
@@ -131,10 +128,6 @@ body:has(.contact-page) .contact-link-main span {
     padding-top: 56px;
   }
 
-  body:has(.contact-page) .contact-layout {
-    gap: 36px;
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 640px) {
@@ -157,7 +150,4 @@ body:has(.contact-page) .contact-link-main span {
     grid-template-columns: 1fr;
   }
 
-  body:has(.about-page) .about-grid {
-    gap: 0;
-  }
 }

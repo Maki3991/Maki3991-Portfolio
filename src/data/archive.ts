@@ -37,6 +37,13 @@ export type ArchiveEvidence = {
   visibility?: ArchiveEvidenceVisibility;
 };
 
+export type ArchiveCover = {
+  src: string;
+  alt: string;
+  fit?: "cover" | "contain";
+  position?: "before" | "after";
+};
+
 export type ArchiveItem = {
   id: string;
   order?: number;
@@ -47,6 +54,7 @@ export type ArchiveItem = {
   period: ArchivePeriod;
   summary: string;
   role: string;
+  cover?: ArchiveCover;
   contributions: string[];
   outcomes: string[];
   evidence: ArchiveEvidence[];

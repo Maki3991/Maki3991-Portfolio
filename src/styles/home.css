@@ -82,12 +82,12 @@ body:has(.home-page) .nav-toggle {
 
 .home-hero {
   align-items: end;
-  border-bottom: 1px solid var(--home-line-strong);
+  border-bottom: var(--border-width-strong) solid var(--home-line);
   display: grid;
   gap: clamp(42px, 8vw, 88px);
   grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
   min-height: min(720px, calc(100vh - 80px));
-  padding: 76px 0 86px;
+  padding: clamp(104px, 12vh, 144px) 0 86px;
 }
 
 .home-hero-copy {
@@ -115,7 +115,7 @@ body:has(.home-page) .nav-toggle {
     "Segoe UI", "Microsoft YaHei", sans-serif;
   font-size: var(--font-size-display);
   font-weight: 800;
-  gap: clamp(8px, 1vw, 18px);
+  gap: clamp(18px, 2vw, 30px);
   letter-spacing: var(--tracking-display);
   line-height: var(--line-height-display);
   margin: 0;
@@ -189,7 +189,7 @@ body:has(.home-page) .nav-toggle {
   border-left: 1px solid var(--home-accent);
   display: grid;
   gap: 20px;
-  grid-template-columns: 142px minmax(0, 1fr);
+  grid-template-columns: 142px;
   padding-left: 24px;
 }
 
@@ -214,14 +214,6 @@ body:has(.home-page) .nav-toggle {
   letter-spacing: 0.08em;
   margin-top: 10px;
   text-transform: uppercase;
-}
-
-.home-portrait-note {
-  align-self: end;
-  color: var(--home-muted);
-  font-size: 0.95rem;
-  line-height: 1.65;
-  margin: 0 0 2px;
 }
 
 .live-index {
@@ -258,7 +250,7 @@ body:has(.home-page) .nav-toggle {
 }
 
 .home-section {
-  border-bottom: 1px solid var(--home-line-strong);
+  border-bottom: var(--border-width-strong) solid var(--home-line);
   padding: var(--layout-section-gap) 0;
 }
 
@@ -298,12 +290,12 @@ body:has(.home-page) .nav-toggle {
 }
 
 .workbench-list {
-  border-top: 1px solid var(--home-line);
+  border-top: var(--border-width-thin) solid var(--home-line);
 }
 
 .workbench-item {
   align-items: start;
-  border-bottom: 1px solid var(--home-line);
+  border-bottom: var(--border-width-thin) solid var(--home-line);
   display: grid;
   gap: 22px;
   grid-template-columns: 48px minmax(190px, 0.7fr) minmax(0, 1fr) auto;
@@ -582,10 +574,13 @@ body:has(.home-page) :focus-visible {
     padding-bottom: 0;
   }
 
-  .home-hero,
   .home-section,
   .home-contact {
     padding-block: 64px;
+  }
+
+  .home-hero {
+    padding: 88px 0 64px;
   }
 
   .home-hero h1 {
@@ -593,7 +588,7 @@ body:has(.home-page) :focus-visible {
   }
 
   .home-portrait-block {
-    grid-template-columns: 112px minmax(0, 1fr);
+    grid-template-columns: 112px;
     padding-left: 16px;
   }
 

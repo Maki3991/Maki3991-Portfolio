@@ -40,6 +40,11 @@ body:has(.now-page) {
   margin: 0;
 }
 
+.now-intro-block {
+  border-bottom: var(--border-width-strong) solid var(--color-line);
+  padding-bottom: 56px;
+}
+
 .now-intro {
   color: var(--color-text-muted);
   font-size: clamp(1.1rem, 2.2vw, 1.45rem);

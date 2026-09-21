@@ -24,7 +24,7 @@
 
 1. Maki English 自媒体；
 2. LPT 英语产品与社群交付；
-3. Autocoder 实习；
+3. AutoCoder 实习；
 4. AdventureX 黑客松。
 
 这 4 个不是要求现在立刻公开上线，而是首批内容整理对象。先把事实写清楚，再决定具体呈现。
@@ -56,7 +56,7 @@
 
 - Maki English 自媒体；
 - LPT 英语产品与社群交付；
-- Autocoder 实习；
+- AutoCoder 实习；
 - AdventureX 黑客松。
 
 如果其中某项暂时不想公开，请标记为“先整理、暂不公开”。
@@ -96,7 +96,7 @@ Things They Left Behind
 	- 公域引流到私域约50+人
 - 当前状态：已归档
 - 是否需要匿名化：是
-#### Autocoder 实习
+#### AutoCoder 实习
 
 - 时间：2026年7月~2026年9月
 - 你的角色：北京智能生成公司产品部门海外自媒体内容运营实习生

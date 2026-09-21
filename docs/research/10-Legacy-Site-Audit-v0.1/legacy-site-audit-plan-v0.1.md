@@ -61,7 +61,7 @@ Projects 和 Works 统一为 Archive。
 
 - Maki English 自媒体，已归档；
 - 英语教育产品与社群交付，已归档；
-- Autocoder 实习经历，已归档；
+- AutoCoder 实习经历，已归档；
 - AdventureX 黑客松，已归档。
 
 暂不进入第一版：
@@ -499,7 +499,7 @@ Gate A 之前不修改生产代码。
 
 - Maki English：CONTENT；
 - 英语教育产品与社群交付：EXPERIENCE 或 PROJECT；
-- Autocoder 实习：EXPERIENCE；
+- AutoCoder 实习：EXPERIENCE；
 - AdventureX 黑客松：PROJECT 或 EXPERIMENT。
 
 这只是内部审计标签，不是最终页面文案。
@@ -538,4 +538,3 @@ Gate A 之前不修改生产代码。
 Home 通过 Gate A 后，再审计 Projects 和 Works。
 
 不要同时把五个页面全部拆完再让 Maki 第一次反馈。分页面交付可以尽早发现判断标准是否正确，降低返工。
-

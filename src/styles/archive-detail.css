@@ -33,12 +33,15 @@ body:has(.archive-detail-page) {
 .archive-detail-back:hover,
 .archive-detail-back:focus-visible,
 .archive-detail-evidence-list a:hover,
-.archive-detail-evidence-list a:focus-visible {
+.archive-detail-evidence-list a:focus-visible,
+.archive-detail-evidence-list button:hover,
+.archive-detail-evidence-list button:focus-visible {
   color: var(--archive-accent-strong);
 }
 
 .archive-detail-back:focus-visible,
-.archive-detail-evidence-list a:focus-visible {
+.archive-detail-evidence-list a:focus-visible,
+.archive-detail-evidence-list button:focus-visible {
   outline: var(--focus-width) solid var(--color-focus);
   outline-offset: var(--focus-offset);
 }
@@ -149,6 +152,27 @@ body:has(.archive-detail-page) {
   padding: 0;
 }
 
+.archive-detail-cover {
+  margin: 0 0 32px;
+  max-width: min(100%, 420px);
+}
+
+.archive-detail-cover img {
+  aspect-ratio: 1;
+  border: 1px solid var(--archive-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.archive-detail-cover--contain img {
+  aspect-ratio: auto;
+  background: var(--color-surface);
+  object-fit: contain;
+}
+
 .archive-detail-body li,
 .archive-detail-aside li,
 .archive-detail-evidence-list li {
@@ -216,8 +240,129 @@ body:has(.archive-detail-page) {
   text-underline-offset: 4px;
 }
 
+.archive-detail-evidence-trigger {
+  background: transparent;
+  border: 0;
+  color: var(--archive-text);
+  cursor: zoom-in;
+  font: inherit;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-color: var(--archive-accent);
+  text-underline-offset: 4px;
+}
+
 .archive-detail-evidence-list p {
   margin-top: 4px;
+}
+
+.archive-evidence-dialog {
+  background: var(--color-canvas);
+  border: 1px solid var(--archive-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  color: var(--archive-text);
+  margin: auto;
+  max-height: calc(100svh - 32px);
+  max-width: min(1180px, calc(100vw - 32px));
+  padding: 0;
+  width: min(1180px, calc(100vw - 32px));
+}
+
+.archive-evidence-dialog::backdrop {
+  backdrop-filter: blur(10px);
+  background: rgb(29 51 65 / 42%);
+}
+
+.archive-evidence-dialog-inner {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  max-height: calc(100svh - 32px);
+}
+
+.archive-evidence-dialog-header,
+.archive-evidence-dialog-controls {
+  align-items: center;
+  border-bottom: 1px solid var(--archive-line);
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 18px 22px;
+}
+
+.archive-evidence-dialog-header .archive-detail-label {
+  margin-bottom: 6px;
+}
+
+.archive-evidence-dialog-header h2 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.archive-evidence-dialog-close,
+.archive-evidence-dialog-controls button {
+  background: transparent;
+  border: 1px solid var(--archive-line);
+  border-radius: var(--radius-sm);
+  color: var(--archive-text);
+  cursor: pointer;
+  font: inherit;
+  min-width: 38px;
+  padding: 8px 12px;
+}
+
+.archive-evidence-dialog-close {
+  border: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+  min-width: 0;
+  padding: 4px 8px;
+}
+
+.archive-evidence-dialog-close:hover,
+.archive-evidence-dialog-close:focus-visible,
+.archive-evidence-dialog-controls button:hover,
+.archive-evidence-dialog-controls button:focus-visible {
+  background: var(--color-surface);
+  border-color: var(--archive-accent);
+}
+
+.archive-evidence-dialog-close:focus-visible,
+.archive-evidence-dialog-controls button:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
+.archive-evidence-dialog-viewport {
+  align-items: flex-start;
+  background: var(--color-surface);
+  display: flex;
+  justify-content: center;
+  min-height: 240px;
+  overflow: auto;
+  padding: 24px;
+}
+
+.archive-evidence-dialog-viewport img {
+  display: block;
+  max-height: min(62vh, 760px);
+  max-width: 100%;
+  object-fit: contain;
+  transform-origin: top center;
+}
+
+.archive-evidence-dialog-controls {
+  border-bottom: 0;
+  border-top: 1px solid var(--archive-line);
+  justify-content: center;
+}
+
+.archive-evidence-dialog-controls span {
+  color: var(--archive-muted);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.72rem;
+  min-width: 48px;
+  text-align: center;
 }
 
 .archive-detail-end-nav {
@@ -313,5 +458,20 @@ body:has(.archive-detail-page) {
 
   .archive-detail-end-nav {
     margin-top: 48px;
+  }
+
+  .archive-evidence-dialog {
+    max-height: calc(100svh - 16px);
+    max-width: calc(100vw - 16px);
+    width: calc(100vw - 16px);
+  }
+
+  .archive-evidence-dialog-header,
+  .archive-evidence-dialog-controls {
+    padding: 14px 16px;
+  }
+
+  .archive-evidence-dialog-viewport {
+    padding: 12px;
   }
 }

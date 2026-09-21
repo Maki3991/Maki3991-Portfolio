@@ -102,9 +102,24 @@ const formatPeriod = (start: string, end?: string) =>
         <section class="archive-detail-body" aria-labelledby="archive-detail-work-title">
           <p class="archive-detail-label">我的贡献</p>
           <h2 id="archive-detail-work-title">我做了什么</h2>
+          {item.cover && item.cover.position !== "after" ? (
+            <figure class="archive-detail-cover">
+              <img src={item.cover.src} alt={item.cover.alt} />
+            </figure>
+          ) : null}
           <ul>
             {item.contributions.map((contribution) => <li>{contribution}</li>)}
           </ul>
+          {item.cover && item.cover.position === "after" ? (
+            <figure
+              class:list={[
+                "archive-detail-cover",
+                item.cover.fit === "contain" && "archive-detail-cover--contain",
+              ]}
+            >
+              <img src={item.cover.src} alt={item.cover.alt} />
+            </figure>
+          ) : null}
         </section>
 
         <aside class="archive-detail-aside">
@@ -133,7 +148,17 @@ const formatPeriod = (start: string, end?: string) =>
                   <span class="archive-detail-evidence-kind">
                     {evidenceKindLabels[evidence.kind]}
                   </span>
-                {evidence.url ? (
+                {evidence.url && evidence.kind === "screenshot" ? (
+                  <button
+                    class="archive-detail-evidence-trigger"
+                    type="button"
+                    data-evidence-image={evidence.url}
+                    data-evidence-label={evidence.label}
+                    aria-haspopup="dialog"
+                  >
+                    {evidence.label} <span aria-hidden="true">↗</span>
+                  </button>
+                ) : evidence.url ? (
                   <a href={evidence.url} target="_blank" rel="noreferrer">
                     {evidence.label} <span aria-hidden="true">↗</span>
                   </a>
@@ -150,6 +175,42 @@ const formatPeriod = (start: string, end?: string) =>
         )}
       </section>
 
+      <dialog
+        class="archive-evidence-dialog"
+        data-evidence-dialog
+        aria-labelledby="archive-evidence-dialog-title"
+      >
+        <div class="archive-evidence-dialog-inner">
+          <header class="archive-evidence-dialog-header">
+            <div>
+              <p class="archive-detail-label">证据预览</p>
+              <h2 id="archive-evidence-dialog-title" data-evidence-dialog-title>
+                平台数据截图
+              </h2>
+            </div>
+            <button
+              class="archive-evidence-dialog-close"
+              type="button"
+              data-evidence-close
+              aria-label="关闭证据预览"
+            >
+              ×
+            </button>
+          </header>
+
+          <div class="archive-evidence-dialog-viewport" data-evidence-viewport>
+            <img data-evidence-preview alt="" />
+          </div>
+
+          <footer class="archive-evidence-dialog-controls" aria-label="图片缩放控制">
+            <button type="button" data-evidence-zoom-out aria-label="缩小">−</button>
+            <span data-evidence-zoom-level>100%</span>
+            <button type="button" data-evidence-zoom-in aria-label="放大">＋</button>
+            <button type="button" data-evidence-zoom-reset>恢复</button>
+          </footer>
+        </div>
+      </dialog>
+
       <nav class="archive-detail-end-nav" aria-label="详情导航">
         <a class="archive-detail-end-link" href="/archive/">
           <span aria-hidden="true">←</span>
@@ -159,3 +220,58 @@ const formatPeriod = (start: string, end?: string) =>
     </div>
   </div>
 </BaseLayout>
+
+<script>
+  const setupEvidenceDialog = () => {
+    const dialog = document.querySelector("[data-evidence-dialog]");
+    const preview = dialog?.querySelector("[data-evidence-preview]");
+    const title = dialog?.querySelector("[data-evidence-dialog-title]");
+    const zoomLevel = dialog?.querySelector("[data-evidence-zoom-level]");
+    const closeButton = dialog?.querySelector("[data-evidence-close]");
+    const zoomOut = dialog?.querySelector("[data-evidence-zoom-out]");
+    const zoomIn = dialog?.querySelector("[data-evidence-zoom-in]");
+    const zoomReset = dialog?.querySelector("[data-evidence-zoom-reset]");
+
+    if (
+      !(dialog instanceof HTMLDialogElement) ||
+      !(preview instanceof HTMLImageElement) ||
+      !(title instanceof HTMLElement) ||
+      !(zoomLevel instanceof HTMLElement)
+    ) {
+      return;
+    }
+
+    let scale = 1;
+    const clampScale = (value: number) => Math.min(3, Math.max(0.5, value));
+    const applyScale = (value: number) => {
+      scale = clampScale(value);
+      preview.style.transform = `scale(${scale})`;
+      zoomLevel.textContent = `${Math.round(scale * 100)}%`;
+    };
+
+    document.querySelectorAll("[data-evidence-image]").forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const imageUrl = trigger.getAttribute("data-evidence-image");
+        const imageLabel = trigger.getAttribute("data-evidence-label") || "平台数据截图";
+
+        if (!imageUrl) return;
+
+        preview.src = imageUrl;
+        preview.alt = imageLabel;
+        title.textContent = imageLabel;
+        applyScale(1);
+        dialog.showModal();
+      });
+    });
+
+    closeButton?.addEventListener("click", () => dialog.close());
+    zoomOut?.addEventListener("click", () => applyScale(scale - 0.25));
+    zoomIn?.addEventListener("click", () => applyScale(scale + 0.25));
+    zoomReset?.addEventListener("click", () => applyScale(1));
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  };
+
+  setupEvidenceDialog();
+</script>

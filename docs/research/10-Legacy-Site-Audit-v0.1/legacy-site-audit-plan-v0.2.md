@@ -36,7 +36,7 @@ Projects 和 Works 统一为 Archive。
 
 - Maki English 自媒体；
 - 英语教育产品与社群交付；
-- Autocoder 实习经历；
+- AutoCoder 实习经历；
 - AdventureX 黑客松。
 
 Audibooker：
@@ -166,4 +166,3 @@ Projects / Works 审计完成后，再由 Agent 汇总出：
 - Site Content Outline v0.2 的更新建议。
 
 此阶段仍不修改生产代码。
-

@@ -733,7 +733,7 @@ h3 {
 }
 
 .site-footer {
-  border-top: 1px solid var(--line);
+  border-top: var(--border-width-strong) solid var(--line);
   display: flex;
   gap: 16px;
   justify-content: space-between;

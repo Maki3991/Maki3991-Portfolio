@@ -1,7 +1,7 @@
 .now-entries {
   display: grid;
   gap: 48px;
-  margin-top: 18px;
+  margin-top: calc(var(--layout-section-gap) - 18px);
 }
 
 .now-entry {

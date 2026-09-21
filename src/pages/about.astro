@@ -2,43 +2,33 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { profile } from "@/data/site";
 import "@/styles/secondary-pages.css";
+import "@/styles/now-content.css";
 import "@/styles/display-title.css";
 ---
 
 <BaseLayout title="关于" description="关于 Maki 羽轩：国际政治本科生、英语内容创作者和长期学习者。">
   <section class="page-hero about-page">
-    <p class="eyebrow">About</p>
+    <p class="eyebrow">WORKING CONTEXT</p>
     <h1 class="display-title">About</h1>
+    <p class="page-hero-subtitle">把经历变成方法。</p>
   </section>
 
-  <section class="section about-grid">
-    <article>
-      <h2>我是谁</h2>
+  <section class="section about-article">
+    <article class="now-entry-content about-prose">
+      <h2>从做过的事开始</h2>
       <p>
-        我是 Maki / Maki 羽轩，一名国际政治本科生，也在持续做英语学习内容、自媒体账号运营、英语产品交付和个人学习系统搭建。
+        我是 Maki 羽轩，一名国际政治本科生。过去一段时间里，我做过英语学习内容、自媒体账号运营、英语产品与社群交付，也做过音乐创作。它们看起来属于不同方向，但都要求我把想法变成可以交付、公开和继续修改的东西。
       </p>
-    </article>
-    <article>
-      <h2>我现在在做什么</h2>
+
+      <h2>把经历整理成方法</h2>
       <p>
-        我在整理自己的内容作品、账号数据、项目经历和复盘方法，希望它们不只是散落在平台里的视频，而是可以被长期查看和验证的作品档案。
+        现在我正在把内容作品、项目证据、数据和复盘整理到这个网站里。我希望这里保存的不只是结果，也包括当时面对的问题、承担的角色、做过的取舍，以及后来发现哪些地方需要重来。
       </p>
-    </article>
-    <article>
-      <h2>我长期关心什么</h2>
+
+      <h2>继续往前</h2>
       <p>
-        我关心英语学习方法、内容表达、自媒体运营、教育产品、AI 辅助创作、学习系统、写作研究和音乐创作。
+        我正在寻找 {profile.seeking}，也继续用代码和 AI 搭建更适合自己的工作工具。之后我会把新的项目、文章和判断加入这里，让这份档案随着真实工作一起变化。
       </p>
-    </article>
-    <article>
-      <h2>我相信什么</h2>
-      <p>
-        我相信可信度来自真实作品、真实数据和真实复盘。把复杂知识讲清楚，比把自己包装得很厉害更重要。
-      </p>
-    </article>
-    <article>
-      <h2>我正在寻找什么</h2>
-      <p>{profile.seeking}。</p>
     </article>
   </section>
 </BaseLayout>

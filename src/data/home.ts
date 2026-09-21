@@ -11,6 +11,7 @@ export type WorkbenchItem = {
   type: string;
   status: string;
   why: string;
+  visible?: boolean;
 };
 
 export type HomeSelection = {
@@ -18,5 +19,7 @@ export type HomeSelection = {
 };
 
 export const homeLiveIndex = readJson<LiveIndexItem[]>("settings/home-live-index.json");
-export const homeWorkbench = readJson<WorkbenchItem[]>("settings/home-workbench.json");
+export const homeWorkbench = readJson<WorkbenchItem[]>("settings/home-workbench.json").filter(
+  (item) => item.visible !== false,
+);
 export const homeSelection = readJson<HomeSelection>("settings/home-selection.json");

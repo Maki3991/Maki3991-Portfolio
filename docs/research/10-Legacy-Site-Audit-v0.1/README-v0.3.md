@@ -18,7 +18,7 @@
 - Home 不保留旧版完整数据墙；
 - Portfolio 副标题删除；
 - 新版视觉不复制旧版暖色、衬线、圆角和 blur；
-- 首批内容整理对象默认为 Maki English、LPT、Autocoder 实习和 AdventureX 黑客松；
+- 首批内容整理对象默认为 Maki English、LPT、AutoCoder 实习和 AdventureX 黑客松；
 - 音乐 EP 暂作为第二批候选，不阻塞 Archive 主体。
 
 ## 下一步

@@ -6,7 +6,7 @@
 ## 当前有效决定
 
 - 首批整理四个条目：Maki English、英语产品与社群交付、AI 产品海外内容运营实习、AdventureX 2026 / ReadAge；
-- LPT 和 Autocoder 公开但匿名化；
+- LPT 和 AutoCoder 公开但匿名化；
 - Maki English 和 AdventureX / ReadAge 不匿名；
 - Things They Left Behind 放入第二批；
 - Audibooker 暂不公开；

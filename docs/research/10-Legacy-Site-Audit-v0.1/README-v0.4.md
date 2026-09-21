@@ -5,8 +5,8 @@
 
 ## 已确认
 
-- Maki English、LPT、Autocoder 实习、AdventureX / ReadAge 全部作为首批内容整理对象；
-- LPT 和 Autocoder 可以公开，但必须匿名化；
+- Maki English、LPT、AutoCoder 实习、AdventureX / ReadAge 全部作为首批内容整理对象；
+- LPT 和 AutoCoder 可以公开，但必须匿名化；
 - Maki English 不需要匿名化；
 - AdventureX / ReadAge 不需要匿名化；
 - Things They Left Behind 放入第二批；

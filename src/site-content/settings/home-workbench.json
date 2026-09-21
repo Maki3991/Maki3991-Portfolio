@@ -11,6 +11,7 @@
     "title": "Speedrun ETH",
     "type": "LEARNING",
     "status": "进行中",
-    "why": "入门 Web3，尝试在 Web3 行业找到实习工作。"
+    "why": "入门 Web3，尝试在 Web3 行业找到实习工作。",
+    "visible": false
   }
 ]
