@@ -10,3 +10,4 @@ dist
 /output/playwright/
 output/**/.playwright-cli/
 .env*.local
+src/site-content/.obsidian
