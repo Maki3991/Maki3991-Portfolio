@@ -53,20 +53,6 @@ body:has(.now-page) {
   max-width: 640px;
 }
 
-.now-back-link {
-  border-bottom: 1px solid var(--color-accent);
-  color: var(--color-text);
-  font-weight: 700;
-  justify-self: start;
-  padding-bottom: 4px;
-}
-
-.now-back-link:focus-visible,
-.now-back-link:hover {
-  border-color: var(--color-text);
-  color: var(--color-text);
-}
-
 .now-shell h1 {
   font-family: var(--font-family-display);
 }

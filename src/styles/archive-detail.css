@@ -252,6 +252,19 @@ body:has(.archive-detail-page) {
   text-underline-offset: 4px;
 }
 
+.archive-detail-evidence-list a > span[aria-hidden="true"],
+.archive-detail-evidence-list button > span[aria-hidden="true"] {
+  display: inline-block;
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.archive-detail-evidence-list a:hover > span[aria-hidden="true"],
+.archive-detail-evidence-list a:focus-visible > span[aria-hidden="true"],
+.archive-detail-evidence-list button:hover > span[aria-hidden="true"],
+.archive-detail-evidence-list button:focus-visible > span[aria-hidden="true"] {
+  transform: translate(2px, -2px);
+}
+
 .archive-detail-evidence-list p {
   margin-top: 4px;
 }

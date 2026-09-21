@@ -667,8 +667,8 @@ h3 {
   margin-left: 4px;
 }
 
-.contact-link-main:hover,
-.contact-link-main:focus-visible {
+.contact-link-main:not(.contact-link-static):hover,
+.contact-link-main:not(.contact-link-static):focus-visible {
   color: var(--accent-strong);
 }
 
@@ -733,11 +733,25 @@ h3 {
 }
 
 .site-footer {
-  border-top: var(--border-width-strong) solid var(--line);
+  border-top: 0;
   display: flex;
   gap: 16px;
   justify-content: space-between;
   padding: 28px 0 40px;
+}
+
+.site-footer p {
+  color: var(--muted);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  margin: 0;
+  transition: color 160ms ease;
+}
+
+.site-footer p:hover {
+  color: var(--accent);
 }
 
 body:has(.home-page) .site-footer,

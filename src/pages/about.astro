@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { profile } from "@/data/site";
+import { aboutEntry } from "@/data/about";
 import "@/styles/secondary-pages.css";
 import "@/styles/now-content.css";
 import "@/styles/display-title.css";
@@ -10,25 +10,14 @@ import "@/styles/display-title.css";
   <section class="page-hero about-page">
     <p class="eyebrow">WORKING CONTEXT</p>
     <h1 class="display-title">About</h1>
-    <p class="page-hero-subtitle">把经历变成方法。</p>
+    <p class="page-hero-subtitle">把经历变成方法</p>
   </section>
 
   <section class="section about-article">
-    <article class="now-entry-content about-prose">
-      <h2>从做过的事开始</h2>
-      <p>
-        我是 Maki 羽轩，一名国际政治本科生。过去一段时间里，我做过英语学习内容、自媒体账号运营、英语产品与社群交付，也做过音乐创作。它们看起来属于不同方向，但都要求我把想法变成可以交付、公开和继续修改的东西。
-      </p>
-
-      <h2>把经历整理成方法</h2>
-      <p>
-        现在我正在把内容作品、项目证据、数据和复盘整理到这个网站里。我希望这里保存的不只是结果，也包括当时面对的问题、承担的角色、做过的取舍，以及后来发现哪些地方需要重来。
-      </p>
-
-      <h2>继续往前</h2>
-      <p>
-        我正在寻找 {profile.seeking}，也继续用代码和 AI 搭建更适合自己的工作工具。之后我会把新的项目、文章和判断加入这里，让这份档案随着真实工作一起变化。
-      </p>
-    </article>
+    {aboutEntry ? (
+      <article class="now-entry-content about-prose" set:html={aboutEntry.html}></article>
+    ) : (
+      <p class="now-empty">About 内容正在整理。</p>
+    )}
   </section>
 </BaseLayout>

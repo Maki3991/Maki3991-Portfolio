@@ -14,7 +14,8 @@
   "role": "音乐创作者；负责编曲、混音和封面设计",
   "cover": {
     "src": "/assets/music/things-they-left-behind.jpeg",
-    "alt": "Things They Left Behind EP 封面"
+    "alt": "Things They Left Behind EP 封面",
+    "position": "after"
   },
   "contributions": [
     "完成四首歌曲的编曲和混音",

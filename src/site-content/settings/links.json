@@ -16,6 +16,13 @@
     "image": "/assets/contact/wechat.jpg"
   },
   {
+    "label": "X",
+    "href": "https://x.com/Moki1339",
+    "status": "ready",
+    "group": "public",
+    "note": "@Moki1339"
+  },
+  {
     "label": "抖音主页",
     "href": "https://v.douyin.com/CBc6conCqFk/",
     "status": "ready",

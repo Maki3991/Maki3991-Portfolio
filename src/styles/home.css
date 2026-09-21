@@ -448,7 +448,6 @@ body:has(.home-page) .nav-toggle {
   align-items: center;
   border: 1px solid var(--home-line);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-soft);
   color: var(--home-text);
   display: grid;
   gap: 16px;
@@ -489,8 +488,14 @@ body:has(.home-page) .nav-toggle {
 }
 
 .home-contact-card.wechat {
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
   grid-template-columns: 1fr;
   padding: 18px;
+  text-align: left;
+  width: 100%;
 }
 
 .home-contact-card.email .home-contact-card-text small {

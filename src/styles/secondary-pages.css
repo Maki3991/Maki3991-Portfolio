@@ -33,6 +33,11 @@ body:has(.contact-page) .page-hero h1 {
   line-height: var(--line-height-display);
 }
 
+/* Optical correction for the capital C's left sidebearing. */
+body:has(.contact-page) .page-hero h1 {
+  transform: translateX(-0.07em);
+}
+
 body:has(.about-page) .page-hero-subtitle,
 body:has(.contact-page) .page-hero-subtitle {
   color: var(--color-text-muted);
@@ -45,6 +50,14 @@ body:has(.contact-page) .page-hero-subtitle {
 body:has(.about-page) .page-hero + .section,
 body:has(.contact-page) .page-hero + .section {
   padding-top: 64px;
+}
+
+body:has(.about-page) .page-hero + .section {
+  padding-top: calc(var(--layout-section-gap) - 18px);
+}
+
+body:has(.about-page) .about-prose > h2:first-child {
+  margin-top: 0;
 }
 
 body:has(.contact-page) .contact-layout {
@@ -92,9 +105,38 @@ body:has(.contact-page) .contact-link-main span {
     "Segoe UI", "Microsoft YaHei", sans-serif;
 }
 
-body:has(.contact-page) .contact-link-main:hover,
-body:has(.contact-page) .contact-link-main:focus-visible {
-  color: var(--accent-strong);
+body:has(.contact-page) .contact-link-main:not(.contact-link-static) {
+  background: transparent;
+}
+
+body:has(.contact-page) .contact-link-main:not(.contact-link-static):hover,
+body:has(.contact-page) .contact-link-main:not(.contact-link-static):focus-visible {
+  color: inherit;
+}
+
+body:has(.contact-page) .contact-link-main:not(.contact-link-static) > span,
+body:has(.contact-page) .contact-link-main:not(.contact-link-static) > small {
+  transition: color var(--motion-duration-base) var(--motion-ease-standard);
+}
+
+body:has(.contact-page) .contact-link-main:not(.contact-link-static) > span:hover,
+body:has(.contact-page) .contact-link-main:not(.contact-link-static) > small:hover,
+body:has(.contact-page) .contact-link-main:not(.contact-link-static):focus-visible > span,
+body:has(.contact-page) .contact-link-main:not(.contact-link-static):focus-visible > small {
+  color: var(--accent);
+}
+
+body:has(.contact-page) .contact-link-main:not(.contact-link-static) .contact-link-external {
+  display: inline-block;
+  transition:
+    color var(--motion-duration-fast) var(--motion-ease-standard),
+    transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+body:has(.contact-page) .contact-link-main:not(.contact-link-static) > span:hover .contact-link-external,
+body:has(.contact-page) .contact-link-main:not(.contact-link-static):focus-visible > span .contact-link-external {
+  color: var(--accent);
+  transform: translate(2px, -2px);
 }
 
 body:has(.contact-page) .contact-link-copy {
