@@ -1,76 +1,204 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { links } from "@/data/site";
+import "@/styles/secondary-pages.css";
+import "@/styles/archive-detail.css";
+import "@/styles/display-title.css";
+
+const isExternalLink = (href: string) => href.startsWith("http");
+const contactGroups = [
+  { id: "direct", label: "DIRECT CONTACT", links: links.filter((link) => link.group === "direct") },
+  { id: "public", label: "PUBLIC ACCOUNTS", links: links.filter((link) => link.group === "public") },
+  { id: "other", label: "OTHER WORK / MATERIALS", links: links.filter((link) => link.group === "other") },
+].filter((group) => group.links.length > 0);
 ---
 
 <BaseLayout title="联系" description="联系 Maki 羽轩，查看账号主页、简历和作品集入口。">
-  <section class="page-hero">
-    <p class="eyebrow">Contact</p>
-    <h1>联系我</h1>
+  <section class="page-hero contact-page">
+    <p class="eyebrow">OPEN TO CONVERSATION</p>
+    <h1 class="display-title">Contact</h1>
+    <p class="page-hero-subtitle">有具体的事情，欢迎联系我</p>
   </section>
 
   <section class="section contact-layout">
-    <div class="qr-placeholder">
-      <img class="contact-avatar" src="/assets/profile/maki-avatar.jpg" alt="Maki 羽轩头像" />
-      <img src="/assets/contact/wechat.jpg" alt="微信二维码" />
-      <span>微信二维码</span>
-    </div>
-    <div class="link-list">
-      {
-        links.map((link) => (
-          <article
-            class:list={["contact-link", link.status === "placeholder" && "pending"]}
-          >
-            <a
-              class="contact-link-main"
-              href={link.href}
-              target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-            >
-              <span>{link.label}</span>
-              <small>{link.note}</small>
-            </a>
+    {
+      contactGroups.map((group, groupIndex) => (
+        <section class="contact-group" aria-labelledby={`contact-${group.id}`}>
+          <div class="contact-group-heading">
+            <p class="contact-group-kicker" id={`contact-${group.id}`}>
+              {String(groupIndex + 1).padStart(2, "0")} / {group.label}
+            </p>
+          </div>
+          <div class="link-list">
             {
-              link.image && (
-                <button class="qr-zoom-trigger" type="button" data-qr={link.image} data-label={link.label}>
-                  <img src={link.image} alt={`${link.label}二维码`} loading="lazy" />
-                </button>
-              )
+              group.links.map((link) => (
+                <article
+                  class:list={["contact-link", link.status === "placeholder" && "pending"]}
+                >
+                  {
+                    link.copyText ? (
+                      <button class="contact-link-main contact-link-copy" type="button" data-copy-text={link.copyText}>
+                        <span>{link.label}</span>
+                        <small>{link.note}</small>
+                      </button>
+                    ) : link.imageOnly ? (
+                      <div class="contact-link-main contact-link-static">
+                        <span>{link.label}</span>
+                        <small>{link.note}</small>
+                      </div>
+                    ) : (
+                      <a
+                        class="contact-link-main"
+                        href={link.href}
+                        aria-label={isExternalLink(link.href) ? link.label + " (external link)" : link.label}
+                        target={isExternalLink(link.href) ? "_blank" : undefined}
+                        rel={isExternalLink(link.href) ? "noreferrer" : undefined}
+                      >
+                        <span>
+                          {link.label}
+                          {isExternalLink(link.href) && (
+                            <span class="contact-link-external" aria-hidden="true"> ↗</span>
+                          )}
+                        </span>
+                        <small>{link.note}</small>
+                      </a>
+                    )
+                  }
+                  {
+                    link.image && (
+                      <button
+                        class="qr-zoom-trigger"
+                        type="button"
+                        data-evidence-image={link.image}
+                        data-evidence-label={link.label}
+                        aria-haspopup="dialog"
+                      >
+                        <img src={link.image} alt={`${link.label}二维码`} loading="lazy" />
+                      </button>
+                    )
+                  }
+                </article>
+              ))
             }
-          </article>
-        ))
-      }
-    </div>
+          </div>
+        </section>
+      ))
+    }
   </section>
 
-  <dialog class="qr-dialog" aria-label="二维码预览">
-    <button class="qr-dialog-close" type="button" aria-label="关闭">关闭</button>
-    <img src="" alt="" />
+  <dialog
+    class="archive-evidence-dialog"
+    data-evidence-dialog
+    aria-labelledby="contact-evidence-dialog-title"
+  >
+    <div class="archive-evidence-dialog-inner">
+      <header class="archive-evidence-dialog-header">
+        <div>
+          <p class="archive-detail-label">图片预览</p>
+          <h2 id="contact-evidence-dialog-title" data-evidence-dialog-title>
+            二维码预览
+          </h2>
+        </div>
+        <button
+          class="archive-evidence-dialog-close"
+          type="button"
+          data-evidence-close
+          aria-label="关闭图片预览"
+        >
+          ×
+        </button>
+      </header>
+
+      <div class="archive-evidence-dialog-viewport" data-evidence-viewport>
+        <img data-evidence-preview alt="" />
+      </div>
+
+      <footer class="archive-evidence-dialog-controls" aria-label="图片缩放控制">
+        <button type="button" data-evidence-zoom-out aria-label="缩小">−</button>
+        <span data-evidence-zoom-level>100%</span>
+        <button type="button" data-evidence-zoom-in aria-label="放大">＋</button>
+        <button type="button" data-evidence-zoom-reset>恢复</button>
+      </footer>
+    </div>
   </dialog>
 
   <script>
-    const dialog = document.querySelector(".qr-dialog");
-    const dialogImage = dialog?.querySelector("img");
-    const closeButton = dialog?.querySelector(".qr-dialog-close");
+    const setupEvidenceDialog = () => {
+      const dialog = document.querySelector("[data-evidence-dialog]");
+      const preview = dialog?.querySelector("[data-evidence-preview]");
+      const title = dialog?.querySelector("[data-evidence-dialog-title]");
+      const zoomLevel = dialog?.querySelector("[data-evidence-zoom-level]");
+      const closeButton = dialog?.querySelector("[data-evidence-close]");
+      const zoomOut = dialog?.querySelector("[data-evidence-zoom-out]");
+      const zoomIn = dialog?.querySelector("[data-evidence-zoom-in]");
+      const zoomReset = dialog?.querySelector("[data-evidence-zoom-reset]");
 
-    document.querySelectorAll(".qr-zoom-trigger").forEach((button) => {
-      button.addEventListener("click", () => {
-        if (!(dialog instanceof HTMLDialogElement) || !dialogImage) return;
-        const image = button.getAttribute("data-qr");
-        const label = button.getAttribute("data-label") || "二维码";
-        if (!image) return;
-        dialogImage.setAttribute("src", image);
-        dialogImage.setAttribute("alt", `${label}二维码`);
-        dialog.showModal();
+      if (
+        !(dialog instanceof HTMLDialogElement) ||
+        !(preview instanceof HTMLImageElement) ||
+        !(title instanceof HTMLElement) ||
+        !(zoomLevel instanceof HTMLElement)
+      ) {
+        return;
+      }
+
+      let scale = 1;
+      const clampScale = (value: number) => Math.min(3, Math.max(0.5, value));
+      const applyScale = (value: number) => {
+        scale = clampScale(value);
+        preview.style.transform = `scale(${scale})`;
+        zoomLevel.textContent = `${Math.round(scale * 100)}%`;
+      };
+
+      document.querySelectorAll("[data-evidence-image]").forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          const imageUrl = trigger.getAttribute("data-evidence-image");
+          const imageLabel = trigger.getAttribute("data-evidence-label") || "二维码预览";
+
+          if (!imageUrl) return;
+
+          preview.src = imageUrl;
+          preview.alt = imageLabel;
+          title.textContent = imageLabel;
+          applyScale(1);
+          dialog.showModal();
+        });
+      });
+
+      closeButton?.addEventListener("click", () => dialog.close());
+      zoomOut?.addEventListener("click", () => applyScale(scale - 0.25));
+      zoomIn?.addEventListener("click", () => applyScale(scale + 0.25));
+      zoomReset?.addEventListener("click", () => applyScale(1));
+      dialog.addEventListener("click", (event) => {
+        if (event.target === dialog) dialog.close();
+      });
+    };
+
+    const copyToClipboard = async (value: string) => {
+      if (!navigator.clipboard?.writeText) throw new Error("Clipboard API unavailable");
+      await navigator.clipboard.writeText(value);
+    };
+
+    document.querySelectorAll("[data-copy-text]").forEach((trigger) => {
+      trigger.addEventListener("click", async () => {
+        const value = trigger.getAttribute("data-copy-text");
+        const note = trigger.querySelector("small");
+        if (!value) return;
+        if (note && !note.dataset.original) note.dataset.original = note.textContent || "";
+
+        try {
+          await copyToClipboard(value);
+          if (note) note.textContent = `已复制微信号 · ${value}`;
+        } catch {
+          if (note) note.textContent = "复制失败，请手动复制";
+        }
+
+        window.setTimeout(() => {
+          if (note?.dataset.original) note.textContent = note.dataset.original;
+        }, 1800);
       });
     });
 
-    closeButton?.addEventListener("click", () => {
-      if (dialog instanceof HTMLDialogElement) dialog.close();
-    });
-
-    dialog?.addEventListener("click", (event) => {
-      if (event.target === dialog && dialog instanceof HTMLDialogElement) dialog.close();
-    });
+    setupEvidenceDialog();
   </script>
 </BaseLayout>

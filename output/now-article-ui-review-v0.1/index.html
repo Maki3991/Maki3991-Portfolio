@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Now Article UI Review Preview v0.1</title>
+    <link rel='icon' href='data:,' />
+    <style>
+      :root {
+        color-scheme: light;
+        --canvas: #f7f9fb;
+        --surface: #ffffff;
+        --surface-soft: rgba(33, 120, 149, 0.06);
+        --text: #1d3341;
+        --muted: #556b75;
+        --subtle: #68808d;
+        --line: #d8e2e5;
+        --line-strong: #b7c8ce;
+        --accent: #217895;
+        --focus: #217895;
+        --shadow-soft: 0 10px 28px rgba(29, 51, 65, 0.1);
+        --font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+        --font-display: "Avenir Next", Inter, ui-sans-serif, system-ui, "Microsoft YaHei", sans-serif;
+        --font-meta: ui-monospace, SFMono-Regular, Consolas, monospace;
+        --article-width: 1120px;
+        --body-size: 1.05rem;
+        --body-line: 1.75;
+        --block-gap: 20px;
+        --heading-gap: 40px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--canvas);
+        color: var(--text);
+      }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+        background: var(--canvas);
+        color: var(--text);
+      }
+
+      button,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      button,
+      select {
+        border: 0;
+      }
+
+      button:focus-visible,
+      select:focus-visible,
+      textarea:focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 4px;
+      }
+
+      .review-toolbar {
+        position: sticky;
+        z-index: 10;
+        top: 0;
+        border-bottom: 1px solid var(--line);
+        background: rgba(247, 249, 251, 0.94);
+        backdrop-filter: blur(12px);
+      }
+
+      .review-toolbar-inner,
+      .review-subline {
+        width: min(1120px, calc(100% - 32px));
+        margin-inline: auto;
+      }
+
+      .review-toolbar-inner {
+        display: grid;
+        grid-template-columns: minmax(230px, 1fr) auto auto;
+        gap: 24px;
+        align-items: center;
+        min-height: 68px;
+      }
+
+      .review-meta,
+      .review-variable-label,
+      .review-subline,
+      .choice-button,
+      .toolbar-button {
+        font-family: var(--font-meta);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .review-meta {
+        margin: 0 0 5px;
+        color: var(--accent);
+      }
+
+      .review-variable-label {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--subtle);
+      }
+
+      .review-variable-select {
+        min-width: min(100%, 340px);
+        padding: 0;
+        background: transparent;
+        color: var(--text);
+        font-size: 0.95rem;
+        font-weight: 750;
+      }
+
+      .choice-group {
+        display: flex;
+        gap: 4px;
+      }
+
+      .choice-button,
+      .toolbar-button {
+        min-width: 36px;
+        min-height: 36px;
+        padding: 8px 10px;
+        border: 1px solid transparent;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+      }
+
+      .choice-button:hover,
+      .toolbar-button:hover {
+        color: var(--text);
+      }
+
+      .choice-button.is-active {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: #ffffff;
+      }
+
+      .toolbar-actions {
+        display: flex;
+        gap: 2px;
+      }
+
+      .toolbar-button {
+        min-width: auto;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+
+      .review-subline {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        min-height: 30px;
+        padding-bottom: 9px;
+        color: var(--subtle);
+        letter-spacing: 0.02em;
+        text-transform: none;
+      }
+
+      .review-subline span:last-child {
+        color: var(--accent);
+        text-align: right;
+      }
+
+      .preview-stage {
+        width: min(1120px, calc(100% - 32px));
+        min-height: calc(100svh - 98px);
+        margin-inline: auto;
+        padding: 72px 0 128px;
+      }
+
+      .preview-identification {
+        width: min(var(--article-width), 100%);
+        margin: 0 auto 40px;
+        color: var(--subtle);
+        font-family: var(--font-meta);
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .preview-identification strong {
+        color: var(--text);
+      }
+
+      .now-preview {
+        width: min(var(--article-width), 100%);
+        margin-inline: auto;
+      }
+
+      .page-heading {
+        margin-bottom: 72px;
+      }
+
+      .page-heading .kicker {
+        margin: 0;
+        color: var(--accent);
+        font-family: var(--font-meta);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .page-heading h2 {
+        margin: 12px 0 0;
+        font-family: var(--font-display);
+        font-size: clamp(3.8rem, 9vw, 7rem);
+        font-weight: 800;
+        letter-spacing: -0.075em;
+        line-height: 0.9;
+      }
+
+      .article-body {
+        font-size: var(--body-size);
+        line-height: var(--body-line);
+      }
+
+      .article-body p,
+      .article-body ul,
+      .article-body ol,
+      .article-body blockquote {
+        margin: 0 0 var(--block-gap);
+      }
+
+      .article-body h2,
+      .article-body h3 {
+        margin: var(--heading-gap) 0 16px;
+        font-family: var(--font-display);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1.15;
+      }
+
+      .article-body h2 {
+        font-size: clamp(1.55rem, 3vw, 2.2rem);
+      }
+
+      .article-body h3 {
+        font-size: clamp(1.25rem, 2.4vw, 1.7rem);
+      }
+
+      .article-body ul,
+      .article-body ol {
+        padding-left: 1.45rem;
+      }
+
+      .article-body li + li {
+        margin-top: 8px;
+      }
+
+      .article-body hr {
+        margin: 36px 0;
+        border: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .article-body a,
+      .article-exit a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.18em;
+      }
+
+      .article-body blockquote {
+        padding-left: 20px;
+        border-left: 2px solid var(--accent);
+        color: var(--muted);
+      }
+
+      .article-exit {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin-top: 64px;
+        font-family: var(--font-meta);
+        font-size: 0.72rem;
+      }
+
+      .article-exit span {
+        color: var(--subtle);
+      }
+
+      /* P1-01 页面标题与文章标题关系 */
+      body.is-p1-01.is-option-b .page-heading {
+        display: none;
+      }
+
+      body.is-p1-01.is-option-c .page-heading h2 {
+        font-size: clamp(4.8rem, 12vw, 9rem);
+      }
+
+      body.is-p1-01.is-option-d .page-heading {
+        margin-bottom: 56px;
+      }
+
+      body.is-p1-01.is-option-e .page-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 40px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      body.is-p1-01.is-option-e .page-heading h2 {
+        font-size: clamp(2rem, 5vw, 4rem);
+      }
+
+      /* P1-02 文章内容宽度 */
+      body.is-p1-02.is-option-a { --article-width: 640px; }
+      body.is-p1-02.is-option-b { --article-width: 780px; }
+      body.is-p1-02.is-option-c { --article-width: 860px; }
+      body.is-p1-02.is-option-d { --article-width: 980px; }
+      body.is-p1-02.is-option-e { --article-width: 1120px; }
+
+      /* P1-04 文章边界 */
+      body.is-p1-04.is-option-b .now-preview {
+        padding-top: 28px;
+        border-top: 1px solid var(--line-strong);
+      }
+
+      body.is-p1-04.is-option-c .now-preview {
+        padding-left: 24px;
+        border-left: 2px solid var(--line-strong);
+      }
+
+      body.is-p1-04.is-option-d .now-preview {
+        padding: 36px;
+        background: var(--surface-soft);
+      }
+
+      body.is-p1-04.is-option-e .now-preview {
+        padding: 40px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--surface);
+        box-shadow: var(--shadow-soft);
+      }
+
+      /* P1-05 正文密度 */
+      body.is-p1-05.is-option-a { --body-line: 2.05; --block-gap: 28px; --heading-gap: 52px; }
+      body.is-p1-05.is-option-b { --body-line: 1.9; --block-gap: 24px; --heading-gap: 46px; }
+      body.is-p1-05.is-option-c { --body-line: 1.75; --block-gap: 20px; --heading-gap: 40px; }
+      body.is-p1-05.is-option-d { --body-line: 1.62; --block-gap: 16px; --heading-gap: 32px; }
+      body.is-p1-05.is-option-e { --body-line: 1.48; --block-gap: 12px; --heading-gap: 26px; }
+
+      dialog {
+        width: min(520px, calc(100% - 32px));
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--surface);
+        color: var(--text);
+        box-shadow: var(--shadow-soft);
+      }
+
+      dialog::backdrop {
+        background: rgba(29, 51, 65, 0.24);
+      }
+
+      .feedback-title {
+        margin: 0 0 12px;
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+      }
+
+      .feedback-help {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .feedback-input {
+        display: block;
+        width: 100%;
+        min-height: 140px;
+        resize: vertical;
+        padding: 12px;
+        border: 1px solid var(--line);
+        background: var(--canvas);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .feedback-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .feedback-actions button {
+        min-height: 40px;
+        padding: 8px 14px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--text);
+        cursor: pointer;
+      }
+
+      .feedback-actions button[type="submit"] {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: #ffffff;
+      }
+
+      @media (max-width: 700px) {
+        .review-toolbar-inner {
+          grid-template-columns: 1fr auto;
+          gap: 8px 12px;
+          padding-top: 10px;
+        }
+
+        .choice-group {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          justify-content: space-between;
+        }
+
+        .choice-button {
+          flex: 1;
+        }
+
+        .toolbar-actions {
+          grid-column: 2;
+          grid-row: 1;
+        }
+
+        .review-subline {
+          display: block;
+          padding-bottom: 8px;
+          font-size: 0.62rem;
+        }
+
+        .review-subline span {
+          display: block;
+        }
+
+        .review-subline span:last-child {
+          margin-top: 3px;
+          text-align: left;
+        }
+
+        .preview-stage {
+          padding-top: 48px;
+        }
+
+        body.is-p1-04.is-option-d .now-preview,
+        body.is-p1-04.is-option-e .now-preview {
+          padding: 24px;
+        }
+
+        body.is-p1-04.is-option-c .now-preview {
+          padding-left: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body class="is-p1-02 is-option-d">
+    <header class="review-toolbar">
+      <div class="review-toolbar-inner">
+        <div>
+          <p class="review-meta">NOW ARTICLE UI / REVIEW PREVIEW</p>
+          <label class="review-variable-label" for="variable-select">当前视觉要素</label>
+          <select class="review-variable-select" id="variable-select"></select>
+        </div>
+
+        <div class="choice-group" id="choice-group" role="group" aria-label="视觉方案选择">
+          <button class="choice-button" type="button" data-option="A">A</button>
+          <button class="choice-button" type="button" data-option="B">B</button>
+          <button class="choice-button" type="button" data-option="C">C</button>
+          <button class="choice-button" type="button" data-option="D">D</button>
+          <button class="choice-button" type="button" data-option="E">E</button>
+        </div>
+
+        <div class="toolbar-actions">
+          <button class="toolbar-button" type="button" id="previous-variable" aria-label="上一个视觉要素">←</button>
+          <button class="toolbar-button" type="button" id="next-variable" aria-label="下一个视觉要素">→</button>
+          <button class="toolbar-button" type="button" id="open-feedback">反馈</button>
+        </div>
+      </div>
+
+      <div class="review-subline">
+        <span id="variable-note"></span>
+        <span id="choice-note"></span>
+      </div>
+    </header>
+
+    <main id="preview-main">
+      <section class="preview-stage" aria-live="polite">
+        <div class="preview-identification">
+          <strong id="preview-id"></strong>
+          <span> / </span>
+          <span id="preview-option"></span>
+        </div>
+
+        <article class="now-preview">
+          <div class="page-heading">
+            <p class="kicker">NOW / CURRENT PHASE</p>
+            <h2>Now</h2>
+          </div>
+
+          <div class="article-body">
+            <h2>Q: Where does first-principles thinking come from?</h2>
+            <p>When you want to do something new, you have to apply the physics approach. Physicists discover counterintuitive new things, like quantum mechanics. They do that by thinking from “first principles”: building their reasoning from the ground up.</p>
+            <blockquote>
+              <p>I would encourage people to use the mental tools of physics and apply them broadly in life. They are the best tools.</p>
+            </blockquote>
+            <p>The normal way we conduct our lives is reasoning by analogy. That means we do something because it’s similar to something else, or what other people are doing.</p>
+            <p>When you think this way, you only get slight iterations. It’s easier to reason by analogy rather than from first principles, so that’s what we do most of the time. And in most of life, we should reason by analogy. Otherwise, mentally, you wouldn’t be able to get through the day. It would be too much thinking.</p>
+            <p>But for important things, that kind of thinking is too bound by convention or prior experiences. You will hear, “It’s always been done this way,” or “Nobody’s ever done it.” That is a ridiculous way to think.</p>
+            <p>Don’t just follow the trends. You can avoid following trends by thinking with the physics approach, first principles. It’s a powerful, powerful method for life in general. Look at the fundamentals and construct your reasoning from there. Then see if you have a conclusion that works or doesn’t work.98 It might or might not be different from what people have done in the past.</p>
+
+            <h2>Q: How do you apply first-principles thinking?</h2>
+            <p>Break something down to the most fundamental principles. Start by asking: What am I most confident is true at a foundational level? That sets your axiomatic base. Then you reason up from there. Then you check your conclusions against the axiomatic truths.</p>
+            <p>For instance, to approach any new technology problem, make sure you’re not violating physics with a first-principles analysis. A basic question in physics would be: Am I violating conservation of energy or momentum? If so, it’s not going to work. That’s just to establish if this idea is possible.</p>
+            <p>It’s hard to think this way. It takes a lot of effort. But if you’re trying to do something new, it’s the best way to think.</p>
+
+            <h2>Q: How have you applied first-principles thinking to building companies?</h2>
+            <p>Here’s an example from early in building Tesla. People said battery packs were too expensive to make cheap electric cars. They assumed they would always be expensive, because they had been in the past. That’s pretty dumb. If you applied that reasoning to everything new, then you would never try anything new. “Oh, nobody wants a car. Horses are great; we’re used to them. They can eat grass. There’s lots of grass all over the place. There’s no gasoline available. So people will never buy gas cars.” People did say that, a lot.</p>
+            <p>People assumed batteries for electric vehicles would always cost $600 per kilowatt hour. The first-principles approach to battery costs is this: What are the batteries made of? What are the materials that make up the batteries? What is the market value of those material constituents?</p>
+            <p>It’s got cobalt, nickel, aluminum, carbon, some polymers for separation, and a steel can. Okay, what if we bought that amount of material at the London Metal Exchange? What would each of those things cost? Oh, geez, it’s only $80 per kilowatt hour. So clearly, we just need to think of clever ways to take those materials and combine them into the shape of a battery cell. That’s how I knew it was possible to build batteries much much cheaper than anyone else realized.</p>
+            <blockquote>
+              <p>Great differences in technology exist in the world, which even hardcore technologists are unaware of.</p>
+              <p>What is simple in one arena is often profound in another.</p>
+            </blockquote>
+            <p>The first-principles approach is a good way to understand what new things are possible. It doesn’t mean you’ll be successful, but at least you can determine if success is one of the possibilities, and that is important. This is how I decided to start SpaceX.</p>
+            <p>First-principles thinking built SpaceX. Most people think, “Historically, all rockets have been expensive. Therefore, in the future, all rockets will be expensive.” But that’s not true.This is where it’s helpful to use the analytical approach again.</p>
+            <p>The way we applied first-principles thinking to rocketry was asking, “What are the materials that go into a rocket?” A rocket is made from aluminum, titanium, copper, and carbon fiber. Break it down further and ask, “How much of each material is used? Now, what is the cost of all these raw components?”</p>
+            <p>If you have them stacked on the floor and could wave a magic wand to create the rocket, what would the cost of the rocket be? We imagine the cost of rearranging the atoms was zero.</p>
+            <p>That’s going to set the floor of the cost of the rocket. I call this the “magic wand number,” the hypothetical best-case scenario. For rockets, that turned out to be a relatively small number, well under 5 percent of the current cost, in some cases closer to 1 or 2 percent. The manufacturing must be very inefficient if the raw material cost is only 1 or 2 percent of the finished product.</p>
+            <p>I was able to see a great deal of room for improvement. Now our challenge was to figure out how to get the atoms in the right shape more efficiently.</p>
+            <p>That first-principles thought process around the rocket became general purpose for all parts. I call it “The Idiot Index.” How much more does a finished product cost than the cost of its materials? If a part or product had a high Idiot Index, we could cut the cost with more efficient manufacturing techniques.</p>
+            <p>A component that costs $1,000 when the aluminum it was made of costs only ten dollars likely has a design that is too complex or an inefficient manufacturing process. If the ratio is high, you’re an idiot.</p>
+            <p>One part of the rocket, the half nozzle jacket, cost $13,000. But it was only made of $200 worth of steel. I expect all my engineers to know all the best and worst parts in their systems as judged by the idiot index at all times.</p>
+            <p>That’s what I mean by thinking about things from a first-principles standpoint. If I had analyzed it by analogy and said, “What are all other rocket companies doing? What do their rockets cost? What historically have other rockets cost?” That is reasoning by analogy, but it really doesn’t illustrate what the true potential is.</p>
+            <blockquote>
+              <p>The first-principles approach is a good way to figure out counterintuitive solutions. It was a helpful thing to learn.</p>
+            </blockquote>
+          </div>
+
+          <footer class="article-exit">
+            <a href="#feedback">回到 Home ↗</a>
+            <span>2026-09-19</span>
+          </footer>
+        </article>
+      </section>
+    </main>
+
+    <dialog id="feedback-dialog">
+      <form method="dialog" id="feedback-form">
+        <h2 class="feedback-title">自由反馈</h2>
+        <p class="feedback-help">可以写“整体感觉不对”、偏好的方案，或具体想调整的地方。</p>
+        <textarea class="feedback-input" id="feedback-input" placeholder="例如：B 的宽度更舒服，但 A 的标题关系更自然……"></textarea>
+        <div class="feedback-actions">
+          <button type="button" id="cancel-feedback">取消</button>
+          <button type="submit">保存到本地</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script>
+      const variables = [
+        {
+          id: 'P1-01',
+          name: '页面标题与文章标题关系',
+          note: '判断 Now 页面标题与真实文章正文之间的层级关系。',
+          options: {
+            A: 'Now 标题 + 较近正文',
+            B: '隐藏页面标题，正文主导',
+            C: 'Now 超大标题 + 正文',
+            D: 'Now 页面标题 + 正文直接开始',
+            E: 'Now 标题 + 底部结构线'
+          }
+        },
+        {
+          id: 'P1-02',
+          name: '文章内容宽度',
+          note: '判断正文阅读栏应该更像个人笔记，还是开放内容页面。',
+          options: {
+            A: '窄阅读栏 / 640px',
+            B: '中等阅读栏 / 780px',
+            C: '宽阅读栏 / 860px',
+            D: '可读内容轨道 / 980px',
+            E: '全站主轨道 / 1120px'
+          }
+        },
+        {
+          id: 'P1-04',
+          name: '文章边界',
+          note: '判断文章与画布之间是否需要明确的视觉边界。',
+          options: {
+            A: '开放式正文',
+            B: '顶部语义线',
+            C: '左侧语义线',
+            D: '浅色 Surface',
+            E: '卡片 Surface'
+          }
+        },
+        {
+          id: 'P1-05',
+          name: '正文密度',
+          note: '判断段落、标题和列表之间的呼吸感。',
+          options: {
+            A: '最开放',
+            B: '宽松',
+            C: '平衡',
+            D: '紧凑',
+            E: '最紧凑'
+          }
+        }
+      ];
+
+      const previewVariant = 'p1-02-d';
+      const saved = {
+        choices: {
+          'P1-01': 'D',
+          'P1-02': 'D',
+          'P1-04': 'A',
+          'P1-05': 'C'
+        },
+        feedback: '',
+        previewVariant
+      };
+
+      try {
+        const stored = JSON.parse(localStorage.getItem('now-article-ui-review') || '{}');
+        saved.choices = { ...saved.choices, ...(stored.choices || {}) };
+        if (stored.previewVariant !== previewVariant) {
+          saved.choices['P1-02'] = 'D';
+        }
+        saved.previewVariant = previewVariant;
+        saved.feedback = stored.feedback || '';
+      } catch (error) {
+        // Local file contexts may block localStorage; the preview remains usable.
+      }
+
+      let variableIndex = 1;
+      const variableSelect = document.querySelector('#variable-select');
+      const choiceButtons = Array.from(document.querySelectorAll('[data-option]'));
+      const variableNote = document.querySelector('#variable-note');
+      const choiceNote = document.querySelector('#choice-note');
+      const previewId = document.querySelector('#preview-id');
+      const previewOption = document.querySelector('#preview-option');
+      const feedbackDialog = document.querySelector('#feedback-dialog');
+      const feedbackInput = document.querySelector('#feedback-input');
+
+      variables.forEach((variable, index) => {
+        const option = document.createElement('option');
+        option.value = String(index);
+        option.textContent = variable.id + ' / ' + variable.name;
+        variableSelect.append(option);
+      });
+
+      function currentVariable() {
+        return variables[variableIndex];
+      }
+
+      function currentChoice() {
+        return saved.choices[currentVariable().id] || 'A';
+      }
+
+      function persist() {
+        try {
+          localStorage.setItem('now-article-ui-review', JSON.stringify(saved));
+        } catch (error) {
+          // Keep the interaction functional even when storage is unavailable.
+        }
+      }
+
+      function render() {
+        const variable = currentVariable();
+        const choice = currentChoice();
+        document.body.className = 'is-' + variable.id.toLowerCase() + ' is-option-' + choice.toLowerCase();
+        variableSelect.value = String(variableIndex);
+        variableNote.textContent = variable.note;
+        choiceNote.textContent = choice + ' · ' + variable.options[choice];
+        previewId.textContent = variable.id + ' / ' + variable.name;
+        previewOption.textContent = choice + ' · ' + variable.options[choice];
+
+        choiceButtons.forEach((button) => {
+          const active = button.dataset.option === choice;
+          button.classList.toggle('is-active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+      }
+
+      function choose(choice) {
+        saved.choices[currentVariable().id] = choice;
+        persist();
+        render();
+      }
+
+      variableSelect.addEventListener('change', (event) => {
+        variableIndex = Number(event.target.value);
+        render();
+      });
+
+      choiceButtons.forEach((button) => {
+        button.addEventListener('click', () => choose(button.dataset.option));
+      });
+
+      document.querySelector('#previous-variable').addEventListener('click', () => {
+        variableIndex = (variableIndex - 1 + variables.length) % variables.length;
+        render();
+      });
+
+      document.querySelector('#next-variable').addEventListener('click', () => {
+        variableIndex = (variableIndex + 1) % variables.length;
+        render();
+      });
+
+      document.querySelector('#open-feedback').addEventListener('click', () => {
+        feedbackInput.value = saved.feedback;
+        feedbackDialog.showModal();
+        feedbackInput.focus();
+      });
+
+      document.querySelector('#cancel-feedback').addEventListener('click', () => {
+        feedbackDialog.close();
+      });
+
+      document.querySelector('#feedback-form').addEventListener('submit', () => {
+        saved.feedback = feedbackInput.value.trim();
+        persist();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        const tagName = event.target.tagName.toLowerCase();
+        if (tagName === 'input' || tagName === 'select' || tagName === 'textarea') return;
+
+        if (/^[a-e]$/i.test(event.key)) {
+          choose(event.key.toUpperCase());
+        }
+
+        if (event.key === 'ArrowLeft') {
+          variableIndex = (variableIndex - 1 + variables.length) % variables.length;
+          render();
+        }
+
+        if (event.key === 'ArrowRight') {
+          variableIndex = (variableIndex + 1) % variables.length;
+          render();
+        }
+      });
+
+      render();
+    </script>
+  </body>
+</html>

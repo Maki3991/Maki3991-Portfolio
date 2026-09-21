@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Maki 羽轩 Home / Hero 方向 02：分栏信号。" />
+    <title>Split Signal — Maki 羽轩</title>
+    <link rel="stylesheet" href="../shared.css" />
+    <style>
+      :root { color-scheme: dark; }
+      body.d2 { background: #0b1220; color: #f0f5ff; font-size: 16px; }
+      .d2-header { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 1rem 3rem; border-bottom: 1px solid #22334b; background: rgba(11,18,32,.9); }
+      .d2-brand { display: flex; align-items: baseline; gap: .9rem; text-decoration: none; }
+      .d2-brand strong { font-size: 1.05rem; letter-spacing: -.04em; }
+      .d2-brand span, .d2-nav a, .d2-header .mobile-menu summary { color: #7f98b7; font: .67rem/1 ui-monospace, monospace; letter-spacing: .11em; text-transform: uppercase; }
+      .d2-nav { display: flex; gap: 1.5rem; }
+      .d2-nav a { text-decoration: none; }
+      .d2-nav a:hover, .d2-nav a[aria-current="page"] { color: #76e3ff; }
+      .d2-main { max-width: 1540px; margin: 0 auto; padding: 0 3rem; }
+      .d2-hero { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(360px, .98fr); min-height: 83vh; border-bottom: 1px solid #22334b; }
+      .d2-hero-copy { display: flex; flex-direction: column; justify-content: center; padding: 7rem 7vw 6rem 0; }
+      .d2-hero h1 { max-width: 850px; margin: 1.4rem 0 2rem; font-size: clamp(4.1rem, 9vw, 10.5rem); line-height: .82; letter-spacing: -.095em; font-weight: 760; }
+      .d2-hero h1 span { color: #76e3ff; }
+      .d2-lede { max-width: 590px; margin: 0; color: #a8b8cc; font-size: 1.08rem; line-height: 1.8; }
+      .d2-hero-links { display: flex; flex-wrap: wrap; gap: 1rem 1.6rem; margin-top: 2.2rem; }
+      .d2-hero-links a { color: #76e3ff; text-underline-offset: .3em; }
+      .d2-proof { position: relative; display: flex; flex-direction: column; justify-content: end; min-height: 620px; border-left: 1px solid #22334b; padding: 2rem; }
+      .d2-proof::before { position: absolute; top: 0; left: 0; width: 40%; height: 3px; background: #76e3ff; content: ""; }
+      .d2-proof img { width: 100%; height: min(54vh, 560px); object-fit: cover; filter: grayscale(.25) saturate(1.2); }
+      .d2-proof-caption { display: flex; justify-content: space-between; gap: 1rem; padding-top: .8rem; color: #8da4be; font: .7rem/1.5 ui-monospace, monospace; }
+      .d2-signal-strip { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 1.5rem; border-top: 1px solid #314863; border-bottom: 1px solid #314863; }
+      .d2-signal { padding: .85rem .8rem .85rem 0; border-right: 1px solid #314863; }
+      .d2-signal + .d2-signal { padding-left: .8rem; }
+      .d2-signal:last-child { border-right: 0; }
+      .d2-signal b { display: block; color: #f0f5ff; font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+      .d2-signal small { color: #7f98b7; font: .65rem/1.35 ui-monospace, monospace; text-transform: uppercase; }
+      .d2-section { padding: 7rem 0; border-bottom: 1px solid #22334b; }
+      .d2-section-head { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 3rem; }
+      .d2-section-head h2 { max-width: 740px; margin: 0; font-size: clamp(2.3rem, 5vw, 5.6rem); line-height: .88; letter-spacing: -.08em; }
+      .d2-section-head p { margin: 0; color: #76e3ff; }
+      .d2-project { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+      .d2-project-lead { border-top: 3px solid #76e3ff; padding-top: 1.2rem; }
+      .d2-project-lead h3 { margin: .6rem 0 1rem; font-size: clamp(2rem, 4vw, 4.4rem); line-height: .9; letter-spacing: -.08em; }
+      .d2-project-lead p, .d2-work p, .d2-about p, .d2-now p, .d2-contact p { max-width: 650px; color: #a8b8cc; line-height: 1.78; }
+      .d2-project-lead .role { color: #7f98b7; font: .72rem/1.5 ui-monospace, monospace; letter-spacing: .06em; text-transform: uppercase; }
+      .d2-project-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 2rem; background: #314863; }
+      .d2-result { min-height: 100px; padding: 1rem; background: #0b1220; }
+      .d2-result strong { display: block; color: #76e3ff; font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+      .d2-result span { display: block; margin-top: .35rem; color: #7f98b7; font: .66rem/1.4 ui-monospace, monospace; }
+      .d2-work { border-left: 1px solid #314863; padding-left: 2rem; }
+      .d2-work h3 { margin: .7rem 0 1rem; font-size: clamp(1.8rem, 3vw, 3.2rem); line-height: .95; letter-spacing: -.07em; }
+      .d2-work-meta { color: #76e3ff; font: .72rem/1.4 ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; }
+      .d2-work-metrics { display: grid; gap: .75rem; margin-top: 2rem; }
+      .d2-work-metrics li { border-bottom: 1px solid #22334b; padding-bottom: .65rem; color: #8da4be; }
+      .d2-work-metrics strong { color: #f0f5ff; font-variant-numeric: tabular-nums; }
+      .d2-note { display: grid; grid-template-columns: .4fr 1fr; gap: 4rem; align-items: start; }
+      .d2-note blockquote { max-width: 920px; margin: 0; font-size: clamp(2rem, 5vw, 5.5rem); line-height: .95; letter-spacing: -.08em; }
+      .d2-note cite { display: block; margin-top: 1.5rem; color: #7f98b7; font: .72rem/1.4 ui-monospace, monospace; font-style: normal; }
+      .d2-now { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+      .d2-now h2, .d2-contact h2 { margin: 0 0 1rem; font-size: clamp(2.4rem, 5vw, 5.2rem); line-height: .88; letter-spacing: -.08em; }
+      .d2-now-side { border-left: 1px solid #314863; padding-left: 2rem; }
+      .d2-now-side dl { display: grid; grid-template-columns: 1fr auto; gap: .9rem 1.2rem; margin: 0; color: #a8b8cc; }
+      .d2-now-side dt { color: #7f98b7; font: .68rem/1.4 ui-monospace, monospace; text-transform: uppercase; }
+      .d2-now-side dd { margin: 0; text-align: right; }
+      .d2-about { display: grid; grid-template-columns: .4fr 1fr; gap: 4rem; }
+      .d2-about-copy { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+      .d2-about article { border-top: 1px solid #314863; padding-top: 1rem; }
+      .d2-about h3 { margin: 0 0 .65rem; color: #76e3ff; font: .68rem/1.3 ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; }
+      .d2-contact { display: grid; grid-template-columns: .4fr 1fr; gap: 4rem; }
+      .d2-contact-links { display: flex; flex-wrap: wrap; gap: 1rem 1.7rem; margin-top: 1.8rem; }
+      .d2-contact-links a { color: #76e3ff; }
+      .d2-footer { display: flex; justify-content: space-between; gap: 2rem; padding: 1rem 0 2rem; color: #7f98b7; font: .68rem/1.5 ui-monospace, monospace; }
+      .d2-footer a { color: #76e3ff; }
+      @media (max-width: 900px) { .d2-header { padding: 1rem 1.2rem; } .d2-nav { display: none; } .d2-header .mobile-menu { display: block; } .d2-header .mobile-menu summary { cursor: pointer; } .d2-header .mobile-menu nav { display: grid; gap: .65rem; padding: 1rem 0 .2rem; text-align: right; } .d2-main { padding: 0 1.2rem; } .d2-hero { grid-template-columns: 1fr; min-height: auto; } .d2-hero-copy { padding: 5rem 0 4rem; } .d2-hero h1 { font-size: clamp(4rem, 17vw, 7.3rem); } .d2-proof { min-height: auto; border-left: 0; border-top: 1px solid #22334b; padding: 2rem 0 3rem; } .d2-proof::before { top: 0; } .d2-proof img { height: 58vw; max-height: 480px; } .d2-section { padding: 4.5rem 0; } .d2-project, .d2-now, .d2-about, .d2-contact, .d2-note { grid-template-columns: 1fr; gap: 2.5rem; } .d2-work, .d2-now-side { border-left: 0; border-top: 1px solid #314863; padding: 1.5rem 0 0; } .d2-section-head { display: block; } .d2-section-head h2 { margin-top: 1rem; } }
+      @media (max-width: 560px) { .d2-brand span { display: none; } .d2-project-results { grid-template-columns: 1fr; } .d2-result { min-height: auto; } .d2-about-copy { grid-template-columns: 1fr; gap: 1.6rem; } .d2-footer { display: block; } .d2-footer a { display: block; margin-top: .7rem; } }
+    </style>
+  </head>
+  <body class="d2">
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <header class="d2-header">
+      <a class="d2-brand" href="#top"><strong>Maki 羽轩</strong><span>WORK / SIGNAL / CHINA</span></a>
+      <nav class="d2-nav" aria-label="主导航"><a href="#top" aria-current="page">Home</a><a href="#projects">Projects</a><a href="#notes">Notes</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+      <details class="mobile-menu"><summary>Menu</summary><nav aria-label="移动主导航"><a href="#top">Home</a><a href="#projects">Projects</a><a href="#notes">Notes</a><a href="#about">About</a><a href="#contact">Contact</a></nav></details>
+    </header>
+    <main class="d2-main" id="main">
+      <section class="d2-hero" id="top" aria-labelledby="hero-title">
+        <div class="d2-hero-copy"><p class="eyebrow">00 / Personal signal</p><h1 id="hero-title">把内容做成<br /><span>可验证的信号。</span></h1><p class="d2-lede">我关注英语学习、内容表达、自媒体运营、教育产品和 AI 辅助创作，正在把自己的内容、项目和学习系统整理成一个长期可验证的作品集。</p><div class="d2-hero-links"><a href="#projects">进入项目与作品 ↓</a><a href="mailto:maki1344933709@gmail.com">邮件联系 ↗</a></div></div>
+        <aside class="d2-proof" aria-label="代表作品证据"><img src="../assets/V028.jpg" alt="四级六级听力吐槽与学习路径内容的真实作品封面" /><div class="d2-proof-caption"><span>V028 · 抖音 · 2025-07-28</span><span>real work / 01</span></div><div class="d2-signal-strip"><div class="d2-signal"><b>491.2 万</b><small>plays</small></div><div class="d2-signal"><b>22.4 万</b><small>likes</small></div><div class="d2-signal"><b>4.4 万</b><small>shares</small></div></div></aside>
+      </section>
+
+      <section class="d2-section" id="projects" aria-labelledby="projects-title"><div class="d2-section-head"><p class="section-label">01 / Selected work</p><h2 id="projects-title">先看正在发生的内容实践。</h2></div><div class="d2-project"><article class="d2-project-lead"><p class="role">内容创作与账号运营 · project</p><h3>Maki 羽轩英语自媒体</h3><p>独立运营英语学习类自媒体账号，覆盖抖音、小红书、视频号、B 站等平台。负责选题、脚本、拍摄、剪辑、发布、复盘和私信沟通。</p><div class="d2-project-results"><div class="d2-result"><strong>829 万+</strong><span>累计播放 / 观看</span></div><div class="d2-result"><strong>53 万+</strong><span>累计互动</span></div><div class="d2-result"><strong>491 万+</strong><span>单条最高播放</span></div></div></article><article class="d2-work"><p class="d2-work-meta">work / Douyin / ready</p><h3>四级六级听力吐槽与学习路径内容</h3><p>用强情绪入口切入四六级听力问题，再提供更具体的替代路径。</p><ul class="metrics d2-work-metrics"><li><span>播放</span><strong>491.2 万</strong></li><li><span>点赞</span><strong>22.4 万</strong></li><li><span>评论</span><strong>1.1 万</strong></li><li><span>收藏 / 分享</span><strong>1.8 万 / 4.4 万</strong></li></ul><p><a class="inline-link" href="https://v.douyin.com/xe4D6L5DczE/" target="_blank" rel="noreferrer">打开真实作品 ↗</a></p></article></div></section>
+
+      <section class="d2-section" id="notes" aria-labelledby="notes-title"><div class="d2-note"><p class="section-label">02 / Working note</p><div><blockquote id="notes-title">英语学习内容不一定从知识点开始，也可以从学习者被压抑的共同感受进入，再提供更清楚的替代路径。</blockquote><cite>来自 Maki 羽轩英语自媒体项目记录</cite></div></div></section>
+
+      <section class="d2-section" id="now" aria-labelledby="now-title"><div class="d2-now"><div><p class="section-label">03 / Now</p><h2 id="now-title">正在把散落的内容，整理成作品档案。</h2><p>我在整理自己的内容作品、账号数据、项目经历和复盘方法，希望它们不只是散落在平台里的视频，而是可以被长期查看和验证的作品档案。</p></div><aside class="d2-now-side"><dl><dt>Current</dt><dd>整理内容作品</dd><dt>Evidence</dt><dd>账号数据与复盘</dd><dt>Next</dt><dd>沉淀选题方法</dd><dt>Looking for</dt><dd>内容 / 教育产品 / AI</dd></dl></aside></div></section>
+
+      <section class="d2-section" id="about" aria-labelledby="about-title"><div class="d2-about"><p class="section-label">04 / About</p><div class="d2-about-copy"><article><h3>我是谁</h3><p>我是一名国际政治本科生，也在持续做英语学习内容、自媒体账号运营、英语产品交付和个人学习系统搭建。</p></article><article><h3>我长期关心什么</h3><p>我关心英语学习方法、内容表达、自媒体运营、教育产品、AI 辅助创作、学习系统、写作研究和音乐创作。</p></article><article><h3>我相信什么</h3><p>我相信可信度来自真实作品、真实数据和真实复盘。把复杂知识讲清楚，比把自己包装得很厉害更重要。</p></article><article><h3>我正在寻找什么</h3><p>内容运营、新媒体运营、英语教育产品与 AI 辅助创作相关机会。</p></article></div></div></section>
+
+      <section class="d2-section" id="contact" aria-labelledby="contact-title"><div class="d2-contact"><p class="section-label">05 / Contact</p><div><h2 id="contact-title">保持联系。</h2><p>如果你想讨论内容运营、英语教育产品或 AI 辅助创作，可以通过邮箱联系我。</p><div class="d2-contact-links"><a href="mailto:maki1344933709@gmail.com">maki1344933709@gmail.com ↗</a><a href="https://v.douyin.com/CBc6conCqFk/" target="_blank" rel="noreferrer">抖音主页 ↗</a><a href="https://github.com/Maki3991" target="_blank" rel="noreferrer">GitHub ↗</a></div></div></div></section>
+      <footer class="d2-footer"><span>© Maki 羽轩 · Home / Hero direction 02</span><a href="#top">Back to top ↑</a></footer>
+    </main>
+  </body>
+</html>

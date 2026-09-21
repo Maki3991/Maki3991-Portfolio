@@ -1,42 +1,23 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { profile } from "@/data/site";
+import { aboutEntry } from "@/data/about";
+import "@/styles/secondary-pages.css";
+import "@/styles/now-content.css";
+import "@/styles/display-title.css";
 ---
 
 <BaseLayout title="关于" description="关于 Maki 羽轩：国际政治本科生、英语内容创作者和长期学习者。">
-  <section class="page-hero">
-    <p class="eyebrow">About</p>
-    <h1>关于我</h1>
+  <section class="page-hero about-page">
+    <p class="eyebrow">WORKING CONTEXT</p>
+    <h1 class="display-title">About</h1>
+    <p class="page-hero-subtitle">把经历变成方法</p>
   </section>
 
-  <section class="section about-grid">
-    <article>
-      <h2>我是谁</h2>
-      <p>
-        我是 Maki / Maki 羽轩，一名国际政治本科生，也在持续做英语学习内容、自媒体账号运营、英语产品交付和个人学习系统搭建。
-      </p>
-    </article>
-    <article>
-      <h2>我现在在做什么</h2>
-      <p>
-        我在整理自己的内容作品、账号数据、项目经历和复盘方法，希望它们不只是散落在平台里的视频，而是可以被长期查看和验证的作品档案。
-      </p>
-    </article>
-    <article>
-      <h2>我长期关心什么</h2>
-      <p>
-        我关心英语学习方法、内容表达、自媒体运营、教育产品、AI 辅助创作、学习系统、写作研究和音乐创作。
-      </p>
-    </article>
-    <article>
-      <h2>我相信什么</h2>
-      <p>
-        我相信可信度来自真实作品、真实数据和真实复盘。把复杂知识讲清楚，比把自己包装得很厉害更重要。
-      </p>
-    </article>
-    <article>
-      <h2>我正在寻找什么</h2>
-      <p>{profile.seeking}。</p>
-    </article>
+  <section class="section about-article">
+    {aboutEntry ? (
+      <article class="now-entry-content about-prose" set:html={aboutEntry.html}></article>
+    ) : (
+      <p class="now-empty">About 内容正在整理。</p>
+    )}
   </section>
 </BaseLayout>

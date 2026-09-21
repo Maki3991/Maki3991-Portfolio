@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Working Archive Component Lab v0.2：21 个设计维度，每个维度 5 个可比较的完整方案。"
+    />
+    <title>Working Archive / Component Lab v0.2</title>
+    <link rel="stylesheet" href="./lab.css" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#lab-content">跳到实验内容</a>
+
+    <div class="lab-app">
+      <header class="lab-topbar">
+        <a class="lab-brand" href="#top" aria-label="返回实验室顶部">
+          <span class="brand-mark">LAB</span>
+          <span class="brand-divider">/</span>
+          <span class="brand-title">WORKING ARCHIVE</span>
+          <span class="brand-version">v0.2</span>
+        </a>
+
+        <div class="topbar-actions">
+          <span class="topbar-note">21 dimensions / 105 specimens</span>
+          <button class="icon-button js-theme-toggle" type="button" aria-label="切换实验室主题">
+            <span class="theme-glyph" aria-hidden="true">◐</span>
+            <span class="theme-label">Theme</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="lab-layout" id="top">
+        <aside class="lab-sidebar" aria-label="组件实验导航">
+          <div class="sidebar-intro">
+            <span class="eyebrow">DESIGN DIMENSION LAB</span>
+            <p>先看完整方案，再决定哪些规则进入真实页面。</p>
+          </div>
+          <div class="sidebar-progress" aria-label="实验规模">
+            <div>
+              <span>COMPONENTS</span>
+              <strong>21</strong>
+            </div>
+            <div>
+              <span>VARIANTS</span>
+              <strong>105</strong>
+            </div>
+          </div>
+          <nav id="component-nav" class="component-nav"></nav>
+        </aside>
+
+        <main id="lab-content" class="lab-main">
+          <section class="lab-intro" aria-labelledby="lab-title">
+            <div class="intro-kicker">
+              <span>RESEARCH / 07</span>
+              <span>LIGHT-FIRST / WORKING ARCHIVE</span>
+              <span>UPDATED 2026.09.14</span>
+            </div>
+            <h1 id="lab-title">组件不是答案，<br /><em>选择过程</em>才是。</h1>
+            <p class="intro-copy">
+              这是一份全站候选设计维度的可视化实验。每个维度都被拆成五个完整方案，
+              方案不会挤在一行里；先观察信息层级、密度、状态和可维护性，再记录选择。
+            </p>
+            <div class="intro-rule"></div>
+            <div class="intro-grid">
+              <div>
+                <span class="micro-label">PRIMARY FLOW</span>
+                <strong>Header → Home → Archive → Detail</strong>
+              </div>
+              <div>
+                <span class="micro-label">TEST CONTENT</span>
+                <strong>真实项目、作品、状态和证据</strong>
+              </div>
+              <div>
+                <span class="micro-label">READING MODE</span>
+                <strong>每个组件纵向完整浏览</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="control-bar" aria-label="实验筛选">
+            <div class="search-wrap">
+              <label class="sr-only" for="lab-search">搜索组件</label>
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <input id="lab-search" type="search" placeholder="搜索 ID、组件或页面……" />
+            </div>
+            <div class="filter-group" role="group" aria-label="按层级筛选">
+              <button class="filter-button is-active" type="button" data-filter="all">全部</button>
+              <button class="filter-button" type="button" data-filter="foundation">基础</button>
+              <button class="filter-button" type="button" data-filter="shell">Shell</button>
+              <button class="filter-button" type="button" data-filter="archive">Archive</button>
+              <button class="filter-button" type="button" data-filter="detail">详情</button>
+              <button class="filter-button" type="button" data-filter="page">页面</button>
+            </div>
+          </section>
+
+          <div id="lab-stats" class="lab-stats" aria-live="polite"></div>
+          <div id="lab-sections"></div>
+        </main>
+      </div>
+
+      <footer class="lab-footer">
+        <span>COMPONENT LAB / v0.2</span>
+        <span>Selected rules will move to the next Component Contract.</span>
+        <a href="#top">回到顶部 ↑</a>
+      </footer>
+    </div>
+
+    <script type="module" src="./lab.js"></script>
+  </body>
+</html>

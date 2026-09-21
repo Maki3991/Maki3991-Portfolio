@@ -4,5 +4,9 @@ dist
 .env
 .env.local
 .vercel
-.playwright-cli
-.obsidian
+# Local browser and audit artifacts
+/.playwright-cli/
+/docs/.obsidian/
+/output/playwright/
+output/**/.playwright-cli/
+.env*.local

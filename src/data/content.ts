@@ -47,7 +47,57 @@ function readMarkdownFile<T>(source: string): MarkdownEntry<T> {
   }
 
   return {
-    ...(JSON.parse(match[1]) as T),
+    ...(parseFrontmatter(match[1]) as T),
     body: match[2].trim(),
   };
+}
+
+function parseFrontmatter(source: string): Record<string, unknown> {
+  const value = source.trim();
+
+  try {
+    return JSON.parse(value) as Record<string, unknown>;
+  } catch {
+    const lines = value
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .filter((line) => line && !line.startsWith('#'));
+
+    return Object.fromEntries(
+      lines.map((line) => {
+        const separator = line.indexOf(':');
+
+        if (separator <= 0) {
+          throw new Error('Invalid frontmatter line in Markdown content file');
+        }
+
+        const key = line.slice(0, separator).trim();
+        const rawValue = line.slice(separator + 1).trim();
+
+        return [key, parseFrontmatterValue(rawValue)];
+      }),
+    );
+  }
+}
+
+function parseFrontmatterValue(value: string): unknown {
+  const firstCode = value.charCodeAt(0);
+  const lastCode = value.charCodeAt(value.length - 1);
+
+  if (
+    (firstCode === 34 && lastCode === 34) ||
+    (firstCode === 39 && lastCode === 39)
+  ) {
+    return value.slice(1, -1);
+  }
+
+  if (/^-?\d+(?:\.\d+)?$/.test(value)) {
+    return Number(value);
+  }
+
+  if (value === 'true') return true;
+  if (value === 'false') return false;
+  if (value === 'null') return null;
+
+  return value;
 }

@@ -20,6 +20,9 @@ export type ProfileLink = {
   label: string;
   href: string;
   status: LinkStatus;
+  group: "direct" | "public" | "other";
+  copyText?: string;
+  imageOnly?: boolean;
   note?: string;
   image?: string;
 };

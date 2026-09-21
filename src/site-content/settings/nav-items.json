@@ -1,22 +1,7 @@
 [
-  {
-    "label": "首页",
-    "href": "/"
-  },
-  {
-    "label": "作品",
-    "href": "/works/"
-  },
-  {
-    "label": "项目",
-    "href": "/projects/"
-  },
-  {
-    "label": "关于",
-    "href": "/about/"
-  },
-  {
-    "label": "联系",
-    "href": "/contact/"
-  }
+  { "label": "Home", "href": "/" },
+  { "label": "Archive", "href": "/archive/" },
+  { "label": "Now", "href": "/now/" },
+  { "label": "About", "href": "/about/" },
+  { "label": "Contact", "href": "/contact/" }
 ]

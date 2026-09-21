@@ -1,0 +1,76 @@
+/*
+ * Shared display-title rail for the five primary routes.
+ * The title remains page-specific; the visual system is not.
+ */
+
+body:has(.display-title) .display-title {
+  color: var(--text, #1d3341);
+  font-family: var(--font-family-display) !important;
+  --legacy-font-stack:
+    "Segoe UI", "Microsoft YaHei", sans-serif !important;
+  font-size: var(--font-size-display) !important;
+  font-weight: 800 !important;
+  letter-spacing: var(--tracking-display) !important;
+  line-height: var(--line-height-display) !important;
+  margin: 0 !important;
+}
+
+body:has(.home-page) .home-hero,
+body:has(.archive-page) .archive-hero,
+body:has(.now-page) .now-page,
+body:has(.about-page) .page-hero,
+body:has(.contact-page) .page-hero {
+  padding-top: var(--layout-title-offset-desktop);
+}
+
+body:has(.home-page) .home-hero {
+  align-content: start;
+  align-items: start;
+}
+
+body:has(.archive-page) .archive-page {
+  padding-top: 0;
+}
+
+body:has(.archive-page) .archive-hero {
+  align-items: start;
+}
+
+body:has(.now-page) .now-shell {
+  border-top: 0;
+  padding-top: 0;
+}
+
+body:has(.home-page) .home-hero-copy,
+body:has(.archive-page) .archive-hero-copy,
+body:has(.now-page) .now-shell,
+body:has(.about-page) .page-hero,
+body:has(.contact-page) .page-hero {
+  gap: 18px;
+}
+
+body:has(.home-page) .home-hero-copy > .home-kicker,
+body:has(.archive-page) .archive-hero-copy > .archive-kicker,
+body:has(.now-page) .now-kicker,
+body:has(.about-page) .page-hero .eyebrow,
+body:has(.contact-page) .page-hero .eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  body:has(.home-page) .home-hero,
+  body:has(.archive-page) .archive-hero,
+  body:has(.now-page) .now-page,
+  body:has(.about-page) .page-hero,
+  body:has(.contact-page) .page-hero {
+    padding-top: var(--layout-title-offset-mobile) !important;
+  }
+
+  body:has(.archive-page) .archive-page {
+    padding-top: 0 !important;
+  }
+}

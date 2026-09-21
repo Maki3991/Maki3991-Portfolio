@@ -1,0 +1,53 @@
+---
+import type { ArchiveItemWithBody, ArchiveType } from "@/data/archive";
+
+type Props = {
+  item: ArchiveItemWithBody;
+};
+
+const { item } = Astro.props;
+
+const typeLabels: Record<ArchiveType, string> = {
+  project: "PROJECT",
+  experience: "EXPERIENCE",
+  hackathon: "HACKATHON",
+  creation: "CREATION",
+};
+
+const statusLabels = {
+  active: "进行中",
+  completed: "已完成",
+  archived: "已归档",
+  paused: "暂停",
+  draft: "草稿",
+} as const;
+
+const formatPeriod = (start: string, end?: string) =>
+  start.replaceAll("-", ".") + (end ? " — " + end.replaceAll("-", ".") : "");
+---
+
+<article class="archive-row" id={item.id}>
+  <div class="archive-row-number" aria-hidden="true">
+    {String(item.order ?? 0).padStart(2, "0")}
+  </div>
+
+  <div class="archive-row-main">
+    <div class="archive-row-meta">
+      <span>{typeLabels[item.type]}</span>
+      <span>{formatPeriod(item.period.start, item.period.end)}</span>
+      <span class="archive-row-status">{statusLabels[item.status]}</span>
+    </div>
+    <h2 class="archive-row-title">
+      <a href={"/archive/" + item.id + "/"}>
+        {item.title} <span aria-hidden="true">↗</span>
+      </a>
+    </h2>
+    <p>{item.summary}</p>
+  </div>
+
+  <div class="archive-row-aside">
+    <a class="archive-row-link" href={"/archive/" + item.id + "/"}>
+      查看记录 <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</article>

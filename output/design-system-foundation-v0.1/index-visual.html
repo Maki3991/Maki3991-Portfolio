@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design System Foundation · 视觉判断板</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1d3341;
+      --muted: #556b75;
+      --subtle: #68808d;
+      --line: #d8e2e5;
+      --canvas: #f7f9fb;
+      --surface: #ffffff;
+      --accent: #217895;
+      --accent-soft: rgba(33, 120, 149, .08);
+      --max: 1180px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--canvas); color: var(--ink); line-height: 1.6; }
+    button, textarea { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    .shell { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    .topbar { padding: 28px 0 18px; border-bottom: 1px solid var(--line); }
+    .eyebrow { margin: 0 0 6px; color: var(--accent); font: 700 .75rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .12em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 780px; margin-bottom: 12px; font-size: clamp(2.3rem, 6vw, 4.5rem); line-height: .98; letter-spacing: -.055em; }
+    .lede { max-width: 700px; margin-bottom: 0; color: var(--muted); font-size: 1.05rem; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .button { border: 1px solid var(--ink); border-radius: 999px; background: var(--ink); color: #fff; padding: 10px 15px; font-weight: 700; }
+    .button.secondary { border-color: var(--line); background: var(--surface); color: var(--ink); }
+    .button:hover { transform: translateY(-1px); }
+    .notice { margin: 24px 0 0; padding: 14px 16px; border-left: 3px solid var(--accent); background: var(--accent-soft); color: var(--muted); }
+    main { padding: 42px 0 80px; }
+    .round { margin-bottom: 64px; }
+    .round-head { display: flex; justify-content: space-between; gap: 24px; align-items: end; margin-bottom: 18px; }
+    .round h2 { margin-bottom: 4px; font-size: clamp(1.6rem, 3vw, 2.3rem); line-height: 1.1; letter-spacing: -.035em; }
+    .round-intro { max-width: 640px; margin-bottom: 0; color: var(--muted); }
+    .round-number { color: var(--subtle); font: 700 .75rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .1em; white-space: nowrap; }
+    .options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .option { --option-bg: #fff; --option-text: #1d3341; --option-muted: #556b75; --option-line: #d8e2e5; --option-accent: #217895; border: 1px solid var(--option-line); border-radius: 16px; background: var(--option-bg); color: var(--option-text); padding: 18px; box-shadow: 0 8px 24px rgba(29, 51, 65, .04); transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+    .option:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(29, 51, 65, .09); }
+    .option.selected { border: 2px solid var(--option-accent); padding: 17px; box-shadow: 0 0 0 4px color-mix(in srgb, var(--option-accent) 12%, transparent); }
+    .option-head { display: flex; justify-content: space-between; gap: 12px; align-items: start; margin-bottom: 12px; }
+    .option h3 { margin-bottom: 3px; font-size: 1.08rem; line-height: 1.25; }
+    .option-tag { color: var(--option-accent); font: 700 .7rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; }
+    .option-desc { min-height: 48px; margin-bottom: 14px; color: var(--option-muted); font-size: .88rem; }
+    .pick { width: 100%; border: 1px solid var(--option-accent); border-radius: 999px; background: transparent; color: var(--option-accent); padding: 9px 12px; font-weight: 700; }
+    .option.selected .pick { background: var(--option-accent); color: #fff; }
+    .status { min-height: 1.4em; margin: 8px 0 0; color: var(--option-accent); text-align: center; font-size: .78rem; font-weight: 700; }
+
+    /* Palette candidates: each card owns its own mini-page variables. */
+    .palette-a { --option-bg: #fff; --option-text: #1d3341; --option-muted: #556b75; --option-line: #d8e2e5; --option-accent: #217895; }
+    .palette-b { --option-bg: #fff; --option-text: #20313a; --option-muted: #536771; --option-line: #dde4e3; --option-accent: #346f80; }
+    .palette-c { --option-bg: #fff; --option-text: #162936; --option-muted: #4b6572; --option-line: #cbd8de; --option-accent: #245e73; }
+    .mini-page { min-height: 226px; display: grid; gap: 12px; padding: 14px; border: 1px solid var(--option-line); border-radius: 10px; background: var(--mini-canvas, #f7f9fb); }
+    .palette-a .mini-page { --mini-canvas: #f7f9fb; }
+    .palette-b .mini-page { --mini-canvas: #fbfaf7; }
+    .palette-c .mini-page { --mini-canvas: #eef3f5; }
+    .mini-nav { display: flex; justify-content: space-between; color: var(--option-text); font-size: .72rem; font-weight: 700; }
+    .mini-kicker { margin: 0; color: var(--option-accent); font: 700 .65rem/1.3 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; text-transform: uppercase; }
+    .mini-title { max-width: 10ch; margin: 0; font-size: 1.65rem; line-height: .98; letter-spacing: -.055em; }
+    .mini-copy { max-width: 31ch; margin: 0; color: var(--option-muted); font-size: .76rem; line-height: 1.45; }
+    .mini-rule { height: 1px; background: var(--option-line); }
+    .mini-link { color: var(--option-accent); font-size: .74rem; font-weight: 700; }
+
+    .type-a { font-family: Inter, ui-sans-serif, system-ui, "Microsoft YaHei", sans-serif; }
+    .type-b { font-family: "Avenir Next", Inter, ui-sans-serif, system-ui, "Microsoft YaHei", sans-serif; }
+    .type-c { font-family: Inter, ui-sans-serif, system-ui, "Microsoft YaHei", sans-serif; }
+    .type-a .type-display { font-size: 2.2rem; letter-spacing: -.055em; }
+    .type-b .type-display { font-size: 2rem; letter-spacing: -.035em; font-weight: 600; }
+    .type-c .type-display { font-size: 2.65rem; letter-spacing: -.07em; font-weight: 800; }
+    .type-specimen { min-height: 226px; padding: 18px; border: 1px solid var(--option-line); border-radius: 10px; background: #fff; }
+    .type-meta { margin: 0 0 18px; color: var(--option-accent); font: 700 .7rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; }
+    .type-display { margin-bottom: 12px; line-height: .98; }
+    .type-body { max-width: 34ch; margin-bottom: 18px; color: var(--option-muted); font-size: .86rem; }
+    .type-label { display: inline-block; border-bottom: 2px solid var(--option-accent); color: var(--option-accent); font-size: .8rem; font-weight: 700; }
+
+    .density-a .density-specimen { padding: 24px; gap: 22px; }
+    .density-b .density-specimen { padding: 18px; gap: 14px; }
+    .density-c .density-specimen { padding: 12px; gap: 9px; }
+    .density-specimen { min-height: 226px; display: grid; border: 1px solid var(--option-line); border-radius: 10px; background: #fff; }
+    .density-row { display: flex; align-items: start; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--option-line); }
+    .density-row:last-child { border-bottom: 0; }
+    .density-row strong { font-size: .9rem; }
+    .density-row span { color: var(--option-muted); font-size: .75rem; text-align: right; }
+    .density-caption { margin: 0; color: var(--option-accent); font: 700 .7rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; }
+
+    .shape-a .shape-card { border-radius: 0; box-shadow: none; }
+    .shape-b .shape-card { border-radius: 14px; box-shadow: 0 10px 28px rgba(29, 51, 65, .10); }
+    .shape-c .shape-card { border-radius: 4px; box-shadow: none; border-width: 2px; }
+    .shape-card { min-height: 226px; padding: 18px; border: 1px solid var(--option-line); background: #fff; }
+    .shape-card .shape-kicker { margin-bottom: 24px; color: var(--option-accent); font: 700 .7rem/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .08em; }
+    .shape-card h4 { margin: 0 0 9px; font-size: 1.3rem; line-height: 1.08; }
+    .shape-card p { max-width: 32ch; margin-bottom: 20px; color: var(--option-muted); font-size: .82rem; }
+    .shape-line { width: 62%; height: 1px; background: var(--option-accent); }
+
+    .feedback { margin-top: 18px; padding: 18px; border: 1px solid var(--line); background: rgba(255,255,255,.72); }
+    .feedback label { display: block; margin-bottom: 8px; color: var(--muted); font-size: .82rem; font-weight: 700; }
+    textarea { width: 100%; min-height: 86px; resize: vertical; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--ink); padding: 10px 12px; }
+    .final { padding-top: 10px; border-top: 1px solid var(--line); }
+    .final h2 { margin-bottom: 8px; font-size: 1.7rem; }
+    .final p { color: var(--muted); }
+    .saved { min-height: 1.5em; margin-top: 10px; color: var(--accent); font-size: .84rem; font-weight: 700; }
+    .footer-note { margin-top: 30px; color: var(--subtle); font: .75rem/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }
+    @media (max-width: 820px) { .options { grid-template-columns: 1fr; } .round-head { display: block; } .round-number { display: block; margin-top: 8px; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell">
+      <p class="eyebrow">Design System Foundation · v0.1</p>
+      <h1>先看真实页面，再选参数。</h1>
+      <p class="lede">这里把抽象的色号、字体、留白和圆角变成四轮并列对照。每轮只判断一个变量；你可以直接选一个，也可以写下“都不喜欢”或混合意见。</p>
+      <div class="toolbar">
+        <button class="button" id="export" type="button">导出我的判断</button>
+        <button class="button secondary" id="reset" type="button">清空选择</button>
+      </div>
+      <p class="notice">这些候选只会记录到本地浏览器并导出 Markdown，不会自动改动网站生产代码。最终参数会在你判断后回写研究文档，再进入 UI Lab。</p>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="round" data-round="palette">
+      <div class="round-head"><div><p class="eyebrow">Round 01</p><h2>色彩：你希望它更像哪一种工作台？</h2><p class="round-intro">比较底色的冷暖、正文的重量、弱化文字的可读性和强调色的性格。色卡里的小页面使用你当前的个人站内容。</p></div><span class="round-number">PALETTE</span></div>
+      <div class="options">
+        <article class="option palette-a" data-option="A · Cold Index"><div class="option-head"><div><h3>A · Cold Index</h3><span class="option-tag">当前最稳妥候选</span></div></div><p class="option-desc">冷白、蓝灰、清晰的索引感；延续当前原型的方向。</p><div class="mini-page"><div class="mini-nav"><span>MAKI</span><span>INDEX / 01</span></div><div><p class="mini-kicker">Product thinker</p><p class="mini-title">把问题做成作品。</p><p class="mini-copy">用真实项目、实验和复盘，记录我如何理解复杂问题。</p></div><div class="mini-rule"></div><span class="mini-link">查看工作台 →</span></div><button class="pick" type="button">选择 A</button><p class="status" aria-live="polite"></p></article>
+        <article class="option palette-b" data-option="B · Paper Index"><div class="option-head"><div><h3>B · Paper Index</h3><span class="option-tag">降低冷感候选</span></div></div><p class="option-desc">略暖的纸张底色；更安静、更像个人档案与长期记录。</p><div class="mini-page"><div class="mini-nav"><span>MAKI</span><span>INDEX / 01</span></div><div><p class="mini-kicker">Product thinker</p><p class="mini-title">把问题做成作品。</p><p class="mini-copy">用真实项目、实验和复盘，记录我如何理解复杂问题。</p></div><div class="mini-rule"></div><span class="mini-link">查看工作台 →</span></div><button class="pick" type="button">选择 B</button><p class="status" aria-live="polite"></p></article>
+        <article class="option palette-c" data-option="C · High Contrast"><div class="option-head"><div><h3>C · High Contrast</h3><span class="option-tag">提高存在感候选</span></div></div><p class="option-desc">更明显的冷灰层次和更深的正文；适合强调判断与行动。</p><div class="mini-page"><div class="mini-nav"><span>MAKI</span><span>INDEX / 01</span></div><div><p class="mini-kicker">Product thinker</p><p class="mini-title">把问题做成作品。</p><p class="mini-copy">用真实项目、实验和复盘，记录我如何理解复杂问题。</p></div><div class="mini-rule"></div><span class="mini-link">查看工作台 →</span></div><button class="pick" type="button">选择 C</button><p class="status" aria-live="polite"></p></article>
+      </div>
+      <div class="feedback"><label for="palette-feedback">这一轮的自由反馈（可写“喜欢 A 的底色，但想要 C 的正文”）</label><textarea id="palette-feedback" placeholder="我看到的感觉、担忧、混合方案……"></textarea></div>
+    </section>
+
+    <section class="round" data-round="type">
+      <div class="round-head"><div><p class="eyebrow">Round 02</p><h2>字体：你的作品应该用什么声音说话？</h2><p class="round-intro">这里不要求你知道字体名称；只看标题的气质、正文的阅读感和信息层级是否像你。</p></div><span class="round-number">TYPE</span></div>
+      <div class="options">
+        <article class="option type-a" data-option="A · Neutral Sans"><div class="option-head"><div><h3>A · Neutral Sans</h3><span class="option-tag">清楚 / 稳定</span></div></div><p class="option-desc">中性无衬线；正文、标题和元信息统一，最容易长期维护。</p><div class="type-specimen"><p class="type-meta">WORK / 2025—NOW</p><h3 class="type-display">把复杂问题做成清楚的作品。</h3><p class="type-body">我关注产品、内容与学习系统，持续把思考落成可验证的东西。</p><span class="type-label">阅读项目 →</span></div><button class="pick" type="button">选择 A</button><p class="status" aria-live="polite"></p></article>
+        <article class="option type-b" data-option="B · Quiet Editorial"><div class="option-head"><div><h3>B · Quiet Editorial</h3><span class="option-tag">克制 / 编辑感</span></div></div><p class="option-desc">稍有编辑气质但仍保持无衬线；让内容更像经过整理的个人档案。</p><div class="type-specimen"><p class="type-meta">WORK / 2025—NOW</p><h3 class="type-display">把复杂问题做成清楚的作品。</h3><p class="type-body">我关注产品、内容与学习系统，持续把思考落成可验证的东西。</p><span class="type-label">阅读项目 →</span></div><button class="pick" type="button">选择 B</button><p class="status" aria-live="polite"></p></article>
+        <article class="option type-c" data-option="C · Large Signal"><div class="option-head"><div><h3>C · Large Signal</h3><span class="option-tag">强主张 / 高识别</span></div></div><p class="option-desc">标题更大、更重；首屏更像一句明确立场，适合强调个人判断。</p><div class="type-specimen"><p class="type-meta">WORK / 2025—NOW</p><h3 class="type-display">把复杂问题做成清楚的作品。</h3><p class="type-body">我关注产品、内容与学习系统，持续把思考落成可验证的东西。</p><span class="type-label">阅读项目 →</span></div><button class="pick" type="button">选择 C</button><p class="status" aria-live="polite"></p></article>
+      </div>
+      <div class="feedback"><label for="type-feedback">这一轮的自由反馈</label><textarea id="type-feedback" placeholder="例如：A 的正文最好读，但 C 的标题更像我……"></textarea></div>
+    </section>
+
+    <section class="round" data-round="density">
+      <div class="round-head"><div><p class="eyebrow">Round 03</p><h2>密度：你希望页面给内容多少呼吸？</h2><p class="round-intro">比较同一组项目索引在不同留白下的节奏；不是判断“哪个更高级”，而是判断你愿意长期阅读和维护哪一个。</p></div><span class="round-number">DENSITY</span></div>
+      <div class="options">
+        <article class="option density-a" data-option="A · Open Field"><div class="option-head"><div><h3>A · Open Field</h3><span class="option-tag">宽松 / 展示型</span></div></div><p class="option-desc">区块之间有明显呼吸；适合让项目成为视觉锚点。</p><div class="density-specimen"><p class="density-caption">SELECTED WORK</p><div class="density-row"><strong>English Media</strong><span>829万+ 播放</span></div><div class="density-row"><strong>V028</strong><span>抖音 · 2025</span></div><div class="density-row"><strong>Learning System</strong><span>研究中</span></div></div><button class="pick" type="button">选择 A</button><p class="status" aria-live="polite"></p></article>
+        <article class="option density-b" data-option="B · Balanced Index"><div class="option-head"><div><h3>B · Balanced Index</h3><span class="option-tag">平衡 / 工作台型</span></div></div><p class="option-desc">信息密度与留白平衡；适合首页同时承担介绍和导航。</p><div class="density-specimen"><p class="density-caption">SELECTED WORK</p><div class="density-row"><strong>English Media</strong><span>829万+ 播放</span></div><div class="density-row"><strong>V028</strong><span>抖音 · 2025</span></div><div class="density-row"><strong>Learning System</strong><span>研究中</span></div></div><button class="pick" type="button">选择 B</button><p class="status" aria-live="polite"></p></article>
+        <article class="option density-c" data-option="C · Dense Index"><div class="option-head"><div><h3>C · Dense Index</h3><span class="option-tag">紧凑 / 索引型</span></div></div><p class="option-desc">同屏承载更多信息；适合快速扫描项目与状态。</p><div class="density-specimen"><p class="density-caption">SELECTED WORK</p><div class="density-row"><strong>English Media</strong><span>829万+ 播放</span></div><div class="density-row"><strong>V028</strong><span>抖音 · 2025</span></div><div class="density-row"><strong>Learning System</strong><span>研究中</span></div></div><button class="pick" type="button">选择 C</button><p class="status" aria-live="polite"></p></article>
+      </div>
+      <div class="feedback"><label for="density-feedback">这一轮的自由反馈</label><textarea id="density-feedback" placeholder="哪个版本让你觉得更愿意继续往下看？为什么？"></textarea></div>
+    </section>
+
+    <section class="round" data-round="shape">
+      <div class="round-head"><div><p class="eyebrow">Round 04</p><h2>形状：页面要不要有“软”的触感？</h2><p class="round-intro">只比较边框、圆角与阴影，不把它们混同为“好看”。判断它们是否支持你的内容，而不是抢走注意力。</p></div><span class="round-number">SHAPE</span></div>
+      <div class="options">
+        <article class="option shape-a" data-option="A · Quiet Line"><div class="option-head"><div><h3>A · Quiet Line</h3><span class="option-tag">边界 / 克制</span></div></div><p class="option-desc">直角或极小圆角、无阴影；更像编辑台和档案系统。</p><div class="shape-card"><p class="shape-kicker">CASE NOTE / 01</p><h4>把过程也放进作品。</h4><p>让读者看到判断、取舍和下一步，而不只是一个漂亮结果。</p><div class="shape-line"></div></div><button class="pick" type="button">选择 A</button><p class="status" aria-live="polite"></p></article>
+        <article class="option shape-b" data-option="B · Soft Surface"><div class="option-head"><div><h3>B · Soft Surface</h3><span class="option-tag">温和 / 可亲近</span></div></div><p class="option-desc">中等圆角与轻阴影；增加层次，但仍保持安静。</p><div class="shape-card"><p class="shape-kicker">CASE NOTE / 01</p><h4>把过程也放进作品。</h4><p>让读者看到判断、取舍和下一步，而不只是一个漂亮结果。</p><div class="shape-line"></div></div><button class="pick" type="button">选择 B</button><p class="status" aria-live="polite"></p></article>
+        <article class="option shape-c" data-option="C · Hard Index"><div class="option-head"><div><h3>C · Hard Index</h3><span class="option-tag">结构 / 识别</span></div></div><p class="option-desc">更硬的边界、更少装饰；让内容结构和索引关系更突出。</p><div class="shape-card"><p class="shape-kicker">CASE NOTE / 01</p><h4>把过程也放进作品。</h4><p>让读者看到判断、取舍和下一步，而不只是一个漂亮结果。</p><div class="shape-line"></div></div><button class="pick" type="button">选择 C</button><p class="status" aria-live="polite"></p></article>
+      </div>
+      <div class="feedback"><label for="shape-feedback">这一轮的自由反馈</label><textarea id="shape-feedback" placeholder="圆角、阴影、边框哪些可以接受，哪些让你觉得像模板？"></textarea></div>
+    </section>
+
+    <section class="final">
+      <p class="eyebrow">Your judgment</p>
+      <h2>还有任何不适合被选项表达的判断吗？</h2>
+      <p>可以写整体气质、真实设备上的感觉、希望混合的方案，或直接推翻所有候选。你的文字会随导出文件保存。</p>
+      <textarea id="global-feedback" placeholder="例如：整体方向接近了，但我希望更安静、更少产品化；标题用 A，间距用 B……"></textarea>
+      <p class="saved" id="saved" aria-live="polite"></p>
+      <p class="footer-note">Local-only board · decision state is stored in this browser and can be exported as Markdown.</p>
+    </section>
+  </main>
+
+  <script>
+    const storageKey = 'maki-foundation-decision-board-v0.1';
+    const data = JSON.parse(localStorage.getItem(storageKey) || '{"choices":{},"feedback":{},"global":""}');
+    const saved = document.querySelector('#saved');
+    const rounds = [...document.querySelectorAll('.round')];
+
+    function persist(message = '已保存到当前浏览器。') {
+      localStorage.setItem(storageKey, JSON.stringify(data));
+      saved.textContent = message;
+    }
+
+    rounds.forEach((round) => {
+      const key = round.dataset.round;
+      const selected = data.choices[key];
+      round.querySelectorAll('.option').forEach((option) => {
+        const button = option.querySelector('.pick');
+        const status = option.querySelector('.status');
+        if (option.dataset.option === selected) { option.classList.add('selected'); status.textContent = '已选择'; }
+        button.addEventListener('click', () => {
+          data.choices[key] = option.dataset.option;
+          round.querySelectorAll('.option').forEach((item) => {
+            const active = item === option;
+            item.classList.toggle('selected', active);
+            item.querySelector('.status').textContent = active ? '已选择' : '';
+          });
+          persist(`${key} 已记录：${option.dataset.option}`);
+        });
+      });
+      const field = round.querySelector('textarea');
+      field.value = data.feedback[key] || '';
+      field.addEventListener('input', () => { data.feedback[key] = field.value; persist(); });
+    });
+
+    const globalField = document.querySelector('#global-feedback');
+    globalField.value = data.global || '';
+    globalField.addEventListener('input', () => { data.global = globalField.value; persist(); });
+
+    document.querySelector('#reset').addEventListener('click', () => {
+      localStorage.removeItem(storageKey);
+      location.reload();
+    });
+
+    document.querySelector('#export').addEventListener('click', () => {
+      const lines = [
+        '# Design System Foundation v0.1 · 我的视觉判断',
+        '',
+        `导出时间：${new Date().toLocaleString('zh-CN')}`,
+        '',
+        '## 选择',
+        '',
+        ...rounds.map((round) => `- ${round.dataset.round}：${data.choices[round.dataset.round] || '未选择'}`),
+        '',
+        '## 分轮反馈',
+        '',
+        ...rounds.map((round) => `### ${round.dataset.round}\n\n${data.feedback[round.dataset.round] || '（无）'}\n`),
+        '## 总体反馈',
+        '',
+        data.global || '（无）',
+        '',
+        '> 这份记录只表达视觉判断，不代表已经写入生产代码。'
+      ];
+      const blob = new Blob([lines.join('\n')], { type: 'text/markdown;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'foundation-decision-v0.1.md';
+      link.click();
+      URL.revokeObjectURL(link.href);
+      saved.textContent = '已导出 foundation-decision-v0.1.md。';
+    });
+  </script>
+</body>
+</html>

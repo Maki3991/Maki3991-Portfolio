@@ -1,0 +1,37 @@
+---
+import { nowEntries } from '@/data/now';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import '@/styles/now.css';
+import '@/styles/now-content.css';
+import '@/styles/display-title.css';
+---
+
+<BaseLayout
+  title='Now'
+  description='Maki 羽轩当前正在关注的事情和工作阶段。'
+>
+  <div class='now-page'>
+    <section class='now-shell' aria-labelledby='now-title'>
+      <p class='now-kicker'>NOW / CURRENT PHASE</p>
+      <h1 id='now-title' class='display-title'>Now</h1>
+      <div class='now-intro-block'>
+        <p class='now-intro'>
+          记录我当前的注意力、取舍和下一步
+        </p>
+      </div>
+
+      <div class='now-entries'>
+        {nowEntries.length > 0 ? (
+          nowEntries.map((entry) => (
+            <article class='now-entry'>
+              <div class='now-entry-content' set:html={entry.html}></div>
+            </article>
+          ))
+        ) : (
+          <p class='now-empty'>还没有发布中的 Now 文章。</p>
+        )}
+      </div>
+
+    </section>
+  </div>
+</BaseLayout>

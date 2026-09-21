@@ -1,15 +1,17 @@
+@import url(./foundation-tokens.css);
+
 :root {
-  --bg: #f7f5f0;
-  --surface: #fffdf8;
-  --surface-strong: #ffffff;
-  --text: #1f2523;
-  --muted: #68706c;
-  --line: #ded9cf;
-  --accent: #315c54;
-  --accent-strong: #183f39;
-  --warm: #b76f3b;
-  --shadow: 0 18px 50px rgba(32, 35, 31, 0.08);
-  font-family:
+  --bg: var(--color-canvas);
+  --surface: var(--color-surface);
+  --surface-strong: var(--color-surface-raised);
+  --text: var(--color-text);
+  --muted: var(--color-text-muted);
+  --line: var(--color-line);
+  --accent: var(--color-accent);
+  --accent-strong: var(--color-accent-strong);
+  --shadow: var(--shadow-soft);
+  font-family: var(--font-family-body);
+  --legacy-font-stack:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Microsoft YaHei", sans-serif;
 }
@@ -25,14 +27,47 @@ html {
 }
 
 body {
+  font-family: var(--font-family-body);
   margin: 0;
   min-width: 320px;
-  line-height: 1.7;
+  line-height: var(--line-height-body);
+}
+
+html:has(.home-page),
+html:has(.archive-page),
+html:has(.archive-detail-page),
+html:has(.now-page),
+html:has(.about-page),
+html:has(.contact-page) {
+  background: var(--color-canvas);
+}
+
+body:has(.home-page),
+body:has(.archive-page),
+body:has(.archive-detail-page),
+body:has(.now-page),
+body:has(.about-page),
+body:has(.contact-page) {
+  --bg: var(--color-canvas);
+  --surface: var(--color-surface);
+  --surface-strong: var(--color-surface-raised);
+  --text: var(--color-text);
+  --muted: var(--color-text-muted);
+  --line: var(--color-line);
+  --accent: var(--color-accent);
+  --accent-strong: var(--color-accent-strong);
+  background: var(--bg);
+  color: var(--text);
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+:where(a, button):focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
 }
 
 p,
@@ -49,20 +84,24 @@ ul {
 
 .site-footer,
 main {
-  width: min(1120px, calc(100% - 32px));
+  width: min(
+    var(--layout-page-max),
+    calc(100% - var(--layout-gutter-desktop) - var(--layout-gutter-desktop))
+  );
   margin-inline: auto;
 }
 
 .site-header {
-  background: rgba(247, 245, 240, 0.72);
-  backdrop-filter: blur(24px) saturate(1.3);
+  background: var(--header-background);
+  backdrop-filter: var(--header-backdrop-filter);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   left: 0;
   margin-inline: auto;
-  padding: 18px max(16px, calc((100vw - 1120px) / 2));
+  padding: 18px
+    max(var(--layout-gutter-desktop), calc((100vw - var(--layout-page-max)) / 2));
   position: sticky;
   right: 0;
   top: 0;
@@ -92,7 +131,7 @@ main {
 
 .nav a {
   border: 1px solid transparent;
-  border-radius: 999px;
+  border-radius: var(--radius-md);
   color: var(--muted);
   font-size: 0.94rem;
   padding: 8px 12px;
@@ -113,7 +152,7 @@ main {
 .page-hero {
   display: grid;
   gap: 10px;
-  max-width: 980px;
+  max-width: var(--layout-content-max);
 }
 
 .hero {
@@ -130,31 +169,34 @@ main {
 }
 
 .eyebrow {
-  color: var(--warm);
+  color: var(--color-accent);
   font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0;
+  letter-spacing: var(--tracking-meta);
   text-transform: uppercase;
 }
 
 h1 {
-  font-size: clamp(3rem, 9vw, 6.5rem);
-  line-height: 0.95;
-  letter-spacing: 0;
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display);
+  line-height: var(--line-height-display);
+  letter-spacing: var(--tracking-display);
 }
 
 .hero h1 {
-  font-family:
+  font-family: var(--font-family-display);
+  --legacy-font-stack:
     "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
   font-weight: 800;
 }
 
 .page-hero h1 {
-  font-family:
+  font-family: var(--font-family-display);
+  --legacy-font-stack:
     "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
-  font-size: clamp(3rem, 6.4vw, 5.8rem);
+  font-size: var(--font-size-h1);
   font-weight: 800;
-  line-height: 1.08;
+  line-height: var(--line-height-heading);
 }
 
 .page-hero .eyebrow {
@@ -167,20 +209,22 @@ h1 {
 }
 
 h2 {
-  font-family:
+  font-family: var(--font-family-display);
+  --legacy-font-stack:
     "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: var(--font-size-h2);
   font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: 0;
+  line-height: var(--line-height-heading);
+  letter-spacing: var(--tracking-display);
 }
 
 h3 {
-  font-family:
+  font-family: var(--font-family-display);
+  --legacy-font-stack:
     "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
-  font-size: 1.15rem;
+  font-size: var(--font-size-h3);
   font-weight: 800;
-  line-height: 1.35;
+  line-height: var(--line-height-heading);
 }
 
 .headline {
@@ -214,18 +258,18 @@ h3 {
   align-items: center;
   background: var(--surface-strong);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   display: inline-flex;
   font-weight: 700;
   justify-content: center;
-  min-height: 44px;
+  min-height: var(--size-control-md);
   padding: 10px 16px;
 }
 
 .button.primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: white;
+  color: var(--color-on-accent);
 }
 
 .button.ghost {
@@ -253,12 +297,12 @@ h3 {
 .contact-link {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
 }
 
 .portrait-panel {
   align-self: start;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-soft);
   margin-top: 24px;
   overflow: hidden;
   padding: 0;
@@ -345,7 +389,8 @@ h3 {
 }
 
 .project-card h3 {
-  font-family:
+  font-family: var(--font-family-display);
+  --legacy-font-stack:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Microsoft YaHei", sans-serif;
   font-size: clamp(1.28rem, 2vw, 1.6rem);
@@ -360,7 +405,7 @@ h3 {
 
 .work-cover {
   aspect-ratio: 16 / 10;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   display: block;
   height: auto;
   object-fit: cover;
@@ -369,7 +414,7 @@ h3 {
 
 .work-cover.contain {
   aspect-ratio: 1;
-  background: #f0ece4;
+  background: var(--color-canvas);
   object-fit: contain;
 }
 
@@ -399,8 +444,8 @@ h3 {
 
 .pill-list li,
 .metric-list li {
-  background: rgba(49, 92, 84, 0.08);
-  border: 1px solid rgba(49, 92, 84, 0.14);
+  background: rgba(33, 120, 149, 0.08);
+  border: 1px solid rgba(33, 120, 149, 0.14);
   border-radius: 999px;
   color: var(--accent-strong);
   font-size: 0.88rem;
@@ -459,9 +504,10 @@ h3 {
 
 .category-toggle summary span {
   color: var(--text);
-  font-family:
+  font-family: var(--font-family-display);
+  --legacy-font-stack:
     "Noto Serif SC", "Songti SC", "SimSun", Georgia, "Times New Roman", serif;
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: var(--font-size-h2);
   font-weight: 850;
   line-height: 1.15;
 }
@@ -489,7 +535,7 @@ h3 {
 .proof-card {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   overflow: hidden;
 }
 
@@ -561,12 +607,13 @@ h3 {
 .qr-placeholder {
   display: grid;
   gap: 12px;
+  box-shadow: var(--shadow-soft);
   text-align: center;
   padding: 24px;
 }
 
 .qr-placeholder img {
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   display: block;
   width: 100%;
 }
@@ -580,7 +627,7 @@ h3 {
 }
 
 .qr-placeholder span {
-  color: var(--warm);
+  color: var(--color-accent);
   font-weight: 800;
 }
 
@@ -614,6 +661,24 @@ h3 {
   font-weight: 800;
 }
 
+.contact-link-main .contact-link-external {
+  color: var(--accent);
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.contact-link-main:not(.contact-link-static):hover,
+.contact-link-main:not(.contact-link-static):focus-visible {
+  color: var(--accent-strong);
+}
+
+.contact-link-main:focus-visible,
+.qr-zoom-trigger:focus-visible,
+.qr-dialog-close:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
 .contact-link.pending {
   color: var(--muted);
 }
@@ -629,7 +694,7 @@ h3 {
 .qr-zoom-trigger img {
   aspect-ratio: 1;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   display: block;
   height: 58px;
   object-fit: cover;
@@ -639,8 +704,8 @@ h3 {
 .qr-dialog {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 8px;
-  box-shadow: var(--shadow);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
   max-width: min(520px, calc(100vw - 40px));
   padding: 22px;
 }
@@ -651,7 +716,7 @@ h3 {
 }
 
 .qr-dialog img {
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   display: block;
   max-height: min(70vh, 520px);
   width: 100%;
@@ -668,11 +733,35 @@ h3 {
 }
 
 .site-footer {
-  border-top: 1px solid var(--line);
+  border-top: 0;
   display: flex;
   gap: 16px;
   justify-content: space-between;
   padding: 28px 0 40px;
+}
+
+.site-footer p {
+  color: var(--muted);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  margin: 0;
+  transition: color 160ms ease;
+}
+
+.site-footer p:hover {
+  color: var(--accent);
+}
+
+body:has(.home-page) .site-footer,
+body:has(.archive-page) .site-footer,
+body:has(.archive-detail-page) .site-footer,
+body:has(.now-page) .site-footer,
+body:has(.about-page) .site-footer,
+body:has(.contact-page) .site-footer {
+  border-color: var(--line);
+  color: var(--muted);
 }
 
 @media (max-width: 900px) {
@@ -696,6 +785,14 @@ h3 {
 }
 
 @media (max-width: 640px) {
+  .site-footer,
+  main {
+    width: min(
+      var(--layout-page-max),
+      calc(100% - var(--layout-gutter-mobile) - var(--layout-gutter-mobile))
+    );
+  }
+
   .site-header {
     align-items: flex-start;
     flex-direction: column;
@@ -751,5 +848,11 @@ h3 {
   .qr-zoom-trigger img {
     height: 96px;
     width: 96px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }

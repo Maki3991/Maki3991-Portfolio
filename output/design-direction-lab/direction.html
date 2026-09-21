@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Maki 个人网站 Home / Hero 视觉方向实验室" />
+    <title>Maki Home / Hero Lab</title>
+    <link rel="stylesheet" href="./lab.css" />
+  </head>
+  <body class="direction-1">
+    <div class="lab-bar" aria-label="视觉方向实验室控制栏">
+      <a class="lab-back" href="./index.html">LAB</a>
+      <div class="lab-direction">
+        <span>HOME / HERO</span>
+        <strong id="direction-name">01 — Editorial Rail</strong>
+      </div>
+      <nav class="lab-switcher" aria-label="切换视觉方向">
+        <a href="?d=1#top" data-direction="1">01</a>
+        <a href="?d=2#top" data-direction="2">02</a>
+        <a href="?d=3#top" data-direction="3">03</a>
+        <a href="?d=4#top" data-direction="4">04</a>
+        <a href="?d=5#top" data-direction="5">05</a>
+      </nav>
+    </div>
+
+    <main class="site">
+      <header class="site-nav">
+        <a class="brand" href="#top">Maki / 羽轩</a>
+        <nav class="nav-links" aria-label="页面导航">
+          <a href="#projects">Projects</a>
+          <a href="#writing">Writing</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <section class="hero" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">Personal archive / China</p>
+          <h1>Maki <span>羽轩</span></h1>
+          <p class="hero-intro">
+            英语内容创作者 / 内容运营实践者 / 国际政治本科生。关注英语学习、内容表达、自媒体运营、教育产品和 AI 辅助创作。
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#projects">查看项目</a>
+            <a class="button secondary" href="#contact">联系我</a>
+          </div>
+          <div class="hero-facts" aria-label="个人状态">
+            <span>中国</span>
+            <span>持续更新</span>
+            <span>真实作品优先</span>
+          </div>
+        </div>
+
+        <aside class="hero-aside" aria-label="当前关注">
+          <div class="avatar-wrap">
+            <img src="../../public/assets/profile/maki-avatar.jpg" alt="Maki 羽轩头像" />
+          </div>
+          <p class="aside-label">Current focus</p>
+          <p class="aside-text">
+            正在把自己的内容、项目和学习系统整理成一个长期可验证的作品集。
+          </p>
+        </aside>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">01 / Selected project</p>
+            <h2>做过什么，怎么做的。</h2>
+          </div>
+          <p>首页只放一个代表性入口，完整项目以后进入独立详情页。</p>
+        </div>
+
+        <article class="project-card">
+          <div class="project-cover">
+            <img src="../../public/assets/covers/V028.jpg" alt="四级六级听力内容作品封面" />
+          </div>
+          <div class="project-body">
+            <div>
+              <p class="eyebrow">内容创作与账号运营</p>
+              <h3>Maki 羽轩英语自媒体</h3>
+              <p>
+                独立运营英语学习类自媒体账号，覆盖抖音、小红书、视频号、B 站等平台。
+                负责选题、脚本、拍摄、剪辑、发布、复盘和私信沟通。
+              </p>
+              <div class="project-meta">
+                <span class="tag">抖音</span>
+                <span class="tag">英语学习</span>
+                <span class="tag">内容复盘</span>
+              </div>
+            </div>
+            <div class="metrics" aria-label="项目成果">
+              <div class="metric">
+                <strong>829 万+</strong>
+                <span>累计播放 / 观看</span>
+              </div>
+              <div class="metric">
+                <strong>53 万+</strong>
+                <span>累计互动</span>
+              </div>
+              <div class="metric">
+                <strong>491 万+</strong>
+                <span>单条最高播放</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="section" id="writing">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">02 / Writing & notes</p>
+            <h2>把经验留下来。</h2>
+          </div>
+          <p>这里先用已有作品复盘作为真实内容样本，未来可以继续增加文章、笔记和专题。</p>
+        </div>
+
+        <article class="note-row">
+          <div class="note-date">2025.07.28</div>
+          <div>
+            <p class="eyebrow">作品复盘 / 抖音</p>
+            <h3>四级六级听力吐槽与学习路径内容</h3>
+            <p>用强情绪入口切入四六级听力问题，再提供更具体的替代路径。</p>
+          </div>
+          <a class="note-link" href="#contact">保存入口 →</a>
+        </article>
+      </section>
+
+      <section class="section" id="about">
+        <div class="about-grid">
+          <h2>About / Experience</h2>
+          <p>
+            我相信可信度来自真实作品、真实数据和真实复盘。把复杂知识讲清楚，比把自己包装得很厉害更重要。
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="contact-row">
+          <h2>想聊聊？</h2>
+          <div class="contact-links">
+            <a href="mailto:maki1344933709@gmail.com">
+              <span>Email</span>
+              <span>↗</span>
+            </a>
+            <a href="https://github.com/Maki3991">
+              <span>GitHub</span>
+              <span>↗</span>
+            </a>
+            <a href="#top">
+              <span>Back to top</span>
+              <span>↑</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <p>Maki 羽轩 · 内容、项目与长期记录</p>
+        <p>Home / Hero direction lab · 2026</p>
+      </footer>
+    </main>
+
+    <script src="./lab.js"></script>
+  </body>
+</html>

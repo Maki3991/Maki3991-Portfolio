@@ -1,0 +1,22 @@
+---
+import type { WorkbenchItem } from "@/data/home";
+
+type Props = { items: WorkbenchItem[] };
+const { items } = Astro.props;
+---
+
+<div class="workbench-list">
+  {items.map((item) => (
+    <article class="workbench-item">
+      <span class="workbench-number" aria-hidden="true">
+        {String(item.order).padStart(2, "0")}
+      </span>
+      <div class="workbench-title-block">
+        <p class="home-meta">{item.type}</p>
+        <h3>{item.title}</h3>
+      </div>
+      <p class="workbench-why">{item.why}</p>
+      <span class="workbench-status">{item.status}</span>
+    </article>
+  ))}
+</div>

@@ -1,0 +1,58 @@
+# Research：个人网站重建调研库
+
+这是给后续 Agent 使用的调研资料入口。AI 负责维护本目录、判断当前有效文档，并在用户需要时直接提供相关 Markdown 文件；用户不需要自行翻找或整理。
+
+## 管理规则
+
+1. 每次产生一组新的 AI 调研报告，就在本目录新建一个编号子文件夹：`NN-简洁主题名`。
+2. 每个调研子文件夹必须有自己的 `README.md`，说明调研目的、输入来源、文件用途、当前状态和下一步。
+3. 新报告不覆盖旧报告。被替代的版本放进对应子文件夹的 `archive/`；旧的总索引等管理文件放进本目录的 `archive/`。
+4. 用户提供的原始素材不放进本目录：网站素材在 `../infos/`，用户筛选结果在 `../web-list.md`。
+5. 处理本项目的研究任务时，先读本文件，再读对应子文件夹的 `README.md`，最后只打开完成当前任务所需的报告。
+6. 回复用户时，AI 应直接给出需要阅读的 1–3 个 Markdown 链接，并说明“为什么现在需要读它”；不要让用户自己在目录中寻找。
+
+状态统一使用：`当前有效`、`已替代`、`待核验`、`历史`。历史资料可以参考，但不能作为当前任务的唯一依据。
+
+## 当前调研索引
+
+| 编号 | 子文件夹 | 状态 | 用途 | 当前入口 |
+|---|---|---|---|---|
+| 01 | [直播工作流](./01-直播工作流/) | 当前有效 | 保存直播分享稿压缩出的 AI 建站工作流 | [子目录说明](./01-直播工作流/README.md) |
+| 02 | [国际参考网站](./02-国际参考网站/) | 当前有效 / 部分待核验 | 搜集和核验国外个人网站、模板与相关资源 | [子目录说明](./02-国际参考网站/README.md) |
+| 03 | [参考网站筛选与方向](./03-参考网站筛选与方向/) | 当前有效 | 保存用户筛选结果、长期更新与复杂动效方面的判断，并定义下一步拆解任务 | [下一步任务](./03-参考网站筛选与方向/下一步_参考网站深度拆解任务_校正版.md) |
+| 05 | [Design Baseline v0.2](./05-Design-Baseline-v0.2/) | 当前有效 | 记录方向确定后的 Working Archive 风格、主题策略、组件契约与 Astro 实现闸门 | [基线正文](./05-Design-Baseline-v0.2/design-baseline-v0.2-working-archive.md) |
+| 06 | [Site Architecture v0.1](./06-Site-Architecture-v0.1/) | 当前有效 | 记录核心页面、页面关系、内容边界与后续可扩展页面 | [Site Map 正文](./06-Site-Architecture-v0.1/site-map-v0.1.md) |
+| 07 | [Component Lab v0.2 + Remaining](./07-Component-Lab-v0.1/) | 当前有效 | 保留 v0.1 决策，已完成 21×5，并继续记录其余 39×5 候选组件 | [21 项选择表](./07-Component-Lab-v0.1/component-selection-decisions-v0.2-21x5.md) |
+| 08 | [Component Contract v0.2](./08-Component-Contract-v0.1/) | 当前有效 | 记录已接受 Foundation 与组件选择的生产执行合同 | [当前合同](./08-Component-Contract-v0.1/component-contract-v0.2.md) |
+| 11 | [Component Implementation Workflow v0.1](./11-Component-Implementation-Workflow-v0.1/) | 当前有效 | 记录基于直播原文修正后的组件级实施循环、页面角色、验收闸门与返工规则 | [子目录说明](./11-Component-Implementation-Workflow-v0.1/README.md) |
+| 12 | [Color Migration Audit v0.1](./12-Color-Migration-Audit-v0.1/) | 当前有效 | 记录 F-01/B 色板迁移结果、旧页面边界和暗色模式延期决定 | [颜色迁移审计](./12-Color-Migration-Audit-v0.1/color-migration-audit-v0.1.md) |
+| 13 | [Design System Foundation v0.1](./13-Design-System-Foundation-v0.1/) | 当前有效 | 记录 Foundation A/B/A/B/C 选择、token、生产迁移和视觉验收闸门 | [生产迁移交接](./13-Design-System-Foundation-v0.1/foundation-production-migration-review-v0.1.md) |
+| 14 | [Now Article UI v0.1](./14-Now-Article-UI-v0.1/) | 当前有效 / P1 决策已记录，P1-02 试用 980px | 记录 Now Markdown 文章展示的工作流、页面级变量和可视化决策边界 | [工作流](./14-Now-Article-UI-v0.1/now-article-ui-workflow-v0.1.md) |
+| 15 | [Archive Experience Presentation v0.1](./15-Archive-Experience-Presentation-v0.1/) | 当前有效 | 记录五个 Archive 项目的最终呈现、公开边界和生产回写结果 | [最终呈现草案](./15-Archive-Experience-Presentation-v0.1/archive-experience-presentation-draft-v0.1.md) |
+| 16 | [About / Contact Page UI v0.1](./16-About-Contact-Page-UI-v0.1/) | 当前有效 / 审计阶段 | 记录 About 与 Contact 旧页面迁移到当前 Design System 的工作流、只读审计和后续视觉验收边界 | [工作流与审计](./16-About-Contact-Page-UI-v0.1/README.md) |
+
+## 当前总判断
+
+网站目标是一个能够长期存在、持续更新、展示真实个人身份与能力的网站。当前已选定以 Working Archive 为主方向：先让访客看见 Maki 正在做什么，再理解项目证据和工作方法，同时保留清晰的个人身份。亮色是默认开发对象，暗色是同一设计系统的第二主题。应避开经典的暖橙、浅黄、暖绿组合，以及明显的 AI 句式和模板化文案；复杂动效只能在有明确价值且可维护时采用。
+
+第一版栏目尚未最终确定，因此研究资料应优先支持“可持续扩展的内容与 UI 系统”，而不是过早锁死全部页面。实时数据、健身数据和复杂个人 Dashboard 暂作为后续扩展。
+
+## 输入与边界
+
+- `../infos/`：网站要展示的原始个人资料、图片、简历和数据，不是调研报告。
+- `../web-list.md`：用户挑选出的参考网站输入，不由 AI 改写；需要分析时从这里读取。
+- `01-直播工作流/`：方法论依据。
+- `02-国际参考网站/`：外部参考资源研究。
+- `03-参考网站筛选与方向/`：方向实验、用户反馈和原型证据。
+- `05-Design-Baseline-v0.2/`：方向确定后的实现基线、主题策略和验收闸门。
+- `11-Component-Implementation-Workflow-v0.1/`：组件级实现循环和页面联调规则。
+
+`script/` 中的原始逐字稿已按用户决定删除；不要尝试恢复或要求用户重新整理。
+
+## 新调研完成检查
+
+- 是否创建了新的主题子文件夹，而不是把报告散落在根目录？
+- 是否创建并更新了该子文件夹的 `README.md`？
+- 是否记录来源、证据边界、状态和下一步？
+- 是否保留了旧版本，并避免把历史结论写成当前结论？
+- 是否能直接告诉用户下一步只需阅读哪一个或哪几个文件？

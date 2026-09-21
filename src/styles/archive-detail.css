@@ -1,0 +1,490 @@
+html:has(.archive-detail-page),
+body:has(.archive-detail-page) {
+  background: var(--color-canvas);
+}
+
+.archive-detail-page {
+  --archive-bg: var(--color-canvas);
+  --archive-text: var(--color-text);
+  --archive-muted: var(--color-text-muted);
+  --archive-line: var(--color-line);
+  --archive-accent: var(--color-accent);
+  --archive-accent-strong: var(--color-accent-strong);
+  background: var(--archive-bg);
+  color: var(--archive-text);
+  min-height: calc(100svh - 72px);
+}
+
+.archive-detail-shell {
+  margin: 0 auto;
+  max-width: var(--layout-page-max);
+  padding: 40px 24px 96px;
+}
+
+.archive-detail-back {
+  color: var(--archive-muted);
+  display: inline-block;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+
+.archive-detail-back:hover,
+.archive-detail-back:focus-visible,
+.archive-detail-evidence-list a:hover,
+.archive-detail-evidence-list a:focus-visible,
+.archive-detail-evidence-list button:hover,
+.archive-detail-evidence-list button:focus-visible {
+  color: var(--archive-accent-strong);
+}
+
+.archive-detail-back:focus-visible,
+.archive-detail-evidence-list a:focus-visible,
+.archive-detail-evidence-list button:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
+.archive-detail-header {
+  border-bottom: 1px solid var(--archive-line);
+  margin-top: 72px;
+  padding-bottom: 48px;
+}
+
+.archive-detail-kicker,
+.archive-detail-label,
+.archive-detail-meta dt {
+  color: var(--archive-accent-strong);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.archive-detail-kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+}
+
+.archive-detail-header h1 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display);
+  letter-spacing: var(--tracking-display);
+  line-height: var(--line-height-display);
+  margin: 24px 0 20px;
+  max-width: 940px;
+}
+
+.archive-detail-summary {
+  color: var(--archive-muted);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  line-height: 1.5;
+  margin: 0;
+  max-width: 760px;
+}
+
+.archive-detail-meta {
+  border-top: 1px solid var(--archive-line);
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 48px 0 0;
+}
+
+.archive-detail-meta div {
+  border-right: 1px solid var(--archive-line);
+  padding: 18px 20px 0 0;
+}
+
+.archive-detail-meta div:not(:first-child) {
+  padding-left: 20px;
+}
+
+.archive-detail-meta div:last-child {
+  border-right: 0;
+}
+
+.archive-detail-meta dt {
+  color: var(--archive-muted);
+  font-size: 0.66rem;
+}
+
+.archive-detail-meta dd {
+  font-size: 0.98rem;
+  line-height: 1.5;
+  margin: 8px 0 0;
+}
+
+.archive-detail-grid {
+  display: grid;
+  gap: 72px;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 0.36fr);
+  padding: 64px 0 72px;
+}
+
+.archive-detail-body {
+  color: var(--archive-muted);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  max-width: 760px;
+}
+
+.archive-detail-body h2,
+.archive-detail-section h2 {
+  color: var(--archive-text);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Microsoft YaHei", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+  margin: 0 0 20px;
+}
+
+.archive-detail-body ul,
+.archive-detail-aside ul,
+.archive-detail-evidence-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.archive-detail-cover {
+  margin: 0 0 32px;
+  max-width: min(100%, 420px);
+}
+
+.archive-detail-cover img {
+  aspect-ratio: 1;
+  border: 1px solid var(--archive-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.archive-detail-cover--contain img {
+  aspect-ratio: auto;
+  background: var(--color-surface);
+  object-fit: contain;
+}
+
+.archive-detail-body li,
+.archive-detail-aside li,
+.archive-detail-evidence-list li {
+  border-top: 1px solid var(--archive-line);
+  padding: 14px 0;
+}
+
+.archive-detail-evidence-heading {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.archive-detail-evidence-kind {
+  color: var(--archive-accent-strong);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.archive-detail-aside {
+  border-left: 1px solid var(--archive-accent);
+  padding-left: 24px;
+}
+
+.archive-detail-aside section + section {
+  border-top: 1px solid var(--archive-line);
+  margin-top: 32px;
+  padding-top: 24px;
+}
+
+.archive-detail-label {
+  margin: 0 0 16px;
+}
+
+.archive-detail-aside li,
+.archive-detail-aside p,
+.archive-detail-evidence-list p,
+.archive-detail-muted {
+  color: var(--archive-muted);
+  line-height: 1.65;
+}
+
+.archive-detail-aside p,
+.archive-detail-evidence-list p,
+.archive-detail-muted {
+  margin: 0;
+}
+
+.archive-detail-section {
+  border-top: 1px solid var(--archive-line);
+  padding-top: 24px;
+}
+
+.archive-detail-evidence-list {
+  max-width: 840px;
+}
+
+.archive-detail-evidence-list a {
+  color: var(--archive-text);
+  text-decoration: underline;
+  text-decoration-color: var(--archive-accent);
+  text-underline-offset: 4px;
+}
+
+.archive-detail-evidence-trigger {
+  background: transparent;
+  border: 0;
+  color: var(--archive-text);
+  cursor: zoom-in;
+  font: inherit;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-color: var(--archive-accent);
+  text-underline-offset: 4px;
+}
+
+.archive-detail-evidence-list a > span[aria-hidden="true"],
+.archive-detail-evidence-list button > span[aria-hidden="true"] {
+  display: inline-block;
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.archive-detail-evidence-list a:hover > span[aria-hidden="true"],
+.archive-detail-evidence-list a:focus-visible > span[aria-hidden="true"],
+.archive-detail-evidence-list button:hover > span[aria-hidden="true"],
+.archive-detail-evidence-list button:focus-visible > span[aria-hidden="true"] {
+  transform: translate(2px, -2px);
+}
+
+.archive-detail-evidence-list p {
+  margin-top: 4px;
+}
+
+.archive-evidence-dialog {
+  background: var(--color-canvas);
+  border: 1px solid var(--archive-line);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  color: var(--archive-text);
+  margin: auto;
+  max-height: calc(100svh - 32px);
+  max-width: min(1180px, calc(100vw - 32px));
+  padding: 0;
+  width: min(1180px, calc(100vw - 32px));
+}
+
+.archive-evidence-dialog::backdrop {
+  backdrop-filter: blur(10px);
+  background: rgb(29 51 65 / 42%);
+}
+
+.archive-evidence-dialog-inner {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  max-height: calc(100svh - 32px);
+}
+
+.archive-evidence-dialog-header,
+.archive-evidence-dialog-controls {
+  align-items: center;
+  border-bottom: 1px solid var(--archive-line);
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 18px 22px;
+}
+
+.archive-evidence-dialog-header .archive-detail-label {
+  margin-bottom: 6px;
+}
+
+.archive-evidence-dialog-header h2 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.archive-evidence-dialog-close,
+.archive-evidence-dialog-controls button {
+  background: transparent;
+  border: 1px solid var(--archive-line);
+  border-radius: var(--radius-sm);
+  color: var(--archive-text);
+  cursor: pointer;
+  font: inherit;
+  min-width: 38px;
+  padding: 8px 12px;
+}
+
+.archive-evidence-dialog-close {
+  border: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+  min-width: 0;
+  padding: 4px 8px;
+}
+
+.archive-evidence-dialog-close:hover,
+.archive-evidence-dialog-close:focus-visible,
+.archive-evidence-dialog-controls button:hover,
+.archive-evidence-dialog-controls button:focus-visible {
+  background: var(--color-surface);
+  border-color: var(--archive-accent);
+}
+
+.archive-evidence-dialog-close:focus-visible,
+.archive-evidence-dialog-controls button:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
+.archive-evidence-dialog-viewport {
+  align-items: flex-start;
+  background: var(--color-surface);
+  display: flex;
+  justify-content: center;
+  min-height: 240px;
+  overflow: auto;
+  padding: 24px;
+}
+
+.archive-evidence-dialog-viewport img {
+  display: block;
+  max-height: min(62vh, 760px);
+  max-width: 100%;
+  object-fit: contain;
+  transform-origin: top center;
+}
+
+.archive-evidence-dialog-controls {
+  border-bottom: 0;
+  border-top: 1px solid var(--archive-line);
+  justify-content: center;
+}
+
+.archive-evidence-dialog-controls span {
+  color: var(--archive-muted);
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.72rem;
+  min-width: 48px;
+  text-align: center;
+}
+
+.archive-detail-end-nav {
+  border-top: 1px solid var(--archive-line);
+  margin-top: 72px;
+  padding-top: 24px;
+}
+
+.archive-detail-end-link {
+  align-items: center;
+  color: var(--archive-muted);
+  display: inline-flex;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 0.72rem;
+  gap: 12px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+
+.archive-detail-end-link:hover,
+.archive-detail-end-link:focus-visible {
+  color: var(--archive-accent-strong);
+}
+
+.archive-detail-end-link:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
+@media (min-width: 761px) {
+  .archive-detail-header {
+    border-bottom: 0;
+    padding-bottom: 36px;
+  }
+
+  .archive-detail-meta {
+    border-top: 0;
+  }
+
+  .archive-detail-meta div {
+    border-right: 0;
+    padding-top: 32px;
+    position: relative;
+  }
+
+  .archive-detail-meta div:not(:last-child)::after {
+    background: var(--archive-line);
+    bottom: 0;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 32px;
+    width: 1px;
+  }
+}
+
+@media (max-width: 760px) {
+  .archive-detail-shell {
+    padding-inline: 16px;
+  }
+
+  .archive-detail-header {
+    margin-top: 56px;
+  }
+
+  .archive-detail-meta,
+  .archive-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .archive-detail-meta div,
+  .archive-detail-meta div:not(:first-child) {
+    border-bottom: 1px solid var(--archive-line);
+    border-right: 0;
+    padding: 16px 0;
+  }
+
+  .archive-detail-meta div:last-child {
+    border-bottom: 0;
+  }
+
+  .archive-detail-grid {
+    gap: 48px;
+    padding-top: 48px;
+  }
+
+  .archive-detail-aside {
+    border-left: 0;
+    border-top: 1px solid var(--archive-accent);
+    padding-left: 0;
+    padding-top: 20px;
+  }
+
+  .archive-detail-end-nav {
+    margin-top: 48px;
+  }
+
+  .archive-evidence-dialog {
+    max-height: calc(100svh - 16px);
+    max-width: calc(100vw - 16px);
+    width: calc(100vw - 16px);
+  }
+
+  .archive-evidence-dialog-header,
+  .archive-evidence-dialog-controls {
+    padding: 14px 16px;
+  }
+
+  .archive-evidence-dialog-viewport {
+    padding: 12px;
+  }
+}

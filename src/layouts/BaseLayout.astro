@@ -2,6 +2,7 @@
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import "@/styles/global.css";
+import "@/styles/header.css";
 
 type Props = {
   title: string;
@@ -19,6 +20,7 @@ const pageTitle = title === "Maki 羽轩" ? title : `${title} | Maki 羽轩`;
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>{pageTitle}</title>
   </head>
   <body>

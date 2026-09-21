@@ -2,20 +2,74 @@
 import { navItems, profile } from "@/data/site";
 
 const currentPath = Astro.url.pathname;
+const normalizePath = (path: string) => (path === "/" ? path : path.replace(/\/+$/, ""));
+const normalizedCurrentPath = normalizePath(currentPath);
+const isCurrent = (href: string) => {
+  const normalizedHref = normalizePath(href);
+  return normalizedHref === "/"
+    ? normalizedCurrentPath === "/"
+    : normalizedCurrentPath === normalizedHref || normalizedCurrentPath.startsWith(`${normalizedHref}/`);
+};
 ---
 
 <header class="site-header">
   <a class="brand" href="/" aria-label="Maki 羽轩首页">
     <span>{profile.name}</span>
-    <small>Portfolio</small>
   </a>
-  <nav class="nav" aria-label="主导航">
-    {
-      navItems.map((item) => (
-        <a class={currentPath === item.href ? "active" : ""} href={item.href}>
-          {item.label}
-        </a>
-      ))
-    }
+
+  <button
+    class="nav-toggle"
+    type="button"
+    aria-label="打开主导航"
+    aria-expanded="false"
+    aria-controls="site-nav"
+  >
+    MENU
+  </button>
+
+  <nav id="site-nav" class="nav" aria-label="主导航" data-open="false">
+    {navItems.map((item) => (
+      <a
+        class={isCurrent(item.href) ? "active" : ""}
+        href={item.href}
+        aria-current={isCurrent(item.href) ? "page" : undefined}
+      >
+        {item.label}
+      </a>
+    ))}
   </nav>
 </header>
+
+<script>
+  const header = document.querySelector<HTMLElement>(".site-header");
+  const toggle = document.querySelector<HTMLButtonElement>(".nav-toggle");
+  const nav = document.querySelector<HTMLElement>("#site-nav");
+
+  const setMenuOpen = (open: boolean) => {
+    if (nav) nav.dataset.open = String(open);
+    toggle?.setAttribute("aria-expanded", String(open));
+    toggle?.setAttribute("aria-label", open ? "关闭主导航" : "打开主导航");
+  };
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = nav?.dataset.open === "true";
+    setMenuOpen(!isOpen);
+  });
+
+  nav?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenuOpen(false));
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setMenuOpen(false);
+  });
+
+  document.addEventListener("click", (event) => {
+    if (nav?.dataset.open !== "true" || !header) return;
+    if (event.target instanceof Node && !header.contains(event.target)) setMenuOpen(false);
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 640) setMenuOpen(false);
+  });
+</script>

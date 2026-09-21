@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Maki Home / Hero 视觉方向实验室入口" />
+    <title>Maki Home / Hero Lab</title>
+    <link rel="stylesheet" href="./lab.css" />
+    <style>
+      .lab-index {
+        width: min(calc(100% - 2rem), 980px);
+        margin: 0 auto;
+        padding: clamp(4rem, 10vw, 8rem) 0;
+      }
+      .lab-index h1 {
+        max-width: 9ch;
+        margin: 0;
+        font-size: clamp(4rem, 12vw, 8rem);
+        letter-spacing: -0.1em;
+        line-height: 0.88;
+      }
+      .lab-index h1 span {
+        display: block;
+        color: var(--accent);
+      }
+      .lab-index > p {
+        max-width: 40rem;
+        margin: 2rem 0 3rem;
+        color: var(--muted);
+        font-size: 1.1rem;
+      }
+      .direction-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1px;
+        border: 1px solid var(--line);
+        background: var(--line);
+      }
+      .direction-link {
+        display: grid;
+        gap: 0.7rem;
+        min-height: 190px;
+        padding: 1.4rem;
+        background: var(--surface);
+        text-decoration: none;
+        transition: background 160ms ease, color 160ms ease;
+      }
+      .direction-link:hover,
+      .direction-link:focus-visible {
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+      .direction-link small {
+        color: var(--muted);
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 0.72rem;
+      }
+      .direction-link:hover small,
+      .direction-link:focus-visible small {
+        color: currentColor;
+      }
+      .direction-link strong {
+        align-self: end;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        letter-spacing: -0.07em;
+        line-height: 1;
+      }
+      .direction-link em {
+        color: var(--muted);
+        font-size: 0.85rem;
+        font-style: normal;
+      }
+      .direction-link:hover em,
+      .direction-link:focus-visible em {
+        color: currentColor;
+      }
+      .lab-index-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        color: var(--muted);
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 0.72rem;
+      }
+      @media (max-width: 680px) {
+        .direction-list {
+          grid-template-columns: 1fr;
+        }
+        .lab-index {
+          width: min(calc(100% - 1.25rem), 980px);
+        }
+        .lab-index-footer {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body class="direction-1">
+    <div class="lab-bar">
+      <span class="lab-back">LAB / HOME HERO</span>
+      <span>same content fixture · five visual hypotheses</span>
+    </div>
+    <main class="lab-index">
+      <p class="eyebrow">Maki personal website / direction lab</p>
+      <h1>Choose a <span>starting point.</span></h1>
+      <p>
+        五个方向使用同一批真实内容：身份介绍、英语自媒体项目、V028 作品和已有作品复盘。
+        这里的任务不是选最终成品，而是判断哪一种视觉语言值得继续打磨。
+      </p>
+      <div class="direction-list" aria-label="五个视觉方向">
+        <a class="direction-link" href="./direction.html?d=1#top">
+          <small>01 / cool editorial</small>
+          <strong>Editorial Rail</strong>
+          <em>大标题、清晰轨道、蓝色局部强调</em>
+        </a>
+        <a class="direction-link" href="./direction.html?d=2#top">
+          <small>02 / open index</small>
+          <strong>Quiet Index</strong>
+          <em>留白、细边界、连续内容流</em>
+        </a>
+        <a class="direction-link" href="./direction.html?d=3#top">
+          <small>03 / dark signal</small>
+          <strong>Night Signal</strong>
+          <em>冷色光点、状态、证据数字</em>
+        </a>
+        <a class="direction-link" href="./direction.html?d=4#top">
+          <small>04 / text catalogue</small>
+          <strong>Open Catalogue</strong>
+          <em>编号、横线、文字优先的档案感</em>
+        </a>
+        <a class="direction-link" href="./direction.html?d=5#top">
+          <small>05 / media window</small>
+          <strong>Media Window</strong>
+          <em>真实作品图像作为入口，结构保持克制</em>
+        </a>
+      </div>
+      <div class="lab-index-footer">
+        <span>prototype only · production untouched</span>
+        <span>desktop + mobile review</span>
+      </div>
+    </main>
+  </body>
+</html>
