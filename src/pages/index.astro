@@ -33,7 +33,8 @@ const wechatLink = links.find((link) => link.image?.endsWith("wechat.jpg"));
           国际政治本科生，做过英语内容、自媒体运营和教育产品交付；现在也在用代码和 AI 做自己的工具。
         </p>
         <div class="home-actions">
-          <a class="button primary" href={selectedArchiveHref}>查看代表项目</a>
+          <a class="button primary" href="/archive/">查看项目列表</a>
+          <a class="button primary" href="/now/">查看Now</a>
           <a class="button" href="/contact/">联系我</a>
         </div>
       </div>
@@ -80,7 +81,7 @@ const wechatLink = links.find((link) => link.image?.endsWith("wechat.jpg"));
             <p class="home-meta">SELECTED WORK / CONTENT</p>
             <h2>{selectedArchiveItem.title}</h2>
             <p class="home-selected-summary">{selectedArchiveItem.summary}</p>
-            <a class="home-selected-link" href={selectedArchiveHref}>查看代表项目 ↗</a>
+            <a class="home-selected-link" href={selectedArchiveHref}>查看代表项目</a>
           </div>
           <div class="home-selected-aside">
             <p class="home-meta">ROLE</p>
