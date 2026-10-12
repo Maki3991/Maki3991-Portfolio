@@ -71,7 +71,22 @@
 
 .now-entry-content a:hover,
 .now-entry-content a:focus-visible {
-  color: var(--color-text);
+  color: var(--color-accent);
+}
+
+.now-entry-content a:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
+.now-entry-content .now-link-arrow {
+  display: inline-block;
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.now-entry-content a:hover .now-link-arrow,
+.now-entry-content a:focus-visible .now-link-arrow {
+  transform: translate(2px, -2px);
 }
 
 .now-entry-content blockquote {

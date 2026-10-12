@@ -1,10 +1,10 @@
 [
   {
     "order": 1,
-    "title": "个人网站更新迭代",
+    "title": "Move Your Lips",
     "type": "PROJECT",
-    "status": "进行中",
-    "why": "希望开启一个长期记录和更新的场所。"
+    "why": "在不能出声的公共场合，探索用唇语识别技术实现语音输入的输出效率。",
+    "href": "https://github.com/Maki3991/move-your-lips"
   },
   {
     "order": 2,

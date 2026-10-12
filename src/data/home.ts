@@ -9,8 +9,9 @@ export type WorkbenchItem = {
   order: number;
   title: string;
   type: string;
-  status: string;
+  status?: string;
   why: string;
+  href?: string;
   visible?: boolean;
 };
 

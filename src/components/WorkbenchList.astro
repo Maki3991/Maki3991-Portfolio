@@ -13,10 +13,23 @@ const { items } = Astro.props;
       </span>
       <div class="workbench-title-block">
         <p class="home-meta">{item.type}</p>
-        <h3>{item.title}</h3>
+        <h3>
+          {item.href ? (
+            <a
+              class="workbench-title-link"
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {item.title} <span aria-hidden="true">↗</span>
+            </a>
+          ) : (
+            item.title
+          )}
+        </h3>
       </div>
       <p class="workbench-why">{item.why}</p>
-      <span class="workbench-status">{item.status}</span>
+      {item.status && <span class="workbench-status">{item.status}</span>}
     </article>
   ))}
 </div>

@@ -326,11 +326,37 @@ body:has(.home-page) .nav-toggle {
   margin: 0;
 }
 
+.workbench-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.workbench-title-link:hover,
+.workbench-title-link:focus-visible {
+  color: var(--home-accent);
+}
+
+.workbench-title-link:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+
+.workbench-title-link > span[aria-hidden="true"] {
+  display: inline-block;
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard);
+}
+
+.workbench-title-link:hover > span[aria-hidden="true"],
+.workbench-title-link:focus-visible > span[aria-hidden="true"] {
+  transform: translate(2px, -2px);
+}
+
 .workbench-why {
+  align-self: center;
   color: var(--home-muted);
   line-height: 1.7;
   margin: 0;
-  max-width: 500px;
+  max-width: none;
 }
 
 .workbench-status {
