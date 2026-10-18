@@ -1,6 +1,6 @@
 [
   { "label": "Home", "href": "/" },
-  { "label": "Archive", "href": "/archive/" },
   { "label": "Now", "href": "/now/" },
+  { "label": "Archive", "href": "/archive/" },
   { "label": "Contact", "href": "/contact/" }
 ]

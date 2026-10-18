@@ -1,7 +1,7 @@
 ---
 {
   "id": "things-they-left-behind",
-  "order": 5,
+  "order": 6,
   "title": "Things They Left Behind",
   "type": "creation",
   "status": "archived",

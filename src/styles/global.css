@@ -736,8 +736,12 @@ h3 {
   border-top: 0;
   display: flex;
   gap: 16px;
-  justify-content: space-between;
+  justify-content: center;
   padding: 28px 0 40px;
+}
+
+.site-footer p:first-child {
+  display: none;
 }
 
 .site-footer p {

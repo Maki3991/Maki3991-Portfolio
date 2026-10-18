@@ -12,6 +12,10 @@
   gap: 14px;
 }
 
+.archive-page .archive-section-heading > div > p {
+  display: none;
+}
+
 /* Archive list: keep the index readable and make the detail entry explicit. */
 .archive-page .archive-row:hover {
   background: transparent;

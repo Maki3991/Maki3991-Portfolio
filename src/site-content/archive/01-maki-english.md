@@ -1,7 +1,7 @@
 ---
 {
   "id": "maki-english",
-  "order": 1,
+  "order": 2,
   "title": "Maki English",
   "type": "project",
   "status": "archived",

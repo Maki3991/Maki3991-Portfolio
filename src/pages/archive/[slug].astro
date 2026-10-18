@@ -91,7 +91,7 @@ const formatPeriod = (start: string, end?: string) =>
             <dt>角色</dt>
             <dd>{item.role}</dd>
           </div>
-          <div>
+          <div class="archive-detail-public-scope">
             <dt>公开范围</dt>
             <dd>{visibilityLabels[item.visibility]}</dd>
           </div>
@@ -130,7 +130,7 @@ const formatPeriod = (start: string, end?: string) =>
             </ul>
           </section>
 
-          <section>
+          <section class="archive-detail-public-boundary">
             <p class="archive-detail-label">公开边界</p>
             <p>本页只展示已标记为公开或匿名公开的内容；待公开材料不会在这里展开。</p>
           </section>

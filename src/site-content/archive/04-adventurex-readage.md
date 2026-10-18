@@ -1,7 +1,7 @@
 ---
 {
   "id": "adventurex-readage",
-  "order": 4,
+  "order": 5,
   "title": "AdventureX 2026 / ReadAge",
   "type": "hackathon",
   "status": "archived",
