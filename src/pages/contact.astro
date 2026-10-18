@@ -6,6 +6,7 @@ import "@/styles/archive-detail.css";
 import "@/styles/display-title.css";
 
 const isExternalLink = (href: string) => href.startsWith("http");
+const opensInNewTab = (href: string) => isExternalLink(href) || /\.pdf(?:$|[?#])/i.test(href);
 const contactGroups = [
   { id: "direct", label: "DIRECT CONTACT", links: links.filter((link) => link.group === "direct") },
   { id: "public", label: "PUBLIC ACCOUNTS", links: links.filter((link) => link.group === "public") },
@@ -51,8 +52,8 @@ const contactGroups = [
                         class="contact-link-main"
                         href={link.href}
                         aria-label={isExternalLink(link.href) ? link.label + " (external link)" : link.label}
-                        target={isExternalLink(link.href) ? "_blank" : undefined}
-                        rel={isExternalLink(link.href) ? "noreferrer" : undefined}
+                        target={opensInNewTab(link.href) ? "_blank" : undefined}
+                        rel={opensInNewTab(link.href) ? "noreferrer" : undefined}
                       >
                         <span>
                           {link.label}
