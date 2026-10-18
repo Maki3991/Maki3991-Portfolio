@@ -25,7 +25,8 @@ body:has(.contact-page) .page-hero {
 
 body:has(.home-page) .home-hero {
   align-content: start;
-  align-items: start;
+  align-items: center;
+  min-height: auto;
 }
 
 body:has(.archive-page) .archive-page {
@@ -72,5 +73,12 @@ body:has(.contact-page) .page-hero .eyebrow {
 
   body:has(.archive-page) .archive-page {
     padding-top: 0 !important;
+  }
+}
+
+@media (max-width: 860px) {
+  body:has(.home-page) .home-hero {
+    align-content: start;
+    align-items: start;
   }
 }

@@ -7,51 +7,47 @@
   "status": "archived",
   "visibility": "public-anonymized",
   "period": { "start": "2026-07", "end": "2026-09" },
-  "summary": "在 AI 建站产品团队（AutoCoder）参与海外内容运营，把产品场景测试、英文脚本、录屏剪辑、海报和社媒发布连接成一条内容交付流程。",
+  "summary": "在 AI 建站团队（AutoCoder）的产品部门担任海外自媒体内容运营实习",
   "role": "产品部门海外内容运营实习生",
   "contributions":
     [
-      "策划和制作 AutoCoder 等 AI 建站产品的日常内容、视频和海报",
-      "围绕投研管理系统和 Google Maps 商户官网等场景完成生成测试",
-      "参与英文脚本、FAQ、Blog 和演示视频制作",
-      "参与 X、Instagram、YouTube 和 Discord 等官方渠道的内容发布",
-      "调研竞品用户反馈和社区讨论",
-      "收集并分析 KOL 宣传视频的观众反馈"
+      "策划制作团队产品 AutoCoder 的日常英文 Posts、Case 展示视频、海报、FAQ 和 Blog 制作",
+      "负责运营团队 X 账号与 Discord 社群",
+      "调研竞品用户反馈；收集并分析 KOL 宣传视频的观众反馈",
+      "竞品对比视频：以投研管理系统和 Google Maps 商户官网为案例，一一对比四个 AI 建站产品的能力，并从零完成英文对比视频的策划与制作"
     ],
   "outcomes":
     [
-      "完成 10+ 条产品视频、多个产品对比案例、FAQ / Blog / 海报等内容",
-      "完成从产品场景测试、英文表达、制作到发布的执行闭环",
-      "将竞品和 KOL 用户反馈整理为内容与产品表达的输入"
+      "完成从产品应用场景、英文内容制作到发布的闭环"
     ],
   "evidence":
     [
       {
         "kind": "public-link",
-        "label": "Vibe Coding 产品对比视频（社媒缩减版 1/4）",
+        "label": "AI 建站产品对比视频（社媒缩减版 1/4）",
         "url": "https://x.com/autocoder_cc/status/2089325871568171085",
-        "supports": "15 分钟原视频的社媒缩减版；为适配 X 发布而拆分为短视频",
+        "supports": "15 分钟原视频，为适配 X 发布而拆分为短视频",
         "visibility": "public"
       },
       {
         "kind": "public-link",
-        "label": "Vibe Coding 产品对比视频（社媒缩减版 2/4）",
+        "label": "AI 建站产品对比视频（社媒缩减版 2/4）",
         "url": "https://x.com/autocoder_cc/status/2089685491130019859",
-        "supports": "15 分钟原视频的社媒缩减版；为适配 X 发布而拆分为短视频",
+        "supports": "15 分钟原视频，为适配 X 发布而拆分为短视频",
         "visibility": "public"
       },
       {
         "kind": "public-link",
-        "label": "Vibe Coding 产品对比视频（社媒缩减版 3/4）",
+        "label": "AI 建站产品对比视频（社媒缩减版 3/4）",
         "url": "https://x.com/autocoder_cc/status/2090044104260702439",
-        "supports": "15 分钟原视频的社媒缩减版；为适配 X 发布而拆分为短视频",
+        "supports": "15 分钟原视频，为适配 X 发布而拆分为短视频",
         "visibility": "public"
       },
       {
         "kind": "public-link",
-        "label": "Vibe Coding 产品对比视频（社媒缩减版 4/4）",
+        "label": "AI 建站产品对比视频（社媒缩减版 4/4）",
         "url": "https://x.com/autocoder_cc/status/2090413790416531523",
-        "supports": "15 分钟原视频的社媒缩减版；为适配 X 发布而拆分为短视频",
+        "supports": "15 分钟原视频，为适配 X 发布而拆分为短视频",
         "visibility": "public"
       },
       {
@@ -99,4 +95,4 @@
   }
 ---
 
-这段实习公开展示的是 AI 产品内容执行能力，而不是公司经营数据或未经验证的增长结果。正式上线前，代表性材料必须先脱敏。
+这段实习公开展示的是 AI 产品内容执行能力，而不是公司经营数据或未经验证的增长结果正式上线前，代表性材料必须先脱敏

@@ -23,14 +23,14 @@ const wechatLink = links.find((link) => link.image?.endsWith("wechat.jpg"));
   <div class="home-page">
     <section class="home-hero" aria-labelledby="home-title">
       <div class="home-hero-copy">
-        <p class="home-kicker">PERSONAL WORK ARCHIVE / BEIJING</p>
+        <p class="home-kicker">PERSONAL WORK ARCHIVE</p>
         <h1 id="home-title" class="display-title">
           <span class="home-title-line">Maki3991</span>
           <span class="home-title-line">羽轩</span>
         </h1>
         <p class="home-tagline">In it for the long haul.</p>
         <p class="home-hero-intro">
-          国际政治本科生，做过英语内容、自媒体运营和教育产品交付；现在也在用代码和 AI 做自己的工具。
+          国际政治本科生，做过英语内容创作、自媒体运营和教育产品交付；目前在研究 AI 编程与 Agent 搭建原理
         </p>
         <div class="home-actions">
           <a class="button primary" href="/now/">查看Now</a>
@@ -39,15 +39,15 @@ const wechatLink = links.find((link) => link.image?.endsWith("wechat.jpg"));
         </div>
       </div>
 
-      <aside class="home-hero-side" aria-label="当前状态">
+      <aside class="home-hero-side" aria-label="个人照片">
         <div class="home-portrait-block">
           <figure class="home-portrait">
             <img src="/assets/profile/maki-avatar.jpg" alt="Maki 羽轩头像" />
-            <figcaption>PHOTO / MAKI</figcaption>
+            <figcaption>BASED IN BEIJING</figcaption>
           </figure>
         </div>
 
-        <div>
+        <div class="home-live-index">
           <p class="home-kicker">01 / LIVE INDEX</p>
           <LiveIndex items={homeLiveIndex} />
         </div>
@@ -56,7 +56,7 @@ const wechatLink = links.find((link) => link.image?.endsWith("wechat.jpg"));
 
     <section class="home-section" aria-labelledby="workbench-title">
       <div class="home-section-heading">
-        <p class="home-kicker">02 / CURRENT WORKBENCH</p>
+        <p class="home-kicker">CURRENT WORKBENCH</p>
         <div>
           <h2 id="workbench-title">现在在做什么</h2>
           <p>这里记录我此刻愿意公开的注意力。</p>
@@ -68,7 +68,7 @@ const wechatLink = links.find((link) => link.image?.endsWith("wechat.jpg"));
     {selectedArchiveItem && (
       <section class="home-section" aria-labelledby="selected-title">
         <div class="home-section-heading">
-          <p class="home-kicker">03 / SELECTED WORK</p>
+          <p class="home-kicker">SELECTED WORK</p>
           <div>
             <h2 id="selected-title">一件代表性工作</h2>
             <p>从一段真实实践开始。</p>
@@ -93,7 +93,7 @@ const wechatLink = links.find((link) => link.image?.endsWith("wechat.jpg"));
 
     <section class="home-contact" aria-labelledby="contact-title">
       <div class="home-contact-copy">
-        <p class="home-kicker">04 / CONTACT</p>
+        <p class="home-kicker">CONTACT</p>
         <h2 id="contact-title">如果你想继续聊</h2>
         <p>项目合作、求职或普通交流，可以先通过微信联系。</p>
       </div>

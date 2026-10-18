@@ -10,7 +10,7 @@
     "start": "2026-07-22",
     "end": "2026-07-26"
   },
-  "summary": "第一次参加黑客松，与队友在 AdventureX 2026 期间完成一个把英文文章阅读、词汇记录和个性化推荐结合起来的学习 MVP。",
+  "summary": "第一次参加黑客松；完成了一个把英文阅读、词汇记录和个性化推荐结合起来的 MVP",
   "role": "参赛者；负责产品体验、部分功能、测试、展示和物料",
   "cover": {
     "src": "/assets/proofs/readage-flyer-english.png",
@@ -19,42 +19,32 @@
     "position": "after"
   },
   "contributions": [
-    "与队友共同完成 ReadAge 的产品体验和功能拆解",
-    "参与设计 Landing Page、CEFR 阅读等级测试和本地学习数据处理方案",
-    "参与浏览器存储方案、部分 UI 微调和 Demo 测试",
-    "独立设计 ReadAge Flyer",
-    "独立制作展示视频",
-    "参与 Demo 展示和评委现场沟通"
+    "与队友共同完成 ReadAge 的产品功能拆解",
+    "设计 Landing Page、CEFR 阅读等级测试、本地数据处理方案、UI 微调和 Demo 测试",
+    "设计 ReadAge Flyer，制作作品社媒宣传视频"
   ],
   "outcomes": [
-    "在两人协作和有限时间内完成可展示的 MVP",
-    "形成公开 GitHub 仓库、官方 Gallery 页面和在线 Demo",
-    "完成 Flyer 与展示视频等现场传播物料"
+    "初步学习如何使用 Github 进行多人协作开发",
+    "形成 GitHub 仓库、官方 Gallery 页面、在线 Demo 与现场传播物料"
   ],
   "evidence": [
     {
       "kind": "public-link",
       "label": "ReadAge GitHub 仓库",
       "url": "https://github.com/szyuing/readage",
-      "supports": "项目仓库和赛后可追溯代码"
+      "supports": "项目仓库和开源代码"
     },
     {
       "kind": "public-link",
       "label": "AdventureX 官方 Gallery",
       "url": "https://gallery.adventure-x.cn/projects/cmrz6haix000802k2xnyfe7e5",
-      "supports": "活动项目页面、团队和项目介绍"
-    },
-    {
-      "kind": "public-link",
-      "label": "ReadAge Demo",
-      "url": "https://readage.xyz/",
-      "supports": "公开 Demo 入口"
+      "supports": "项目详情页面"
     },
     {
       "kind": "local-file",
-      "label": "ReadAge Flyer（PDF）",
+      "label": "ReadAge Flyer (PDF)",
       "url": "/assets/proofs/readage-flyer.pdf",
-      "supports": "两页 Flyer 原始文件；其中二维码已经失效，仅作为历史设计展示",
+      "supports": "两页中英文 Flyer PDF；二维码已经失效，仅作展示",
       "visibility": "public"
     },
     {
@@ -84,4 +74,4 @@
 }
 ---
 
-这个条目的重点是有限时间内的协作、个人贡献、版本边界和真实复盘，而不是奖项或未经验证的产品增长。
+这个条目的重点是有限时间内的协作、个人贡献、版本边界和真实复盘，而不是奖项或未经验证的产品增长
